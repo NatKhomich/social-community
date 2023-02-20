@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import Header from "./Header";
+import Technologies from "./Technologies";
 
 function App() {
     return (
@@ -8,29 +10,6 @@ function App() {
             <Technologies />
         </div>
     );
-}
-
-function Header() {
-    return (
-        <div>
-            <a>Home </a>
-            <a>News Feed </a>
-            <a>Messages </a>
-        </div>
-    )
-}
-
-function Technologies() {
-    return (
-        <div>
-            <ul>
-                <li>css</li>
-                <li>html</li>
-                <li>js</li>
-                <li>react</li>
-            </ul>
-        </div>
-    )
 }
 
 export default App;
