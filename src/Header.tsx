@@ -1,6 +1,6 @@
 import React from "react";
 
-function Header(props: any ) {
+function Header() {
     return (
         <div>
             <a href={'#'}>Home </a> -
