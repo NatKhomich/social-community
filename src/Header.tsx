@@ -3,9 +3,9 @@ import React from "react";
 function Header(props: any ) {
     return (
         <div>
-            <a>Home </a>
-            <a>News Feed </a>
-            <a>Messages </a>
+            <a href={'#'}>Home </a> -
+            <a href={'#'}>News Feed </a> -
+            <a href={'#'}>Messages </a> -
         </div>
     )
 }
