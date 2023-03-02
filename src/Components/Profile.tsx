@@ -4,7 +4,7 @@ const Profile = () => {
     return (
         <div className={'content_profile'}>
             <div>
-                <img src={'https://live.staticflickr.com/65535/49704121871_d4b10262bf_b.jpg'}/>
+                <img src={'https://images.pexels.com/photos/258109/pexels-photo-258109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}/>
             </div>
             <div>
                 ava+description

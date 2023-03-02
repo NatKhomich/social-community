@@ -1,4 +1,5 @@
 .app-wrapper {
+  font-family: Arial, serif;
   width: 1200px;
   margin: 0 auto;
   display: grid;
@@ -6,7 +7,7 @@
   grid-template-columns: 2fr 10fr;
   grid-template-areas:
 "header header"
-"nav content_profile";
+"navbar content_profile";
  /* grid-gap: ;*/
 }
 
@@ -19,13 +20,18 @@
   width: 70px;
 }
 
-.nav{
-  grid-area: nav;
+.navbar{
+  grid-area: navbar;
   background-color: #fde4cf;
   margin-right: 5px;
+  padding: 20px;
 }
 
 .content_profile{
   grid-area: content_profile;
   background-color: #ffcfd2;
+}
+
+.content_profile img{
+  max-height: 600px;
 }
