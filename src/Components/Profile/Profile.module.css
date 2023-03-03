@@ -10,11 +10,11 @@
     min-width: 1200px;
 }
 
-.item{
-    color: black;
+
+.posts{
+    background-color: deeppink;
 }
 
-/*
-.item.active{
+.item{
     color: gold;
-}*/
+}
