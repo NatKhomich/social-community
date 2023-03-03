@@ -1,0 +1,20 @@
+
+
+.content{
+    grid-area: content_profile;
+    background-color: #e9ecef;
+}
+
+.content img {
+    max-height: 200px;
+    min-width: 1200px;
+}
+
+.item{
+    color: black;
+}
+
+/*
+.item.active{
+    color: gold;
+}*/

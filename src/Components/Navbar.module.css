@@ -1,0 +1,11 @@
+
+.navbar{
+    grid-area: navbar;
+    background-color: #023e7d;
+    margin-right: 5px;
+    padding: 20px;
+}
+
+.item{
+    color: white;
+}

@@ -1,22 +1,22 @@
 import React from 'react';
+import classes from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <div className={'content_profile'}>
+        <div className={classes.content}>
             <div>
-                <img src={'https://images.pexels.com/photos/258109/pexels-photo-258109.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}/>
+                <img src={'https://interier-foto.ru/wp-content/uploads/dlinnye-foto-4.jpg'}/>
             </div>
             <div>
                 ava+description
                 {/* <img src={'https://avatars.mds.yandex.net/i?id=e67c20f98bdc512c5d3bc20c140f8fac-5719595-images-taas-consumers&n=27&h=480&w=480'} />*/}
             </div>
             <div>
-                My posts
                 <div>New post</div>
             </div>
-            <div>
-                <div>Post 1</div>
-                <div>Post 2</div>
+            <div className={classes.posts}>
+                <div className={ `${classes.item} ${classes.active}`}>Post 1</div>
+                <div className={classes.item}>Post 2</div>
             </div>
         </div>
     );

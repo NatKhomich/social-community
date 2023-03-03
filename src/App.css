@@ -11,27 +11,7 @@
  /* grid-gap: ;*/
 }
 
-.header{
-  grid-area: header;
-  background-color: #f1c0e8;
-  margin-bottom: 5px;
-}
-.header img{
-  width: 70px;
-}
 
-.navbar{
-  grid-area: navbar;
-  background-color: #fde4cf;
-  margin-right: 5px;
-  padding: 20px;
-}
 
-.content_profile{
-  grid-area: content_profile;
-  background-color: #ffcfd2;
-}
 
-.content_profile img{
-  max-height: 600px;
-}
+
