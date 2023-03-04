@@ -1,0 +1,10 @@
+
+
+.item{
+    color: gold;
+}
+
+.item img{
+    width: 50px;
+    border-radius: 50%;
+}
