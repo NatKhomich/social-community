@@ -8,3 +8,7 @@
     width: 50px;
     border-radius: 50%;
 }
+
+.item span{
+    color: black;
+}

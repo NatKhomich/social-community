@@ -3,3 +3,9 @@
 .posts{
     background-color: deeppink;
 }
+
+.myPosts{
+    font-size: 20px;
+    margin: 30px 0 10px 0;
+    font-weight: 600;
+}
