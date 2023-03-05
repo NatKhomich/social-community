@@ -9,7 +9,7 @@ const Profile = () => {
             <div>
                 <img src={'https://interier-foto.ru/wp-content/uploads/dlinnye-foto-4.jpg'}/>
             </div>
-            <div> ava+description </div>
+            <div>avatar+description</div>
             <MyPosts info={'My posts'}/>
         </div>
     );
