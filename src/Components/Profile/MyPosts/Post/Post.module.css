@@ -1,7 +1,7 @@
 
 
 .item{
-    color: gold;
+    color: black;
 }
 
 .item img{
@@ -10,5 +10,6 @@
 }
 
 .item span{
-    color: black;
+    color: #2b9348;
+    font-weight: 600;
 }

@@ -1,19 +1,20 @@
 .app-wrapper {
     font-family: Arial, serif;
-    width: 1200px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     grid-template-areas:
-"header header"
-"navbar content_profile";
-    /* grid-gap: ;*/
+
+    "header header"
+    "navbar content_profile";
+     /*grid-gap: ;*/
 }
 
 .app-wrapper-content {
     grid-area: content_profile;
-    background-color: #e9ecef;
+    background-color: #edede9;
 }
 
 

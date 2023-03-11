@@ -1,11 +1,20 @@
 
 .navbar{
     grid-area: navbar;
-    background-color: #023e7d;
+    background-color: #9a8c98;
     margin-right: 5px;
     padding: 20px;
 }
 
 .item{
+    padding-top: 8px;
+}
+
+.item a{
     color: white;
+    text-decoration: none;
+}
+
+.item a.active {
+    color: #023e8a;
 }
