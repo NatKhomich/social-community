@@ -1,15 +1,21 @@
 .app-wrapper {
-  font-family: Arial, serif;
-  width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-template-areas:
+    font-family: Arial, serif;
+    width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas:
 "header header"
 "navbar content_profile";
- /* grid-gap: ;*/
+    /* grid-gap: ;*/
 }
+
+.app-wrapper-content {
+    grid-area: content_profile;
+    background-color: #e9ecef;
+}
+
 
 
 
