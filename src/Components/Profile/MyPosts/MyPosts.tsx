@@ -6,18 +6,24 @@ type MyPostsPropsType = {
     info: string
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts = () => {
+
+    let postData = [
+        {id: 1, message: 'Hi, why nobody love me', likesCount: 15},
+        {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
+    ]
+
     return (
         <div className={s.my_Posts}>
-            <div className={s.myPosts}> {props.info} </div>
+            <div className={s.myPosts}> info </div>
             <div>
                 <textarea> </textarea>
             </div>
             <button>Add post</button>
 
             <div className={s.posts}>
-                <Post message="Hi, why nobody love me" likesCount={15}/>
-                <Post message="It's our new program! Hey!" likesCount={2}/>
+               {/* <Post message={postData[0].message} likesCount={postData[0].likesCount}/>
+                <Post message={postData[1].message} likesCount={postData[2].likesCount}/>*/}
             </div>
         </div>
     );
