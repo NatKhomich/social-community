@@ -1,8 +1,7 @@
 import s from './Message.module.css';
 import React from 'react';
 
-
-type MessagesType = {
+export type MessagesType = {
     message: string
     id: number
 }

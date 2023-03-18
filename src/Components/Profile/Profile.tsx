@@ -1,14 +1,18 @@
 import React from 'react';
 import s from './Profile.module.css';
-import MyPosts from "./MyPosts/MyPosts";
+import MyPosts, {PostsType} from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
+type ProfilePostsType = {
+    posts: PostsType[]
+}
 
-const Profile = () => {
+const Profile = (props: ProfilePostsType) => {
+
     return (
         <div>
             <ProfileInfo />
-            <MyPosts info={'My post'}/>
+            <MyPosts posts = {props.posts}/>
         </div>
     );
 };

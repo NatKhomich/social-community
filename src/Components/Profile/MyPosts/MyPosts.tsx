@@ -1,20 +1,20 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {findAllByDisplayValue} from '@testing-library/react';
+
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 type MyPostsPropsType = {
-    info: string
+    posts: PostsType[]
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-    let posts = [
-        {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
-        {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
-    ]
-
-    let postElement = posts.map( el => {
+    let postElement = props.posts.map( el => {
         return (
             <Post message={el.message} likesCount={el.likesCount} />
         )
@@ -22,7 +22,7 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     return (
         <div className={s.my_Posts}>
-            <div className={s.myPosts}> {props.info} </div>
+            <div className={s.myPosts}> My post </div>
             <div>
                 <textarea> </textarea>
             </div>
