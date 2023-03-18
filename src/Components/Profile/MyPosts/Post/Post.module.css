@@ -12,3 +12,8 @@
 .item span{
     font-weight: 600;
 }
+
+.likes {
+    color: forestgreen;
+    font-weight: 600;
+}

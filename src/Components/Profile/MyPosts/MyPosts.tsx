@@ -1,6 +1,7 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
+import {findAllByDisplayValue} from '@testing-library/react';
 
 type MyPostsPropsType = {
     info: string
@@ -8,10 +9,16 @@ type MyPostsPropsType = {
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-    let postData = [
+    let posts = [
         {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
         {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
     ]
+
+    let postElement = posts.map( el => {
+        return (
+            <Post message={el.message} likesCount={el.likesCount} />
+        )
+    } )
 
     return (
         <div className={s.my_Posts}>
@@ -22,10 +29,10 @@ const MyPosts = (props: MyPostsPropsType) => {
             <button>Add post</button>
 
             <div className={s.posts}>
-                <Post message={postData[0].message} likesCount={postData[0].likesCount} />
-                <Post message={postData[1].message} likesCount={postData[1].likesCount} />
+                {postElement}
             </div>
         </div>
+
     );
 };
 

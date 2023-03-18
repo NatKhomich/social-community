@@ -11,7 +11,7 @@ const DialogItem = (props: DialogsType) => {
     let path = '/dialogs/' + props.id
     return (
         <div className={s.dialog}>
-            <NavLink className={s.d} to={path}> {props.name}</NavLink>
+            <NavLink className={s.d} to={path}>  {props.name}   </NavLink>
         </div>
     );
 };
@@ -31,7 +31,7 @@ const Message = (props: MessageType) => {
 
 const Dialogs = () => {
 
-    let dialogsData = [
+    let dialogs = [
         {id: 1, name: 'Natalia'},
         {id: 2, name: 'Alex'},
         {id: 3, name: 'Katya'},
@@ -40,7 +40,7 @@ const Dialogs = () => {
         {id: 6, name: 'Larisa'},
     ]
 
-    let messagesData = [
+    let messages = [
         {id: 1, message: 'Hi'},
         {id: 2, message: 'I love you'},
         {id: 3, message: 'How are you?'},
@@ -49,18 +49,27 @@ const Dialogs = () => {
         {id: 6, message: 'Yo'},
     ]
 
+    let dialogElement = dialogs.map( el  => {
+        return (
+            <DialogItem key={el.id} name={el.name} id={el.id}/>
+        )
+    })
+
+    let messageElement = messages.map( el => {
+        return (
+            <Message key={el.id} message={el.message}/>
+        )
+    } )
+
 
     return (
         <div>
             <div className={s.dialogs}>
                 <div className={s.dialogs_items}>
-                    <DialogItem name={dialogsData[0].name} id={dialogsData[0].id}/>
-                    <DialogItem name={dialogsData[1].name} id={dialogsData[1].id}/>
+                    {dialogElement}
                 </div>
                 <div className={s.messages}>
-                    <Message message={messagesData[0].message}/>
-                    <Message message={messagesData[1].message}/>
-
+                    {messageElement}
                 </div>
             </div>
         </div>
