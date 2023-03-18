@@ -5,12 +5,7 @@
 }
 
 .dialogs_items {
-    margin-left: 20px;
-
- }
-
-.dialog {
-       padding-top: 10px;
+    margin: 10px;
 }
 
 .d {
@@ -18,11 +13,4 @@
     color: #2b9348;
 }
 
-.messages {
 
-}
-
-.message {
-    color: darkmagenta;
-    padding-top: 10px;
-}
