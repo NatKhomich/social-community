@@ -9,19 +9,14 @@ type DialogsPropsType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-debugger
      return (
         <div>
             <div className={s.dialogs}>
                 <div className={s.dialogs_items}>
-
                    <DialogItem dialogs = {props.dialogs} />
-
                 </div>
                 <div className={s.messages}>
-
                     <Message messages={props.messages} />
-
                 </div>
             </div>
         </div>
