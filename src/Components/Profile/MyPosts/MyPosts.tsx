@@ -26,7 +26,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <div>
                 <textarea> </textarea>
             </div>
-            <button>Add post</button>
+            <button onClick={ ()=> {  } }>Add post</button>
 
             <div className={s.posts}>
                 {postElement}
