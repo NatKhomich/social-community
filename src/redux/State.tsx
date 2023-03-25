@@ -1,6 +1,16 @@
-import {PostsType} from '../Components/Profile/MyPosts/MyPosts';
 import {MessagesType} from '../Components/Dialogs/Messages/Message';
 import {DialogsType} from '../Components/Dialogs/DialogItem/DialogItem';
+
+export type PostPropsType = {
+    message: string
+    likesCount: number
+}
+
+export type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 
 export let state = {
     profilePage: {
@@ -29,7 +39,7 @@ export let state = {
         ],
     }
 }
-export type AppRootStateType = {
+export type RootStateType = {
     profilePage: {
         posts: PostsType[]
     }
@@ -39,3 +49,7 @@ export type AppRootStateType = {
     }
 }
 
+export const addPost = (postText: string) => {
+    const newPost: PostsType = {id: 4, message: postText, likesCount: 0}
+    state.profilePage.posts.push(newPost)
+}
