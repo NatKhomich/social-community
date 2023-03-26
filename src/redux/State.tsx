@@ -1,5 +1,6 @@
 import {MessagesType} from '../Components/Dialogs/Messages/Message';
 import {DialogsType} from '../Components/Dialogs/DialogItem/DialogItem';
+import {rerenderEntireTree} from '../render';
 
 export type PostPropsType = {
     message: string
@@ -52,4 +53,6 @@ export type RootStateType = {
 export const addPost = (postText: string) => {
     const newPost: PostsType = {id: 4, message: postText, likesCount: 0}
     state.profilePage.posts.push(newPost)
+
+    rerenderEntireTree(state)
 }
