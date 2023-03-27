@@ -7,7 +7,6 @@ import Dialogs from './Components/Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
 import {addPost, RootStateType} from './redux/State';
 
-
 export type AppStatePropsType = {
     state: RootStateType
     addPost: (postText: string) => void
