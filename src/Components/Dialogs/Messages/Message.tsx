@@ -1,10 +1,6 @@
 import s from './Message.module.css';
 import React from 'react';
-
-export type MessagesType = {
-    message: string
-    id: number
-}
+import {MessagesType} from '../../../redux/State';
 
 type MessagePropsType = {
     messages: MessagesType[]

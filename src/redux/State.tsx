@@ -1,6 +1,10 @@
-import {MessagesType} from '../Components/Dialogs/Messages/Message';
 import {DialogsType} from '../Components/Dialogs/DialogItem/DialogItem';
 import {rerenderEntireTree} from '../render';
+
+export type MessagesType = {
+    message: string
+    id: number
+}
 
 export type PostPropsType = {
     message: string
@@ -11,6 +15,16 @@ export type PostsType = {
     id: number
     message: string
     likesCount: number
+}
+
+export type MyPostsPropsType = {
+    posts: PostsType[]
+    addPost: (postText: string) => void
+}
+
+export type ProfileType = {
+    posts: PostsType[]
+    addPost: (postText: string) => void
 }
 
 export let state = {
