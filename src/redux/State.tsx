@@ -1,10 +1,4 @@
-import {DialogsType} from '../Components/Dialogs/DialogItem/DialogItem';
 import {rerenderEntireTree} from '../render';
-
-export type MessagesType = {
-    message: string
-    id: number
-}
 
 export type PostPropsType = {
     message: string
@@ -25,6 +19,29 @@ export type MyPostsPropsType = {
 export type ProfileType = {
     posts: PostsType[]
     addPost: (postText: string) => void
+}
+
+export type DialogsType = {
+    name: string
+    id: number
+}
+
+export type DialogItemPropsType = {
+    dialogs: DialogsType[]
+}
+
+export type MessagesType = {
+    message: string
+    id: number
+}
+
+export type MessagePropsType = {
+    messages: MessagesType[]
+}
+
+export type DialogsPropsType = {
+    dialogs: DialogsType[]
+    messages: MessagesType[]
 }
 
 export let state = {

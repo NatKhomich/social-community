@@ -3,7 +3,6 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPosts from './MyPosts/MyPosts';
 import {ProfileType} from '../../redux/State';
 
-
 const Profile = (props: ProfileType) => {
 
     return (

@@ -1,10 +1,7 @@
 import s from './Message.module.css';
 import React from 'react';
-import {MessagesType} from '../../../redux/State';
+import {MessagePropsType, MessagesType} from '../../../redux/State';
 
-type MessagePropsType = {
-    messages: MessagesType[]
-}
 
 export const Message = (props: MessagePropsType) => {
 
