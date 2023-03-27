@@ -26,8 +26,11 @@ function App(props: AppStatePropsType) {
 
                 />}/>
             </div>
+
         </div>
     );
+
 }
+
 
 export default App;
