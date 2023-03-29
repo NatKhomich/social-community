@@ -1,20 +1,22 @@
 
 .navbar{
     grid-area: navbar;
-    background-color: #9a8c98;
+    background-color: #edf6f9;
     margin-right: 5px;
     padding: 20px;
+    border-radius: 10px;
 }
 
 .item{
-    padding-top: 8px;
+    padding-top: 20px;
 }
 
 .item a{
-    color: white;
+    color: black;
     text-decoration: none;
+    font-size: 20px;
 }
 
 .item a.active {
-    color: #023e8a;
+    color: #ff8fab;
 }

@@ -15,7 +15,10 @@ export type AppStatePropsType = {
 function App(props: AppStatePropsType) {
     return (
         <div className={'app-wrapper'}>
+
             <Header/>
+
+
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.state.dialogsPage.dialogs}

@@ -1,6 +1,7 @@
 
 .profile_info img{
-    max-width: 1000px;
+    min-width: 1200px;
+    border-radius: 10px;
 }
 
 .description {

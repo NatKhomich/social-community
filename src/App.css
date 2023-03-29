@@ -1,6 +1,6 @@
 .app-wrapper {
     font-family: Arial, serif;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
     grid-template-rows: 60px 1fr;
@@ -9,13 +9,16 @@
 
     "header header"
     "navbar content_profile";
-     /*grid-gap: ;*/
+    /*grid-gap: ;*/
 }
 
 .app-wrapper-content {
     grid-area: content_profile;
-    background-color: #edede9;
+    background-color: #edf6f9;
 }
+
+
+/*#edede9*/
 
 
 

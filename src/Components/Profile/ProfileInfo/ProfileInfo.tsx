@@ -1,11 +1,12 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
+import photo_profile from '../../../image/profile_fon.png'
 
 const ProfileInfo = () => {
     return (
         <div>
             <div className={s.profile_info} >
-                <img src={'https://interier-foto.ru/wp-content/uploads/dlinnye-foto-4.jpg'}/>
+                <img src={photo_profile}/>
             </div>
             <div className={s.description}>avatar+description</div>
         </div>
