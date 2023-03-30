@@ -7,4 +7,23 @@
 
 .description {
     padding: 10px;
+    display: flex;
+}
+
+.description img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+.descriptionInfo{
+
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 30px;
+}
+
+.name {
+    color: #ff8fab;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
