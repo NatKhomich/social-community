@@ -2,6 +2,7 @@
 .profile_info img{
     min-width: 1200px;
     border-radius: 10px;
+    opacity: 0.5;
 }
 
 .description {

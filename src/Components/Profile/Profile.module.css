@@ -2,3 +2,7 @@
 .profile img{
     max-width: 1000px;
 }
+
+.profile{
+    border-radius: 10px;
+}
