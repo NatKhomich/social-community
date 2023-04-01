@@ -1,5 +1,7 @@
-import {rerenderEntireTree} from '../render';
-import dialogs from '../Components/Dialogs/Dialogs';
+
+let rerenderEntireTree = (state: RootStateType) => {
+    console.log('state was changed')
+}
 
 export type PostPropsType = {
     message: string
@@ -100,4 +102,8 @@ export const updateNewMyPostText = (newText: string) => {
     state.profilePage.newMyPostText = newText
 
     rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: (state: RootStateType)=> void) => {
+    rerenderEntireTree = observer
 }
