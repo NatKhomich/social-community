@@ -16,8 +16,7 @@
 }
 
 .descriptionInfo{
-
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 500;
     margin-left: 30px;
 }
@@ -26,4 +25,5 @@
     color: #ff8fab;
     margin-top: 20px;
     margin-bottom: 30px;
+    font-size: 25px;
 }
