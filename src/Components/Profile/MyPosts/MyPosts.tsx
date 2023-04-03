@@ -17,14 +17,16 @@ const MyPosts = (props: MyPostsPropsType) => {
     }
 
     return (
-        <div className={s.my_Posts}>
-            <div className={s.myPosts}> My post</div>
-            <div>
-                <textarea onChange={onChangePostHandler}
-                          value={props.newMyPostText}/>
-            </div>
-            <button onClick={addPostHandler}> Add post</button>
+        <div className={s.myPosts}>
+            <div className={s.titlePosts}> My posts</div>
+            <div className={s.textareaAndButton}>
+                <textarea
+                    className={s.textarea}
+                    onChange={onChangePostHandler}
+                    value={props.newMyPostText}/>
 
+                <button className={s.buttonPosts} onClick={addPostHandler}> Add post</button>
+            </div>
             <div className={s.posts}>
                 {postElement}
             </div>

@@ -7,7 +7,6 @@ import {DialogsPropsType} from '../../redux/State';
 
 const Dialogs = (props: DialogsPropsType) => {
     return (
-        <div>
             <div className={s.dialogs}>
                 <div className={s.dialogs_items}>
                     <DialogItem dialogs={props.dialogs}/>
@@ -16,7 +15,6 @@ const Dialogs = (props: DialogsPropsType) => {
                     <Message messages={props.messages}/>
                 </div>
             </div>
-        </div>
     );
 };
 

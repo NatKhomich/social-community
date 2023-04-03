@@ -1,15 +1,45 @@
 
-.my_Posts{
+.myPosts {
     padding: 10px;
 }
 
-.posts{
+.posts {
     padding: 10px;
     margin-top: 20px;
 }
 
-.myPosts{
-    font-size: 20px;
+.titlePosts {
+    font-size: 25px;
     margin: 30px 0 10px 0;
+    font-weight: 600;
+    color: #2f3e46;
+}
+
+.textareaAndButton {
+    position:relative;
+}
+
+.textarea {
+    width: 1130px;
+    height: 100px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    margin: 20px 0 0 20px;
+}
+
+.buttonPosts {
+    margin-top: 10px;
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    right: 25px;
+    top: 130px;
+
+    border: none;
+    border-radius: 10px;
+    background-color: #ffe5ec;
+
+    font-size: 15px;
     font-weight: 600;
 }
