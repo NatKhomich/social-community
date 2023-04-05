@@ -56,7 +56,6 @@ export let state = {
         posts: [
             {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
             {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
-            {id: 3, message: 'Hi guys!', likesCount: 6},
         ],
         newMyPostText: ''  //
     },

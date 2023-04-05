@@ -1,19 +1,27 @@
 
-
-.item{
+.item {
     color: black;
+    display: flex;
+    margin-top: 15px;
 }
 
-.item img{
+.item img {
     width: 50px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
-.item span{
+.messageLikes {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.messageLikes span {
     font-weight: 600;
 }
 
-.likes {
-    color: forestgreen;
+.messageLikes div {
     font-weight: 600;
+    color: #f28482;
 }

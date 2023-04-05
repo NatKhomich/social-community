@@ -43,3 +43,11 @@
     font-size: 15px;
     font-weight: 600;
 }
+
+.buttonPosts:hover {
+    background-color: #ffb3c6;
+}
+
+.buttonPosts:active {
+    background-color: #fb6f92;
+}
