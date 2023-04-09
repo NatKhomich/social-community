@@ -9,10 +9,7 @@ import {BrowserRouter} from 'react-router-dom';
  const rerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App store={store}
-                 /*addPost={store.addPost}
-                 updateNewMyPostText={store.updateNewMyPostText}*/
-            />,
+            <App store={store} />,
         </BrowserRouter>,
         document.getElementById('root')
     );
