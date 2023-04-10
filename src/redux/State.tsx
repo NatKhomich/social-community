@@ -47,6 +47,27 @@ export type DialogsPropsType = {
     messages: MessagesType[]
 }
 
+export type RootStateType = {
+    profilePage: {
+        posts: PostsType[]
+        newMyPostText: string //
+    }
+    dialogsPage: {
+        messages: MessagesType[]
+        dialogs: DialogsType[]
+    }
+}
+
+export type StoreType = {
+    _state: RootStateType
+    addPost: () => void
+    updateNewMyPostText: (newText: string) => void
+    subscribe: (observer: ()=> void) => void
+    rerenderEntireTree: ()=> void
+    getState: () => RootStateType
+}
+
+
 export const store: StoreType = {
     _state : {
         profilePage: {
@@ -75,6 +96,18 @@ export const store: StoreType = {
             ],
         }
     },
+
+    rerenderEntireTree () {
+        console.log('state was changed')
+    },
+
+    subscribe (observer: ()=> void) {
+        this.rerenderEntireTree = observer
+    },
+    getState() {
+        return this._state
+    },
+
     addPost() {
         const newPost: PostsType = {id: 4, message: this._state.profilePage.newMyPostText, likesCount: 0}
         this._state.profilePage.posts.push(newPost)
@@ -85,33 +118,6 @@ export const store: StoreType = {
         this._state.profilePage.newMyPostText = newText
         this.rerenderEntireTree()
     },
-    subscribe (observer: ()=> void) {
-        this.rerenderEntireTree = observer
-    },
-    rerenderEntireTree () {
-        console.log('state was changed')
-    },
-    getState() {
-        return this._state
-    }
 }
 
-export type StoreType = {
-    _state: RootStateType
-    addPost: () => void
-    updateNewMyPostText: (newText: string) => void
-    subscribe: (observer: ()=> void) => void
-    rerenderEntireTree: ()=> void
-    getState: () => RootStateType
-}
 
-export type RootStateType = {
-    profilePage: {
-        posts: PostsType[]
-        newMyPostText: string //
-    }
-    dialogsPage: {
-        messages: MessagesType[]
-        dialogs: DialogsType[]
-    }
-}
