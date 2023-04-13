@@ -1,4 +1,3 @@
-
 export type PostPropsType = {
     message: string
     likesCount: number
@@ -10,18 +9,20 @@ export type PostsType = {
     likesCount: number
 }
 
-export type MyPostsPropsType = {
+/*export type MyPostsPropsType = {
     posts: PostsType[]
     addPost: (postText: string) => void
     newMyPostText: string //
-    updateNewMyPostText: (newText: string)=> void
-}
+    updateNewMyPostText: (newText: string) => void
+    dispatch: (action: actionsTypes) => void
+}*/
 
-export type ProfileType = {
+export type ProfilePostsType = {
     posts: PostsType[]
-    addPost: (postText: string) => void
+   // addPost: (postText: string) => void
     newMyPostText: string //
-    updateNewMyPostText: (newText: string)=> void
+    //updateNewMyPostText: (newText: string) => void
+    dispatch: (action: actionsTypes) => void
 }
 
 export type DialogsType = {
@@ -60,22 +61,35 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: () => void
-    updateNewMyPostText: (newText: string) => void
-    subscribe: (observer: ()=> void) => void
-    rerenderEntireTree: ()=> void
+    //addPost: () => void
+   // updateNewMyPostText: (newText: string) => void
+    subscribe: (observer: () => void) => void
+    rerenderEntireTree: () => void
     getState: () => RootStateType
+    dispatch: (action: actionsTypes) => void
+}
+
+type actionsTypes = addPostActionType | updateNewMyPostTextActionType
+
+type addPostActionType = {
+    type: 'ADD-POST'
+    newMyPostText: string
+}
+
+type updateNewMyPostTextActionType = {
+    type: 'UPDATE-NEW-MY-POST-TEXT'
+    newText: string
 }
 
 
 export const store: StoreType = {
-    _state : {
+    _state: {
         profilePage: {
             posts: [
                 {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
                 {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
             ],
-            newMyPostText: ''  //
+            newMyPostText: ''
         },
         dialogsPage: {
             messages: [
@@ -97,27 +111,39 @@ export const store: StoreType = {
         }
     },
 
-    rerenderEntireTree () {
+    rerenderEntireTree() {
         console.log('state was changed')
     },
 
-    subscribe (observer: ()=> void) {
+    subscribe(observer: () => void) {
         this.rerenderEntireTree = observer
     },
     getState() {
         return this._state
     },
 
-    addPost() {
+   /* addPost() {
         const newPost: PostsType = {id: 4, message: this._state.profilePage.newMyPostText, likesCount: 0}
         this._state.profilePage.posts.push(newPost)
         this._state.profilePage.newMyPostText = ''
         this.rerenderEntireTree()
     },
-    updateNewMyPostText (newText: string) {
+    updateNewMyPostText(newText: string) {
         this._state.profilePage.newMyPostText = newText
         this.rerenderEntireTree()
-    },
+    },*/
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') { //message: this._state.profilePage.newMyPostText,
+            const newPost: PostsType = {id: 4, message: action.newMyPostText, likesCount: 0}
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newMyPostText = ''
+            this.rerenderEntireTree()
+        } else if (action.type === 'UPDATE-NEW-MY-POST-TEXT') {
+            this._state.profilePage.newMyPostText = action.newText
+            this.rerenderEntireTree()
+        }
+    }
 }
 
 
