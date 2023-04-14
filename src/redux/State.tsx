@@ -69,9 +69,9 @@ export type StoreType = {
     dispatch: (action: actionsTypes) => void
 }
 
-type actionsTypes = addPostActionType | updateNewMyPostTextActionType
+type actionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onChangePostActionCreator>
 
-type addPostActionType = {
+/*type addPostActionType = {
     type: 'ADD-POST'
     newMyPostText: string
 }
@@ -79,8 +79,24 @@ type addPostActionType = {
 type updateNewMyPostTextActionType = {
     type: 'UPDATE-NEW-MY-POST-TEXT'
     newText: string
+}*/
+
+/*type addPostActionType = ReturnType<typeof addPostActionCreator>
+type updateNewMyPostTextActionType = ReturnType<typeof onChangePostActionCreator>*/
+
+export const addPostActionCreator = (newMyPostText: string) => {
+    return {
+        type: 'ADD-POST',
+        newMyPostText: newMyPostText
+    } as const
 }
 
+export const onChangePostActionCreator = (newText: string) => {
+    return {
+        type: 'UPDATE-NEW-MY-POST-TEXT',
+        newText: newText
+    } as const
+}
 
 export const store: StoreType = {
     _state: {
