@@ -9,14 +9,15 @@
 }
 
 .titlePosts {
-    font-size: 25px;
-    margin: 30px 0 10px 0;
+    font-size: 22px;
+    margin: 30px 0 10px 20px;
     font-weight: 600;
     color: #2f3e46;
+
 }
 
 .textareaAndButton {
-    position:relative;
+    position: relative;
 }
 
 .textarea {
@@ -25,10 +26,18 @@
     background-color: white;
     border: none;
     border-radius: 10px;
-    margin: 20px 0 0 20px;
+    margin: 10px 0 0 20px;
+    overflow-wrap: break-word;
+    font-size: 15px;
+    resize: none;
+    box-sizing: border-box;
 }
 
-.buttonPosts {
+.textarea:focus {
+    outline: none;
+}
+
+.button {
     margin-top: 10px;
     width: 150px;
     height: 40px;
@@ -44,10 +53,10 @@
     font-weight: 600;
 }
 
-.buttonPosts:hover {
+.button:hover {
     background-color: #ffb3c6;
 }
 
-.buttonPosts:active {
+.button:active {
     background-color: #fb6f92;
 }

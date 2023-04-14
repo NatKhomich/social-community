@@ -12,7 +12,11 @@ const Dialogs = (props: DialogsPropsType) => {
                     <DialogItem dialogs={props.dialogs}/>
                 </div>
                 <div className={s.messages}>
-                    <Message messages={props.messages}/>
+                    <Message messages={props.messages}
+                             dispatch={props.dispatch}
+                             newMessageText={props.newMessageText}
+
+                    />
                 </div>
             </div>
     );

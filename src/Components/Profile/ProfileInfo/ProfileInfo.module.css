@@ -12,8 +12,10 @@
 }
 
 .description img {
-    width: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
+    margin: 20px 0 0 20px;
 }
 
 .descriptionInfo{

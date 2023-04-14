@@ -37,7 +37,7 @@ const MyPosts = (props: ProfilePostsType) => {
                     onChange={onChangePostHandler}
                     value={props.newMyPostText}/>
 
-                <button className={s.buttonPosts} onClick={addPostHandler}> Add post</button>
+                <button className={s.button} onClick={addPostHandler}> Add post</button>
             </div>
             <div className={s.posts}>
                 {postElement}

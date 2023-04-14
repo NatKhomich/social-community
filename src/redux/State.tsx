@@ -19,7 +19,7 @@ export type PostsType = {
 
 export type ProfilePostsType = {
     posts: PostsType[]
-   // addPost: (postText: string) => void
+    // addPost: (postText: string) => void
     newMyPostText: string //
     //updateNewMyPostText: (newText: string) => void
     dispatch: (action: actionsTypes) => void
@@ -41,11 +41,15 @@ export type MessagesType = {
 
 export type MessagePropsType = {
     messages: MessagesType[]
+    newMessageText: string
+    dispatch: (action: actionsTypes) => void
 }
 
 export type DialogsPropsType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
+    dispatch: (action: actionsTypes) => void
+    newMessageText: string
 }
 
 export type RootStateType = {
@@ -56,20 +60,25 @@ export type RootStateType = {
     dialogsPage: {
         messages: MessagesType[]
         dialogs: DialogsType[]
+        newMessage: string
     }
 }
 
 export type StoreType = {
     _state: RootStateType
     //addPost: () => void
-   // updateNewMyPostText: (newText: string) => void
+    // updateNewMyPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
     rerenderEntireTree: () => void
     getState: () => RootStateType
     dispatch: (action: actionsTypes) => void
 }
 
-type actionsTypes = ReturnType<typeof addPostActionCreator> | ReturnType<typeof onChangePostActionCreator>
+type actionsTypes =
+    ReturnType<typeof addPostActionCreator> |
+    ReturnType<typeof onChangePostActionCreator> |
+    ReturnType<typeof updateNewMessageActionCreator> |
+    ReturnType<typeof sendMessageActionCreator>
 
 /*type addPostActionType = {
     type: 'ADD-POST'
@@ -98,6 +107,20 @@ export const onChangePostActionCreator = (newText: string) => {
     } as const
 }
 
+export const updateNewMessageActionCreator = (newMessageText: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE',
+        newMessageText: newMessageText
+    } as const
+}
+
+export const sendMessageActionCreator = () => {
+    return {
+        type: 'SEND-MESSAGE',
+       //newMessageText: newMessageText
+    } as const
+}
+
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -112,18 +135,15 @@ export const store: StoreType = {
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'I love you'},
                 {id: 3, message: 'How are you?'},
-                {id: 4, message: 'Yo'},
-                {id: 5, message: 'Yo'},
-                {id: 6, message: 'Yo'},
+                {id: 4, message: 'Yo'}
             ],
             dialogs: [
                 {id: 1, name: 'Natalia'},
                 {id: 2, name: 'Alex'},
-                {id: 3, name: 'Katya'},
-                {id: 4, name: 'Uliana'},
-                {id: 5, name: 'Sergey'},
-                {id: 6, name: 'Larisa'},
+                {id: 3, name: 'Ekaterina'},
+                {id: 4, name: 'Uliana'}
             ],
+            newMessage: ''
         }
     },
 
@@ -138,16 +158,16 @@ export const store: StoreType = {
         return this._state
     },
 
-   /* addPost() {
-        const newPost: PostsType = {id: 4, message: this._state.profilePage.newMyPostText, likesCount: 0}
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newMyPostText = ''
-        this.rerenderEntireTree()
-    },
-    updateNewMyPostText(newText: string) {
-        this._state.profilePage.newMyPostText = newText
-        this.rerenderEntireTree()
-    },*/
+    /* addPost() {
+         const newPost: PostsType = {id: 4, message: this._state.profilePage.newMyPostText, likesCount: 0}
+         this._state.profilePage.posts.push(newPost)
+         this._state.profilePage.newMyPostText = ''
+         this.rerenderEntireTree()
+     },
+     updateNewMyPostText(newText: string) {
+         this._state.profilePage.newMyPostText = newText
+         this.rerenderEntireTree()
+     },*/
 
     dispatch(action) {
         if (action.type === 'ADD-POST') { //message: this._state.profilePage.newMyPostText,
@@ -155,8 +175,20 @@ export const store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newMyPostText = ''
             this.rerenderEntireTree()
+
         } else if (action.type === 'UPDATE-NEW-MY-POST-TEXT') {
             this._state.profilePage.newMyPostText = action.newText
+            this.rerenderEntireTree()
+
+        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+            this._state.dialogsPage.newMessage = action.newMessageText
+            this.rerenderEntireTree()
+
+        } else if (action.type === 'SEND-MESSAGE') {
+            const newMess = this._state.dialogsPage.newMessage
+            this._state.dialogsPage.newMessage = ''
+            const newMessageText: MessagesType = {id: 5, message: newMess }
+            this._state.dialogsPage.messages.push( newMessageText )
             this.rerenderEntireTree()
         }
     }
