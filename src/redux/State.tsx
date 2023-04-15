@@ -1,5 +1,5 @@
 import profilePageReducer, {addPostActionCreator, onChangePostActionCreator} from './profilePageReducer';
-import {sendMessageActionCreator, updateNewMessageActionCreator} from './dialogsPageReducer';
+import dialogsPageReducer, {sendMessageActionCreator, updateNewMessageActionCreator} from './dialogsPageReducer';
 
 export type PostPropsType = {
     message: string
@@ -12,7 +12,6 @@ export type PostsType = {
     likesCount: number
 
 }
-
 /*export type MyPostsPropsType = {
     posts: PostsType[]
     addPost: (postText: string) => void
@@ -45,7 +44,7 @@ export type MessagesType = {
 
 export type MessagePropsType = {
     messages: MessagesType[]
-    newMessageText: string
+    newMessage: string
     dispatch: (action: actionsTypes) => void
 }
 
@@ -53,7 +52,7 @@ export type DialogsPropsType = {
     dialogs: DialogsType[]
     messages: MessagesType[]
     dispatch: (action: actionsTypes) => void
-    newMessageText: string
+    newMessage: string
 }
 
 export type RootStateType = {
@@ -174,9 +173,9 @@ export const store: StoreType = {
      },*/
 
     dispatch(action) {
-      // this._state.profilePage =  profilePageReducer(this._state.profilePage, action)
+      this._state.profilePage =  profilePageReducer(this._state.profilePage, action)
 
-      // this._state.dialogsPage =  profilePageReducer(this._state.dialogsPage, action)
+      this._state.dialogsPage =  dialogsPageReducer(this._state.dialogsPage, action)
 
         this.rerenderEntireTree()
 

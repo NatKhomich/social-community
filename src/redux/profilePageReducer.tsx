@@ -1,5 +1,5 @@
 import React from 'react';
-import {actionsTypes, PostsType, RootStateType} from './State';
+import {actionsTypes, PostsType, ProfilePostsType, RootStateType} from './State';
 
 export const addPostActionCreator = (newMyPostText: string) => {
     return {
@@ -15,15 +15,15 @@ export const onChangePostActionCreator = (newText: string) => {
     } as const
 }
 
-const ProfilePageReducer = (state: RootStateType, action: actionsTypes) => {
+const ProfilePageReducer = (state: any, action: actionsTypes): ProfilePostsType => {
     if (action.type === 'ADD-POST') {
         const newPost: PostsType = {id: 4, message: action.newMyPostText, likesCount: 0}
-        state.profilePage.posts.push(newPost)
-        state.profilePage.newMyPostText = ''
+        state.posts.push(newPost)
+        state.newMyPostText = ''
        // state.rerenderEntireTree()
 
     } else if (action.type === 'UPDATE-NEW-MY-POST-TEXT') {
-        state.profilePage.newMyPostText = action.newText
+        state.newMyPostText = action.newText
        // state.rerenderEntireTree()
     }
     return state

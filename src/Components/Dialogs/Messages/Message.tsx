@@ -25,7 +25,7 @@ export const Message = (props: MessagePropsType) => {
 
             <div> <textarea
                 className={s.textarea}
-                value={props.newMessageText}
+                value={props.newMessage}
                             onChange={onChangeNewMessageHandler}> </textarea></div>
 
             <div>
