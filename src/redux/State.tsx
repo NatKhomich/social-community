@@ -1,3 +1,6 @@
+import profilePageReducer, {addPostActionCreator, onChangePostActionCreator} from './profilePageReducer';
+import {sendMessageActionCreator, updateNewMessageActionCreator} from './dialogsPageReducer';
+
 export type PostPropsType = {
     message: string
     likesCount: number
@@ -7,6 +10,7 @@ export type PostsType = {
     id: number
     message: string
     likesCount: number
+
 }
 
 /*export type MyPostsPropsType = {
@@ -74,7 +78,7 @@ export type StoreType = {
     dispatch: (action: actionsTypes) => void
 }
 
-type actionsTypes =
+export type actionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof onChangePostActionCreator> |
     ReturnType<typeof updateNewMessageActionCreator> |
@@ -93,7 +97,7 @@ type updateNewMyPostTextActionType = {
 /*type addPostActionType = ReturnType<typeof addPostActionCreator>
 type updateNewMyPostTextActionType = ReturnType<typeof onChangePostActionCreator>*/
 
-export const addPostActionCreator = (newMyPostText: string) => {
+/*export const addPostActionCreator = (newMyPostText: string) => {
     return {
         type: 'ADD-POST',
         newMyPostText: newMyPostText
@@ -105,9 +109,9 @@ export const onChangePostActionCreator = (newText: string) => {
         type: 'UPDATE-NEW-MY-POST-TEXT',
         newText: newText
     } as const
-}
+}*/
 
-export const updateNewMessageActionCreator = (newMessageText: string) => {
+/*export const updateNewMessageActionCreator = (newMessageText: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE',
         newMessageText: newMessageText
@@ -119,7 +123,7 @@ export const sendMessageActionCreator = () => {
         type: 'SEND-MESSAGE',
        //newMessageText: newMessageText
     } as const
-}
+}*/
 
 export const store: StoreType = {
     _state: {
@@ -170,7 +174,13 @@ export const store: StoreType = {
      },*/
 
     dispatch(action) {
-        if (action.type === 'ADD-POST') { //message: this._state.profilePage.newMyPostText,
+      // this._state.profilePage =  profilePageReducer(this._state.profilePage, action)
+
+      // this._state.dialogsPage =  profilePageReducer(this._state.dialogsPage, action)
+
+        this.rerenderEntireTree()
+
+        /*if (action.type === 'ADD-POST') { //message: this._state.profilePage.newMyPostText,
             const newPost: PostsType = {id: 4, message: action.newMyPostText, likesCount: 0}
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newMyPostText = ''
@@ -180,7 +190,7 @@ export const store: StoreType = {
             this._state.profilePage.newMyPostText = action.newText
             this.rerenderEntireTree()
 
-        } else if (action.type === 'UPDATE-NEW-MESSAGE') {
+        }*/ /*if (action.type === 'UPDATE-NEW-MESSAGE') {
             this._state.dialogsPage.newMessage = action.newMessageText
             this.rerenderEntireTree()
 
@@ -190,7 +200,7 @@ export const store: StoreType = {
             const newMessageText: MessagesType = {id: 5, message: newMess }
             this._state.dialogsPage.messages.push( newMessageText )
             this.rerenderEntireTree()
-        }
+        }*/
     }
 }
 

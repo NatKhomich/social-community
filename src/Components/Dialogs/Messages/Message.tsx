@@ -2,10 +2,8 @@ import s from './Message.module.css';
 import React, {ChangeEvent} from 'react';
 import {
     MessagePropsType,
-    MessagesType,
-    sendMessageActionCreator,
-    updateNewMessageActionCreator
 } from '../../../redux/State';
+import {sendMessageActionCreator, updateNewMessageActionCreator} from '../../../redux/dialogsPageReducer';
 
 
 export const Message = (props: MessagePropsType) => {
