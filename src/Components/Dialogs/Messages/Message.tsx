@@ -15,7 +15,6 @@ export const Message = (props: MessagePropsType) => {
     }
 
     const onChangeNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        // const valueTextarea = e.currentTarget.value
         props.dispatch(updateNewMessageActionCreator(e.currentTarget.value))
     }
 
