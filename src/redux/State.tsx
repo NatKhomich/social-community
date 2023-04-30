@@ -12,6 +12,7 @@ export type PostsType = {
     likesCount: number
 
 }
+
 /*export type MyPostsPropsType = {
     posts: PostsType[]
     addPost: (postText: string) => void
