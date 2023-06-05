@@ -137,7 +137,7 @@ export const store: StoreType = {
                 {id: 1, message: 'Hi'},
                 {id: 2, message: 'I love you'},
                 {id: 3, message: 'How are you?'},
-                {id: 4, message: 'Yo'}
+                {id: 4, message: 'Hi, my girl'}
             ],
             dialogs: [
                 {id: 1, name: 'Natalia'},
