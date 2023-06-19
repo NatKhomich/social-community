@@ -171,15 +171,12 @@ export const store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newMyPostText = ''
             this.rerenderEntireTree()
-
         } else if (action.type === 'UPDATE-NEW-MY-POST-TEXT') {
             this._state.profilePage.newMyPostText = action.newText
             this.rerenderEntireTree()
-
         }*/ /*if (action.type === 'UPDATE-NEW-MESSAGE') {
             this._state.dialogsPage.newMessage = action.newMessageText
             this.rerenderEntireTree()
-
         } else if (action.type === 'SEND-MESSAGE') {
             const newMess = this._state.dialogsPage.newMessage
             this._state.dialogsPage.newMessage = ''
