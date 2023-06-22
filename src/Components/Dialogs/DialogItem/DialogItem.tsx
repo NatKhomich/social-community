@@ -10,9 +10,11 @@ export const DialogItem = (props: DialogItemPropsType) => {
     let path = '/dialogs'
 
     let dialog = props.dialogs.map(el => {
+
+        /*let path = '/dialogs' + el.id*/
         return (
             <div className={s.dialog} key={el.id}>
-                <img src={image_message}/>
+                <img alt={''} src={image_message}/>
                 <NavLink className={s.dialogNick} to={path}> {el.name} </NavLink>
             </div>
         )

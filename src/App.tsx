@@ -19,14 +19,14 @@ function App(props: AppStatePropsType) {
             <Navbar/>
 
             <div className={'app-wrapper-content'}>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.store._state.dialogsPage.dialogs}
+                <Route path={'/dialogs'} render={()=> <Dialogs dialogs={props.store._state.dialogsPage.dialogs}
                                                                 messages={props.store._state.dialogsPage.messages}
                                                                 dispatch={props.store.dispatch.bind(props.store)}
                                                                 newMessage={props.store._state.dialogsPage.newMessage}
 
                 />}/>
 
-                <Route path={'/profile'} render={() => <Profile posts={props.store._state.profilePage.posts}
+                <Route path={'/profile'} render={()=> <Profile posts={props.store._state.profilePage.posts}
                                                                 newMyPostText={props.store._state.profilePage.newMyPostText}
                                                                 dispatch={props.store.dispatch.bind(props.store)}
                     //addPost={props.store.addPost.bind(props.store)}
