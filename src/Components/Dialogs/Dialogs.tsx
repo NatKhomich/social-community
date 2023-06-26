@@ -6,19 +6,24 @@ import {DialogsPropsType} from '../../redux/State';
 
 
 const Dialogs = (props: DialogsPropsType) => {
-    return (
-            <div className={s.dialogs}>
-                <div className={s.dialogs_items}>
-                    <DialogItem dialogs={props.dialogs}/>
-                </div>
-                <div className={s.messages}>
-                    <Message messages={props.messages}
-                             dispatch={props.dispatch}
-                             newMessage={props.newMessage}
 
-                    />
-                </div>
+    const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
+
+    return (
+        <div className={s.dialogs}>
+            <div className={s.dialogs_items}>
+
+                {dialogItemElement}
+
             </div>
+            <div className={s.messages}>
+                <Message messages={props.messages}
+                         dispatch={props.dispatch}
+                         newMessage={props.newMessage}
+
+                />
+            </div>
+        </div>
     );
 };
 

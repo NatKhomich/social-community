@@ -33,6 +33,7 @@
     background-color: #ffe5ec;
     font-size: 15px;
     font-weight: 600;
+    position: absolute;
 
 }
 
@@ -42,4 +43,9 @@
 
 .button:active {
     background-color: #fb6f92;
+}
+
+.messageField {
+    margin: 40px 0;
+    position: relative;
 }

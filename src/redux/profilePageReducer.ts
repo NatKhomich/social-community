@@ -1,4 +1,4 @@
-import {actionsTypes, PostsType, ProfilePostsType} from './State';
+import {actionsTypes, PostType, ProfilePostsType} from './State';
 
 export const addPostActionCreator = (newMyPostText: string) => {
     return {
@@ -16,7 +16,7 @@ export const onChangePostActionCreator = (newText: string) => {
 
 const ProfilePageReducer = (state: any, action: actionsTypes): ProfilePostsType => {
     if (action.type === 'ADD-POST') {
-        const newPost: PostsType = {id: 4, message: action.newMyPostText, likesCount: 0}
+        const newPost: PostType = {id: 4, message: action.newMyPostText, likesCount: 0}
         state.posts.push(newPost)
         state.newMyPostText = ''
 

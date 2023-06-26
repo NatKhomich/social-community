@@ -1,7 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { ProfilePostsType} from '../../../redux/State';
+import {ProfilePostsType} from '../../../redux/State';
 import {addPostActionCreator, onChangePostActionCreator} from '../../../redux/profilePageReducer';
 
 
@@ -13,7 +13,6 @@ const MyPosts = (props: ProfilePostsType) => {
        // props.addPost(props.newMyPostText)
        // props.dispatch( {type: 'ADD-POST', newMyPostText: props.newMyPostText} )
         props.dispatch(addPostActionCreator(props.newMyPostText))
-
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

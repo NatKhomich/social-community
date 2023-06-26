@@ -1,12 +1,12 @@
 import React from 'react';
 import s from './Post.module.css';
-import {PostPropsType} from '../../../../redux/State';
+import { PostType} from '../../../../redux/State';
 import avatarMessages from '../../../../image/avatar_messages.jpg'
 
-const Post = (props: PostPropsType) => {
+const Post = (props: PostType) => {
     return (
         <div className={s.item}>
-                <img src={avatarMessages}/>
+                <img alt={''} src={avatarMessages}/>
             <div className={s.messageLikes}>
                 <span> {props.message} </span>
                 <div> Like {props.likesCount} </div>

@@ -11,7 +11,7 @@ export type AppStatePropsType = {
     store: StoreType
 }
 
-function App (props: AppStatePropsType) {
+function App(props: AppStatePropsType) {
     return (
         <div className={'app-wrapper'}>
 
@@ -19,19 +19,23 @@ function App (props: AppStatePropsType) {
             <Navbar/>
 
             <div className={'app-wrapper-content'}>
-                <Route path={'/dialogs'} render={()=> <Dialogs dialogs={props.store._state.dialogsPage.dialogs}
+
+                <Route path={'/profile'} render={() => <Profile posts={props.store._state.profilePage.posts}
+                                                                newMyPostText={props.store._state.profilePage.newMyPostText}
+                                                                dispatch={props.store.dispatch.bind(props.store)}
+                    //addPost={props.store.addPost.bind(props.store)}
+                    // updateNewMyPostText={props.store.updateNewMyPostText.bind(props.store)}
+                />}/>
+
+                <Route path={'/dialogs'} render={() => <Dialogs dialogs={props.store._state.dialogsPage.dialogs}
                                                                 messages={props.store._state.dialogsPage.messages}
                                                                 dispatch={props.store.dispatch.bind(props.store)}
                                                                 newMessage={props.store._state.dialogsPage.newMessage}
 
                 />}/>
 
-                <Route path={'/profile'} render={()=> <Profile posts={props.store._state.profilePage.posts}
-                                                                newMyPostText={props.store._state.profilePage.newMyPostText}
-                                                                dispatch={props.store.dispatch.bind(props.store)}
-                    //addPost={props.store.addPost.bind(props.store)}
-                    // updateNewMyPostText={props.store.updateNewMyPostText.bind(props.store)}
-                />}/>
+
+
             </div>
 
         </div>

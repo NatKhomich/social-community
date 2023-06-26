@@ -1,17 +1,10 @@
 import profilePageReducer, {addPostActionCreator, onChangePostActionCreator} from './profilePageReducer';
 import dialogsPageReducer, {sendMessageActionCreator, updateNewMessageActionCreator} from './dialogsPageReducer';
 
-export type PostPropsType = {
+/*export type PostPropsType = {
     message: string
     likesCount: number
-}
-
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
+}*/
 /*export type MyPostsPropsType = {
     posts: PostsType[]
     addPost: (postText: string) => void
@@ -20,12 +13,18 @@ export type PostsType = {
     dispatch: (action: actionsTypes) => void
 }*/
 
+export type PostType = {
+    id?: number
+    message: string
+    likesCount: number
+}
+
 export type ProfilePostsType = {
-    posts: PostsType[]
-    // addPost: (postText: string) => void
+    posts: PostType[]
     newMyPostText: string //
-    //updateNewMyPostText: (newText: string) => void
     dispatch: (action: actionsTypes) => void
+    // addPost: (postText: string) => void
+    //updateNewMyPostText: (newText: string) => void
 }
 
 export type DialogsType = {
@@ -33,8 +32,11 @@ export type DialogsType = {
     id: number
 }
 
-export type DialogItemPropsType = {
+export type DialogsPropsType = {
     dialogs: DialogsType[]
+    messages: MessagesType[]
+    dispatch: (action: actionsTypes) => void
+    newMessage: string
 }
 
 export type MessagesType = {
@@ -48,16 +50,10 @@ export type MessagePropsType = {
     dispatch: (action: actionsTypes) => void
 }
 
-export type DialogsPropsType = {
-    dialogs: DialogsType[]
-    messages: MessagesType[]
-    dispatch: (action: actionsTypes) => void
-    newMessage: string
-}
 
 export type RootStateType = {
     profilePage: {
-        posts: PostsType[]
+        posts: PostType[]
         newMyPostText: string //
     }
     dialogsPage: {
@@ -132,17 +128,17 @@ export const store: StoreType = {
             newMyPostText: ''
         },
         dialogsPage: {
-            messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'I love you'},
-                {id: 3, message: 'How are you?'},
-                {id: 4, message: 'Hi, my girl'}
-            ],
             dialogs: [
                 {id: 1, name: 'Natalia'},
                 {id: 2, name: 'Alex'},
                 {id: 3, name: 'Ekaterina'},
                 {id: 4, name: 'Uliana'}
+            ],
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'I love you'},
+                {id: 3, message: 'How are you?'},
+                {id: 4, message: 'Hi, my girl'}
             ],
             newMessage: ''
         }
@@ -159,9 +155,9 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-      this._state.profilePage =  profilePageReducer(this._state.profilePage, action)
+        this._state.profilePage = profilePageReducer(this._state.profilePage, action)
 
-      this._state.dialogsPage =  dialogsPageReducer(this._state.dialogsPage, action)
+        this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
 
         this.rerenderEntireTree()
 

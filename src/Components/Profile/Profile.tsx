@@ -8,8 +8,8 @@ const Profile = (props: ProfilePostsType) => {
 
     return (
         <div className={s.profile}>
-            <ProfileInfo />
-            <MyPosts posts = {props.posts}
+            <ProfileInfo/>
+            <MyPosts posts={props.posts}
                      newMyPostText={props.newMyPostText}
                      dispatch={props.dispatch}
 

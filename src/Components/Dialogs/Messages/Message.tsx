@@ -1,8 +1,6 @@
 import s from './Message.module.css';
 import React, {ChangeEvent} from 'react';
-import {
-    MessagePropsType,
-} from '../../../redux/State';
+import {MessagePropsType} from '../../../redux/State';
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../../../redux/dialogsPageReducer';
 
 
@@ -22,14 +20,19 @@ export const Message = (props: MessagePropsType) => {
         <div>
             <div className={s.messages}> {messageElement} </div>
 
-            <div> <textarea
+            <div className={s.messageField}>
+                <textarea
                 className={s.textarea}
                 value={props.newMessage}
-                            onChange={onChangeNewMessageHandler}> </textarea></div>
+                onChange={onChangeNewMessageHandler}>
+            </textarea>
 
-            <div>
-                <button className={s.button} onClick={onClickSendMessageHandler}> Send</button>
+                <button className={s.button} onClick={onClickSendMessageHandler}> Send </button>
             </div>
+
+
+
+
         </div>
     );
 };
