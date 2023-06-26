@@ -11,7 +11,7 @@ export type AppStatePropsType = {
     store: StoreType
 }
 
-function App(props: AppStatePropsType) {
+function App (props: AppStatePropsType) {
     return (
         <div className={'app-wrapper'}>
 

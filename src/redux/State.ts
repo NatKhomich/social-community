@@ -10,7 +10,6 @@ export type PostsType = {
     id: number
     message: string
     likesCount: number
-
 }
 
 /*export type MyPostsPropsType = {
