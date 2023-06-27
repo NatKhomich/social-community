@@ -35,7 +35,6 @@ function App(props: AppStatePropsType) {
                 />}/>
 
 
-
             </div>
 
         </div>

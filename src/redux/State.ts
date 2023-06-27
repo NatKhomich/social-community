@@ -86,10 +86,8 @@ type updateNewMyPostTextActionType = {
     type: 'UPDATE-NEW-MY-POST-TEXT'
     newText: string
 }*/
-
 /*type addPostActionType = ReturnType<typeof addPostActionCreator>
 type updateNewMyPostTextActionType = ReturnType<typeof onChangePostActionCreator>*/
-
 /*export const addPostActionCreator = (newMyPostText: string) => {
     return {
         type: 'ADD-POST',
@@ -103,7 +101,6 @@ export const onChangePostActionCreator = (newText: string) => {
         newText: newText
     } as const
 }*/
-
 /*export const updateNewMessageActionCreator = (newMessageText: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE',
@@ -147,7 +144,6 @@ export const store: StoreType = {
     rerenderEntireTree() {
         console.log('state was changed')
     },
-
     subscribe(observer: () => void) {
         this.rerenderEntireTree = observer
     },
@@ -156,7 +152,6 @@ export const store: StoreType = {
     },
     dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
-
         this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
 
         this.rerenderEntireTree()
