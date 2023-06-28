@@ -12,9 +12,6 @@ const Profile = (props: ProfilePostsType) => {
             <MyPosts posts={props.posts}
                      newMyPostText={props.newMyPostText}
                      dispatch={props.dispatch}
-
-                // updateNewMyPostText={props.updateNewMyPostText}
-                //addPost={props.addPost}
             />
         </div>
     );

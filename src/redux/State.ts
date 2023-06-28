@@ -14,7 +14,7 @@ import dialogsPageReducer, {sendMessageActionCreator, updateNewMessageActionCrea
 }*/
 
 export type PostType = {
-    id?: number
+    id: number
     message: string
     likesCount: number
 }

@@ -17,16 +17,13 @@ const DialogsPageReducer = (state: any, action: actionsTypes): DialogsPropsType 
     switch (action.type) {
 
         case 'UPDATE-NEW-MESSAGE':
-            state.newMessage = action.newMessage
-            //state.rerenderEntireTree()
-            return state
+           //state.newMessage = action.newMessage
+            return {...state, newMessage: action.newMessage}
 
         case 'SEND-MESSAGE':
-            const newMess = state.newMessage
+            const newMessage: MessagesType = {id: 5, message: state.newMessage}
             state.newMessage = ''
-            const newMessage: MessagesType = {id: 5, message: newMess}
-            state.messages.push(newMessage)
-            return state
+            return {...state, messages: [...state.messages, newMessage]}
 
         default: return state
     }

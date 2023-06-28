@@ -4,7 +4,7 @@
     margin: 0 auto;
     display: grid;
     grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 9fr;
     grid-template-areas:
 
     "header header"
