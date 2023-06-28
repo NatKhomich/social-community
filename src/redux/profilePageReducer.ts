@@ -15,18 +15,21 @@ export const onChangePostActionCreator = (newText: string) => {
 }
 
 const ProfilePageReducer = (state: any, action: actionsTypes): ProfilePostsType => {
-    if (action.type === 'ADD-POST') {
-        const newPost: PostType = {id: 4, message: action.newMyPostText, likesCount: 0}
-        state.posts.push(newPost)
-        state.newMyPostText = ''
+    switch (action.type) {
 
-       // state.rerenderEntireTree()
+        case 'ADD-POST':
+            const newPost: PostType = {id: 4, message: action.newMyPostText, likesCount: 0}
+            state.posts.push(newPost)
+            state.newMyPostText = ''
+           return state
 
-    } else if (action.type === 'UPDATE-NEW-MY-POST-TEXT') {
-        state.newMyPostText = action.newText
-       // state.rerenderEntireTree()
+        case 'UPDATE-NEW-MY-POST-TEXT':
+            state.newMyPostText = action.newText
+            // state.rerenderEntireTree()
+            return state
+
+        default: return state
     }
-    return state
 };
 
 export default ProfilePageReducer;

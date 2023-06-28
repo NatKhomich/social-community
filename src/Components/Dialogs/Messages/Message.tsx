@@ -1,7 +1,8 @@
 import s from './Message.module.css';
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {MessagePropsType} from '../../../redux/State';
-import {sendMessageActionCreator, updateNewMessageActionCreator} from '../../../redux/dialogsPageReducer';
+import {sendMessageActionCreator, updateNewMessageActionCreator}
+    from '../../../redux/dialogsPageReducer';
 
 
 export const Message = (props: MessagePropsType) => {
@@ -16,6 +17,12 @@ export const Message = (props: MessagePropsType) => {
         props.dispatch(updateNewMessageActionCreator(e.currentTarget.value))
     }
 
+    const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter') {
+            props.dispatch(sendMessageActionCreator())
+        }
+    }
+
     return (
         <div>
             <div className={s.messages}> {messageElement} </div>
@@ -24,7 +31,9 @@ export const Message = (props: MessagePropsType) => {
                 <textarea
                 className={s.textarea}
                 value={props.newMessage}
-                onChange={onChangeNewMessageHandler}>
+                onChange={onChangeNewMessageHandler}
+                onKeyDown={onKeyDownEnterHandler}
+                >
             </textarea>
 
                 <button className={s.button} onClick={onClickSendMessageHandler}> Send </button>
