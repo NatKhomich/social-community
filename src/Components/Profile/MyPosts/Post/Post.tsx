@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
-import { PostType} from '../../../../redux/State';
+import { PostType} from '../../../../redux/Store';
 import avatarMessages from '../../../../image/avatar_messages.jpg'
 
 const Post = (props: PostType) => {

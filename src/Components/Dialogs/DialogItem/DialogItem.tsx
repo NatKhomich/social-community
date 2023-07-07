@@ -1,7 +1,7 @@
 import {NavLink} from 'react-router-dom';
 import React from 'react';
 import s from './DialogItem.module.css';
-import {DialogsType} from '../../../redux/State';
+import {DialogsType} from '../../../redux/Store';
 import image_message from '../../../image/image_message.webp'
 
 

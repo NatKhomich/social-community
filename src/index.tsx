@@ -1,10 +1,11 @@
 import React from 'react';
 import './index.css';
-import {store} from './redux/State';
+import {store} from './redux/Store';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
+
 
  const rerenderEntireTree = () => {
     ReactDOM.render(

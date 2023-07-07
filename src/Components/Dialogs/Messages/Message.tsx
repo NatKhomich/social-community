@@ -1,6 +1,6 @@
 import s from './Message.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {MessagePropsType} from '../../../redux/State';
+import {MessagePropsType} from '../../../redux/Store';
 import {sendMessageActionCreator, updateNewMessageActionCreator}
     from '../../../redux/dialogsPageReducer';
 
