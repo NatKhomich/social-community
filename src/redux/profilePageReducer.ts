@@ -1,4 +1,4 @@
-import {actionsTypes, PostType, ProfilePostsType} from './Store';
+import {actionsTypes, PostType, ProfilePostsType} from '../types/Types';
 
 const dialogsInintialState = {
     posts: [

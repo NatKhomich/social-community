@@ -1,4 +1,4 @@
-import {actionsTypes, DialogsPropsType, MessagesType} from './Store';
+import {actionsTypes, DialogsPropsType, MessagesType} from '../types/Types';
 
 const dialogsInintialState = {
     dialogs: [
