@@ -7,7 +7,13 @@ import {addPostActionCreator, onChangePostActionCreator} from '../../../redux/pr
 
 const MyPosts = (props: ProfilePostsType) => {
 
-    let postElement = props.posts.map(el => <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>)
+    let postElement = props.posts.map(el => {
+
+           return (
+               <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
+           )
+    }
+        )
 
     const addPostHandler = () => {
         props.dispatch(addPostActionCreator(props.newMyPostText))

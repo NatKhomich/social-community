@@ -1,5 +1,6 @@
 import {addPostActionCreator, onChangePostActionCreator} from '../redux/profilePageReducer';
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/dialogsPageReducer';
+import {EmptyObject, Store} from 'redux';
 
 export type PostType = {
     id: number
@@ -63,3 +64,6 @@ export type actionsTypes =
 
     ReturnType<typeof updateNewMessageActionCreator> |
     ReturnType<typeof sendMessageActionCreator>
+
+export type reduxStoreType =
+    Store<EmptyObject & { profilePage: ProfilePostsType; dialogsPage: DialogsPropsType; }, actionsTypes>

@@ -8,8 +8,8 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsPageReducer
 })
 
-export let store = createStore(rootReducer)
-export type ReducerType = ReturnType<typeof rootReducer>
+export let store  = createStore(rootReducer)
+export type reduxType = ReturnType<typeof rootReducer>
 
 // @ts-ignore
 window.store = store
