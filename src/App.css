@@ -1,19 +1,36 @@
 .container {
-background-color: #e8e6e6;
+    background-color: #b03535;
+
+    display: flex;
+    max-width: 90%;
+    margin: 0 auto;
 }
 
 .appWrapper {
     font-family: Arial, serif;
-    /*max-width: 1400px;*/
+    background-color: #f1eff0;
+}
+
+.content {
+    background-color: #eff9fd;
+    border-radius: 10px;
+    width: 100%;
+}
+
+
+
+/*.appWrapper {
+    font-family: Arial, serif;
+    !*max-width: 1400px;*!
     margin: 0 auto;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 3fr 9fr;
     grid-template-areas:
 
-   /* "header header"*/
+   !* "header header"*!
     "navbar content_profile";
-    /*grid-gap: ;*/
+    !*grid-gap: ;*!
     width: 80%;
 }
 
@@ -22,10 +39,7 @@ background-color: #e8e6e6;
     background-color: #eff9fd;
     border-radius: 10px;
     height: 100vh;
-}
-
-
-
+}*/
 
 
 

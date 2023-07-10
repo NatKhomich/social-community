@@ -1,13 +1,14 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import photo_profile from '../../../image/profile_fon.png'
+
 import avatar_description from '../../../image/avatar_description.jpg'
 
 const ProfileInfo = () => {
     return (
-        <div>
+        <div className={s.profileBlock}>
             <div className={s.profile_info}>
-                <img src={photo_profile}/>
+                {/*<img src={photo_profile}/>*/}
+
             </div>
             <div className={s.description}>
                 <img src={avatar_description}/>

@@ -17,11 +17,12 @@
 }
 
 .textareaAndButton {
-     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .textarea {
-    width: 1130px;
+    width: 80%;
     height: 100px;
     background-color: white;
     border: none;
@@ -38,12 +39,13 @@
 }
 
 .button {
-    margin-top: 10px;
+    margin: 10px 0 0 20px;
     width: 150px;
     height: 40px;
-    position: absolute;
+    /*position: absolute;
     right: 25px;
-    top: 130px;
+    top: 130px;*/
+
 
     border: none;
     border-radius: 10px;
