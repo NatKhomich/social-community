@@ -9,18 +9,17 @@ const MyPosts = (props: ProfilePostsType) => {
 
     let postElement = props.posts.map(el => {
 
-           return (
-               <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
-           )
-    }
+        return (
+            <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
         )
+    })
 
     const addPostHandler = () => {
         props.dispatch(addPostActionCreator(props.newMyPostText))
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch( onChangePostActionCreator(e.currentTarget.value) )
+        props.dispatch(onChangePostActionCreator(e.currentTarget.value))
     }
 
     const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {

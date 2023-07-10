@@ -1,6 +1,14 @@
 import profilePageReducer from './profilePageReducer';
 import dialogsPageReducer from './dialogsPageReducer';
-import {StoreType} from '../types/Types';
+import {actionsTypes, RootStateType} from '../types/Types';
+
+export type StoreType = {
+    _state: RootStateType
+    subscribe: (observer: () => void) => void
+    rerenderEntireTree: () => void
+    getState: () => RootStateType
+    dispatch: (action: actionsTypes) => void
+}
 
 export const store: StoreType = {
     _state: {

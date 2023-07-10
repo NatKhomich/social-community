@@ -37,7 +37,6 @@ export type MessagePropsType = {
     dispatch: (action: actionsTypes) => void
 }
 
-
 export type RootStateType = {
     profilePage: {
         posts: PostType[]
@@ -50,14 +49,6 @@ export type RootStateType = {
     }
 }
 
-export type StoreType = {
-    _state: RootStateType
-    subscribe: (observer: () => void) => void
-    rerenderEntireTree: () => void
-    getState: () => RootStateType
-    dispatch: (action: actionsTypes) => void
-}
-
 export type actionsTypes =
     ReturnType<typeof addPostActionCreator> |
     ReturnType<typeof onChangePostActionCreator> |
@@ -66,4 +57,8 @@ export type actionsTypes =
     ReturnType<typeof sendMessageActionCreator>
 
 export type reduxStoreType =
-    Store<EmptyObject & { profilePage: ProfilePostsType; dialogsPage: DialogsPropsType; }, actionsTypes>
+    Store<EmptyObject & {
+        profilePage: ProfilePostsType;
+        dialogsPage: DialogsPropsType;
+    },
+        actionsTypes>
