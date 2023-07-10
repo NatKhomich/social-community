@@ -8,7 +8,6 @@ import {BrowserRouter} from 'react-router-dom';
 
 
  const rerenderEntireTree = (state: reduxType) => {
-     debugger
     ReactDOM.render(
         <BrowserRouter>
             <App store={store} dispatch={store.dispatch.bind(store)}/>,

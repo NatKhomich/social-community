@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Dialogs.module.css';
 import {DialogItem} from './DialogItem/DialogItem';
-import {Message} from './Messages/Message';
 import {DialogsPropsType} from '../../types/Types';
+import {MessagesContainer} from './Messages/MessagesContainer';
 
 
 const Dialogs = (props: DialogsPropsType) => {
@@ -12,15 +12,16 @@ const Dialogs = (props: DialogsPropsType) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>
-
                 {dialogItemElement}
-
             </div>
             <div className={s.messages}>
-                <Message messages={props.messages}
-                         dispatch={props.dispatch}
-                         newMessage={props.newMessage}
-
+                {/*<Messages messages={props.messages}
+                          dispatch={props.dispatch}
+                          newMessage={props.newMessage}
+                />*/}
+                <MessagesContainer messages={props.messages}
+                                   newMessage={props.newMessage}
+                                   dispatch={props.dispatch}
                 />
             </div>
         </div>

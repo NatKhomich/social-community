@@ -1,11 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {ProfilePostsType} from '../../../types/Types';
-import {addPostActionCreator, onChangePostActionCreator} from '../../../redux/profilePageReducer';
+import {PostType} from '../../../types/Types';
 
 
-const MyPosts = (props: ProfilePostsType) => {
+type MyPostsType = {
+    posts: PostType[]
+    addPost: (newMyPostText: string) => void
+    newMyPostText: string
+    onChangePost: (newText: string) => void
+    onKeyDownEnter: (newText: string) => void
+
+}
+
+const MyPosts = (props: MyPostsType) => {
 
     let postElement = props.posts.map(el => {
 
@@ -15,16 +23,21 @@ const MyPosts = (props: ProfilePostsType) => {
     })
 
     const addPostHandler = () => {
-        props.dispatch(addPostActionCreator(props.newMyPostText))
+        /*props.dispatch(addPostActionCreator(props.newMyPostText))*/
+        props.addPost(props.newMyPostText)
+
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(onChangePostActionCreator(e.currentTarget.value))
+       /* props.dispatch(onChangePostActionCreator(e.currentTarget.value))*/
+        props.onChangePost(e.currentTarget.value)
+
     }
 
     const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
-            props.dispatch(addPostActionCreator(props.newMyPostText))
+           /* props.dispatch(addPostActionCreator(props.newMyPostText))*/
+            props.addPost(e.currentTarget.value)
         }
     }
 

@@ -10,33 +10,35 @@ import {reduxStoreType} from './types/Types';
 
 export type AppStatePropsType = {
     store: reduxStoreType
-    dispatch: (action:actionsTypes)=> void
+    dispatch: (action: actionsTypes) => void
 }
 
 function App(props: AppStatePropsType) {
 
-   const state = props.store.getState()
+    const state = props.store.getState()
 
     return (
-        <div className={'app-wrapper'}>
+        <div className={'container'}>
+
 
             <Header/>
-            <Navbar/>
 
-            <div className={'app-wrapper-content'}>
+            <div className={'appWrapper'}>
+                <Navbar/>
 
-                <Route path={'/profile'} render={() => <Profile posts={state.profilePage.posts}
-                                                                newMyPostText={state.profilePage.newMyPostText}
-                                                                dispatch={props.dispatch.bind(props.store)}
-                />}/>
+                <div className={'appWrapperContent'}>
 
-                <Route path={'/dialogs'} render={() => <Dialogs dialogs={state.dialogsPage.dialogs}
-                                                                messages={state.dialogsPage.messages}
-                                                                dispatch={props.dispatch.bind(props.store)}
-                                                                newMessage={state.dialogsPage.newMessage}
-                />}/>
+                    <Route path={'/profile'} render={() => <Profile posts={state.profilePage.posts}
+                                                                    newMyPostText={state.profilePage.newMyPostText}
+                                                                    dispatch={props.dispatch.bind(props.store)}
+                    />}/>
 
-
+                    <Route path={'/dialogs'} render={() => <Dialogs dialogs={state.dialogsPage.dialogs}
+                                                                    messages={state.dialogsPage.messages}
+                                                                    newMessage={state.dialogsPage.newMessage}
+                                                                    dispatch={props.dispatch.bind(props.store)}
+                    />}/>
+                </div>
             </div>
 
         </div>

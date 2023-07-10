@@ -21,18 +21,18 @@ export type DialogsType = {
 
 export type DialogsPropsType = {
     dialogs: DialogsType[]
-    messages: MessagesType[]
+    messages: MessageType[]
     dispatch: (action: actionsTypes) => void
     newMessage: string
 }
 
-export type MessagesType = {
+export type MessageType = {
     message: string
     id: number
 }
 
-export type MessagePropsType = {
-    messages: MessagesType[]
+export type MessagesPropsType = {
+    messages: MessageType[]
     newMessage: string
     dispatch: (action: actionsTypes) => void
 }
@@ -43,7 +43,7 @@ export type RootStateType = {
         newMyPostText: string //
     }
     dialogsPage: {
-        messages: MessagesType[]
+        messages: MessageType[]
         dialogs: DialogsType[]
         newMessage: string
     }

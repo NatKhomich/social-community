@@ -1,4 +1,4 @@
-import {actionsTypes, DialogsPropsType, MessagesType} from '../types/Types';
+import {actionsTypes, DialogsPropsType, MessageType} from '../types/Types';
 
 const dialogsInintialState = {
     dialogs: [
@@ -24,7 +24,7 @@ const DialogsPageReducer = (state: any = dialogsInintialState, action: actionsTy
             return {...state, newMessage: action.newMessage}
 
         case 'SEND-MESSAGE':
-            const newMessage: MessagesType = {id: 5, message: state.newMessage}
+            const newMessage: MessageType = {id: 5, message: state.newMessage}
             state.newMessage = ''
             return {...state, messages: [...state.messages, newMessage]}
 

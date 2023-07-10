@@ -1,21 +1,27 @@
-.app-wrapper {
+.container {
+background-color: #e8e6e6;
+}
+
+.appWrapper {
     font-family: Arial, serif;
-    max-width: 1400px;
+    /*max-width: 1400px;*/
     margin: 0 auto;
     display: grid;
-    grid-template-rows: 60px 1fr;
+    grid-template-rows: 1fr;
     grid-template-columns: 3fr 9fr;
     grid-template-areas:
 
-    "header header"
+   /* "header header"*/
     "navbar content_profile";
     /*grid-gap: ;*/
+    width: 80%;
 }
 
-.app-wrapper-content {
+.appWrapperContent {
     grid-area: content_profile;
-    background-color: #edf6f9;
+    background-color: #eff9fd;
     border-radius: 10px;
+    height: 100vh;
 }
 
 
