@@ -1,10 +1,12 @@
 import s from './Message.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {MessageType} from '../../../types/Types';
+import {DialogsType, MessageType} from '../../../types/Types';
+import {DialogItem} from '../DialogItem/DialogItem';
 
 type MessagesType = {
     messages: MessageType[]
     newMessage: string
+    dialogs: DialogsType[]
     onClickSendMessage: () => void
     onChangeNewMessage: (newMessage: string) => void
     onKeyDownEnter: () => void
@@ -13,6 +15,7 @@ type MessagesType = {
 export const Messages = (props: MessagesType) => {
 
     let messageElement = props.messages.map(el => <div className={s.message} key={el.id}> {el.message} </div>)
+    const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
 
     const onClickSendMessageHandler = () => {
         /* props.dispatch(sendMessageActionCreator())*/
@@ -31,9 +34,9 @@ export const Messages = (props: MessagesType) => {
         }
     }
 
-
     return (
         <div>
+            <div> {dialogItemElement} </div>
             <div className={s.messages}> {messageElement} </div>
 
             <div className={s.messageField}>

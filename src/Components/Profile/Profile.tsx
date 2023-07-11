@@ -1,10 +1,9 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import {ProfilePostsType} from '../../types/Types';
 import s from './Profile.module.css'
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
-const Profile = (props: ProfilePostsType) => {
+const Profile = () => {
 
     return (
         <div className={s.profile}>
@@ -13,10 +12,11 @@ const Profile = (props: ProfilePostsType) => {
                      newMyPostText={props.newMyPostText}
                      dispatch={props.dispatch}
             />*/}
-            <MyPostsContainer posts={props.posts}
+            {/*<MyPostsContainer posts={props.posts}
                               dispatch={props.dispatch}
                               newMyPostText={props.newMyPostText}
-            />
+            />*/}
+            <MyPostsContainer />
         </div>
     );
 };
