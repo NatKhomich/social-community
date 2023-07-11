@@ -6,33 +6,6 @@ import {AppStateType} from '../../../redux/reduxStore';
 import {ProfileType} from '../../../types/Types';
 import {Dispatch} from 'redux';
 
-/*
-export const MyPostsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState().profilePage
-                const addPost = () => {
-                    store.dispatch(addPostActionCreator(state.newMyPostText))
-                }
-                const onChangePost = (newText: string) => {
-                    store.dispatch(onChangePostActionCreator(newText))
-                }
-                const onKeyDownEnter = (newText: string) => {
-                    store.dispatch(addPostActionCreator(newText))
-                }
-
-
-                return <MyPosts posts={state.posts}
-                                newMyPostText={state.newMyPostText}
-                                addPost={addPost}
-                                onChangePost={onChangePost}
-                                onKeyDownEnter={onKeyDownEnter}/>}}
-        </StoreContext.Consumer>
-    );
-};
-*/
-
 export type MyPostsContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
@@ -66,3 +39,31 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 }
 
 export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+
+
+/*
+export const MyPostsContainer = () => {
+    return (
+        <StoreContext.Consumer>
+            {store => {
+                let state = store.getState().profilePage
+                const addPost = () => {
+                    store.dispatch(addPostActionCreator(state.newMyPostText))
+                }
+                const onChangePost = (newText: string) => {
+                    store.dispatch(onChangePostActionCreator(newText))
+                }
+                const onKeyDownEnter = (newText: string) => {
+                    store.dispatch(addPostActionCreator(newText))
+                }
+
+
+                return <MyPosts posts={state.posts}
+                                newMyPostText={state.newMyPostText}
+                                addPost={addPost}
+                                onChangePost={onChangePost}
+                                onKeyDownEnter={onKeyDownEnter}/>}}
+        </StoreContext.Consumer>
+    );
+};
+*/

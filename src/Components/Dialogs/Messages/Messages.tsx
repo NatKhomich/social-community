@@ -3,14 +3,6 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {DialogItem} from '../DialogItem/DialogItem';
 import {MessagesContainerType} from './MessagesContainer';
 
-/*type MessagesType = {
-    messages: MessageType[]
-    newMessage: string
-    dialogs: DialogType[]
-    onClickSendMessage: () => void
-    onChangeNewMessage: (newMessage: string) => void
-    onKeyDownEnter: () => void
-}*/
 
 export const Messages = (props: MessagesContainerType) => {
 
@@ -47,8 +39,7 @@ export const Messages = (props: MessagesContainerType) => {
                     onKeyDown={onKeyDownEnterHandler}
                 >
             </textarea>
-
-                <button className={s.button} onClick={onClickSendMessageHandler}> Send</button>
+                <button className={s.button} onClick={onClickSendMessageHandler}> Send </button>
             </div>
 
         </div>

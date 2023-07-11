@@ -7,33 +7,6 @@ import {AppStateType} from '../../../redux/reduxStore';
 import {DialogsType} from '../../../types/Types';
 import {Dispatch} from 'redux';
 
-/*export const MessagesContainer = () => {
-
-    return (
-        <StoreContext.Consumer>
-            {store => {
-
-                let state = store.getState().dialogsPage
-
-                const onClickSendMessage = () => {
-                    store.dispatch(sendMessageActionCreator())
-                }
-                const onChangeNewMessage = (newMessage: string) => {
-                    store.dispatch(updateNewMessageActionCreator(newMessage))
-                }
-                const onKeyDownEnter = () => {
-                    store.dispatch(sendMessageActionCreator())
-                }
-                return <Messages messages={state.messages}
-                                 newMessage={state.newMessage}
-                                 dialogs={state.dialogs}
-                                 onClickSendMessage={onClickSendMessage}
-                                 onChangeNewMessage={onChangeNewMessage}
-                                 onKeyDownEnter={onKeyDownEnter}/>
-            }}
-        </StoreContext.Consumer>
-    );
-};*/
 
 export type MessagesContainerType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -69,3 +42,32 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
 
 //создание контейнерной компоненты для Messages
 export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+
+
+/*export const MessagesContainer = () => {
+
+    return (
+        <StoreContext.Consumer>
+            {store => {
+
+                let state = store.getState().dialogsPage
+
+                const onClickSendMessage = () => {
+                    store.dispatch(sendMessageActionCreator())
+                }
+                const onChangeNewMessage = (newMessage: string) => {
+                    store.dispatch(updateNewMessageActionCreator(newMessage))
+                }
+                const onKeyDownEnter = () => {
+                    store.dispatch(sendMessageActionCreator())
+                }
+                return <Messages messages={state.messages}
+                                 newMessage={state.newMessage}
+                                 dialogs={state.dialogs}
+                                 onClickSendMessage={onClickSendMessage}
+                                 onChangeNewMessage={onChangeNewMessage}
+                                 onKeyDownEnter={onKeyDownEnter}/>
+            }}
+        </StoreContext.Consumer>
+    );
+};*/

@@ -6,14 +6,8 @@ import Profile from './Components/Profile/Profile';
 import Dialogs from './Components/Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
 
-/*export type AppStatePropsType = {
-    store: reduxStoreType
-    dispatch: (action: actionsTypes) => void
-}*/
 
 function App() {
-
-    //const state = props.store.getState()
 
     return (
 

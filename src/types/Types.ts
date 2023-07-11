@@ -7,12 +7,6 @@ export type PostType = {
     likesCount: number
 }
 
-/*export type ProfilePostsType = {
-    posts: PostType[]
-    newMyPostText: string //
-    dispatch: (action: actionsTypes) => void
-}*/
-
 export type ProfileType = {
     posts: PostType[]
     newMyPostText: string
@@ -29,25 +23,10 @@ export type DialogsType = {
     newMessage: string
 }
 
-/*export type DialogsPropsType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    dispatch: (action: actionsTypes) => void
-    newMessage: string
-}*/
-
 export type MessageType = {
     message: string
     id: number
 }
-
-export type MessagesPropsType = {
-    messages: MessageType[]
-    newMessage: string
-    dispatch: (action: actionsTypes) => void
-}
-
-
 
 export type actionsTypes =
     ReturnType<typeof addPostActionCreator> |
@@ -63,3 +42,44 @@ export type reduxStoreType =
         dialogsPage: DialogsPropsType;
     },
         actionsTypes>*/
+
+/*export type AppStatePropsType = {
+    store: reduxStoreType
+    dispatch: (action: actionsTypes) => void
+}*/
+
+/*export type MessagesPropsType = {
+    messages: MessageType[]
+    newMessage: string
+    dispatch: (action: actionsTypes) => void
+}*/
+
+/*export type DialogsPropsType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    dispatch: (action: actionsTypes) => void
+    newMessage: string
+}*/
+
+/*export type ProfilePostsType = {
+    posts: PostType[]
+    newMyPostText: string //
+    dispatch: (action: actionsTypes) => void
+}*/
+
+/*type MyPostsType = {
+    posts: PostType[]
+    addPost: (newMyPostText: string) => void
+    newMyPostText: string
+    onChangePost: (newText: string) => void
+    onKeyDownEnter: (newText: string) => void
+}*/
+
+/*type MessagesType = {
+    messages: MessageType[]
+    newMessage: string
+    dialogs: DialogType[]
+    onClickSendMessage: () => void
+    onChangeNewMessage: (newMessage: string) => void
+    onKeyDownEnter: () => void
+}*/

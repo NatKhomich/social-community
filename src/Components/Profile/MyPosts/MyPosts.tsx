@@ -1,18 +1,8 @@
 import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import {PostType} from '../../../types/Types';
 import {MyPostsContainerType} from './MyPostsContainer';
 
-
-type MyPostsType = {
-    posts: PostType[]
-    addPost: (newMyPostText: string) => void
-    newMyPostText: string
-    onChangePost: (newText: string) => void
-    onKeyDownEnter: (newText: string) => void
-
-}
 
 const MyPosts = (props: MyPostsContainerType) => {
 
@@ -26,7 +16,6 @@ const MyPosts = (props: MyPostsContainerType) => {
     const addPostHandler = () => {
         /*props.dispatch(addPostActionCreator(props.newMyPostText))*/
         props.addPost(props.dialogsPage.newMyPostText)
-
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
