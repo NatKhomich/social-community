@@ -1,7 +1,11 @@
+.messageDialogElement {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
 
 .messages {
     color: #2f3e46;
-   margin: 25px 0 0 50px;
 }
 
 .message {
@@ -10,14 +14,14 @@
 }
 
 .textarea {
-    width: 250px;
+    width: 80%;
     height: 50px;
     background-color: white;
     border: none;
     border-radius: 11px;
-    margin: 10px 0 0 50px;
     overflow-wrap: break-word;
     font-size: 14px;
+
 }
 
 .textarea:focus {
@@ -25,7 +29,6 @@
 }
 
 .button {
-    margin: 10px 0 30px 50px;
     width: 90px;
     height: 30px;
     border: none;
@@ -33,7 +36,8 @@
     background-color: #ffe5ec;
     font-size: 15px;
     font-weight: 600;
-    position: absolute;
+    margin: 20px 0;
+
 
 }
 
@@ -46,6 +50,10 @@
 }
 
 .messageField {
-    margin: 40px 0;
-    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    /*flex-direction: column;*/
+    /*align-items: flex-end;*/
+    justify-content: space-around;
+    margin: 50px 50px 0 0;
 }
