@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Dialogs.module.css';
 import {MessagesContainer} from './Messages/MessagesContainer';
 
-
 const Dialogs = () => {
 
     /*const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)*/

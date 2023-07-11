@@ -1,11 +1,11 @@
 import {NavLink} from 'react-router-dom';
 import React from 'react';
 import s from './DialogItem.module.css';
-import {DialogsType} from '../../../types/Types';
 import image_message from '../../../image/image_message.webp'
+import {DialogType} from '../../../types/Types';
 
 
-export const DialogItem = (props: DialogsType) => {
+export const DialogItem = (props: DialogType) => {
 
     let path = '/dialogs'
 

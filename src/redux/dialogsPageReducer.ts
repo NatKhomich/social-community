@@ -1,6 +1,6 @@
-import {actionsTypes, DialogsPropsType, MessageType} from '../types/Types';
+import {actionsTypes, DialogsType, MessageType} from '../types/Types';
 
-const dialogsInintialState = {
+const dialogsInintialState: DialogsType = {
     dialogs: [
         {id: 1, name: 'Natalia'},
         {id: 2, name: 'Alex'},
@@ -16,7 +16,7 @@ const dialogsInintialState = {
     newMessage: ''
 }
 
-const DialogsPageReducer = (state: any = dialogsInintialState, action: actionsTypes): DialogsPropsType => {
+const DialogsPageReducer = (state = dialogsInintialState, action: actionsTypes): DialogsType => {
     switch (action.type) {
 
         case 'UPDATE-NEW-MESSAGE':

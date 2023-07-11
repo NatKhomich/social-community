@@ -1,21 +1,21 @@
 import s from './Message.module.css';
 import React, {ChangeEvent, KeyboardEvent} from 'react';
-import {DialogsType, MessageType} from '../../../types/Types';
 import {DialogItem} from '../DialogItem/DialogItem';
+import {MessagesContainerType} from './MessagesContainer';
 
-type MessagesType = {
+/*type MessagesType = {
     messages: MessageType[]
     newMessage: string
-    dialogs: DialogsType[]
+    dialogs: DialogType[]
     onClickSendMessage: () => void
     onChangeNewMessage: (newMessage: string) => void
     onKeyDownEnter: () => void
-}
+}*/
 
-export const Messages = (props: MessagesType) => {
+export const Messages = (props: MessagesContainerType) => {
 
-    let messageElement = props.messages.map(el => <div className={s.message} key={el.id}> {el.message} </div>)
-    const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
+    let messageElement = props.dialogsPage.messages.map(el => <div className={s.message} key={el.id}> {el.message} </div>)
+    const dialogItemElement = props.dialogsPage.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
 
     const onClickSendMessageHandler = () => {
         /* props.dispatch(sendMessageActionCreator())*/
@@ -42,7 +42,7 @@ export const Messages = (props: MessagesType) => {
             <div className={s.messageField}>
                 <textarea
                     className={s.textarea}
-                    value={props.newMessage}
+                    value={props.dialogsPage.newMessage}
                     onChange={onChangeNewMessageHandler}
                     onKeyDown={onKeyDownEnterHandler}
                 >

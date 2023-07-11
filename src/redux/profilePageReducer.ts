@@ -1,6 +1,6 @@
-import {actionsTypes, PostType, ProfilePostsType} from '../types/Types';
+import {actionsTypes, PostType, ProfileType} from '../types/Types';
 
-const dialogsInintialState = {
+const dialogsInintialState: ProfileType = {
     posts: [
         {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
         {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
@@ -8,7 +8,7 @@ const dialogsInintialState = {
     newMyPostText: ''
 }
 
-const ProfilePageReducer = (state: any = dialogsInintialState, action: actionsTypes): ProfilePostsType => {
+const ProfilePageReducer = (state: ProfileType = dialogsInintialState, action: actionsTypes): ProfileType => {
     switch (action.type) {
 
         case 'ADD-POST':

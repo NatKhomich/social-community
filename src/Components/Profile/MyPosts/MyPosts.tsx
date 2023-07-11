@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {PostType} from '../../../types/Types';
+import {MyPostsContainerType} from './MyPostsContainer';
 
 
 type MyPostsType = {
@@ -13,9 +14,9 @@ type MyPostsType = {
 
 }
 
-const MyPosts = (props: MyPostsType) => {
+const MyPosts = (props: MyPostsContainerType) => {
 
-    let postElement = props.posts.map(el => {
+    let postElement = props.dialogsPage.posts.map(el => {
 
         return (
             <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
@@ -24,7 +25,7 @@ const MyPosts = (props: MyPostsType) => {
 
     const addPostHandler = () => {
         /*props.dispatch(addPostActionCreator(props.newMyPostText))*/
-        props.addPost(props.newMyPostText)
+        props.addPost(props.dialogsPage.newMyPostText)
 
     }
 
@@ -49,7 +50,7 @@ const MyPosts = (props: MyPostsType) => {
                     className={s.textarea}
                     onKeyDown={onKeyDownEnterHandler}
                     onChange={onChangePostHandler}
-                    value={props.newMyPostText}/>
+                    value={props.dialogsPage.newMyPostText}/>
 
                 <button className={s.button} onClick={addPostHandler}> Add post</button>
             </div>

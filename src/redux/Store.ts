@@ -1,6 +1,6 @@
 import profilePageReducer from './profilePageReducer';
 import dialogsPageReducer from './dialogsPageReducer';
-import {actionsTypes, RootStateType} from '../types/Types';
+import {actionsTypes, DialogType, MessageType, PostType} from '../types/Types';
 
 export type StoreType = {
     _state: RootStateType
@@ -8,6 +8,18 @@ export type StoreType = {
     rerenderEntireTree: () => void
     getState: () => RootStateType
     dispatch: (action: actionsTypes) => void
+}
+
+export type RootStateType = {
+    profilePage: {
+        posts: PostType[]
+        newMyPostText: string //
+    }
+    dialogsPage: {
+        messages: MessageType[]
+        dialogs: DialogType[]
+        newMessage: string
+    }
 }
 
 export const store: StoreType = {
