@@ -1,6 +1,7 @@
 import profilePageReducer from './profilePageReducer';
 import dialogsPageReducer from './dialogsPageReducer';
 import {actionsTypes, DialogType, MessageType, PostType} from '../types/Types';
+import {v1} from 'uuid';
 
 export type StoreType = {
     _state: RootStateType
@@ -26,23 +27,23 @@ export const store: StoreType = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
-                {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
+                {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
+                {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
             ],
             newMyPostText: ''
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: 'Natalia'},
-                {id: 2, name: 'Alex'},
-                {id: 3, name: 'Ekaterina'},
-                {id: 4, name: 'Uliana'}
+                {id: v1(), name: 'Natalia'},
+                {id: v1(), name: 'Alex'},
+                {id: v1(), name: 'Ekaterina'},
+                {id: v1(), name: 'Uliana'}
             ],
             messages: [
-                {id: 1, message: 'Hi'},
-                {id: 2, message: 'I love you'},
-                {id: 3, message: 'How are you?'},
-                {id: 4, message: 'Hi, my girl'}
+                {id: v1(), message: 'Hi'},
+                {id: v1(), message: 'I love you'},
+                {id: v1(), message: 'How are you?'},
+                {id: v1(), message: 'Hi, my girl'}
             ],
             newMessage: ''
         }

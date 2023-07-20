@@ -15,18 +15,18 @@ const MyPosts = (props: MyPostsContainerType) => {
 
     const addPostHandler = () => {
         /*props.dispatch(addPostActionCreator(props.newMyPostText))*/
-        props.addPost(props.dialogsPage.newMyPostText)
+        if (props.dialogsPage.newMyPostText !== '') props.addPost(props.dialogsPage.newMyPostText)
     }
 
     const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-       /* props.dispatch(onChangePostActionCreator(e.currentTarget.value))*/
+        /* props.dispatch(onChangePostActionCreator(e.currentTarget.value))*/
         props.onChangePost(e.currentTarget.value)
 
     }
 
     const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') {
-           /* props.dispatch(addPostActionCreator(props.newMyPostText))*/
+            /* props.dispatch(addPostActionCreator(props.newMyPostText))*/
             props.addPost(e.currentTarget.value)
         }
     }

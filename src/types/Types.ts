@@ -2,7 +2,7 @@ import {addPostActionCreator, onChangePostActionCreator} from '../redux/profileP
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/dialogsPageReducer';
 
 export type PostType = {
-    id: number
+    id: string
     message: string
     likesCount: number
 }
@@ -14,7 +14,7 @@ export type ProfileType = {
 
 export type DialogType = {
     name: string
-    id: number
+    id: string
 }
 
 export type DialogsType = {
@@ -25,7 +25,7 @@ export type DialogsType = {
 
 export type MessageType = {
     message: string
-    id: number
+    id: string
 }
 
 export type actionsTypes =

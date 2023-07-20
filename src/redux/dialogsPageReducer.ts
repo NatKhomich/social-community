@@ -1,17 +1,18 @@
 import {actionsTypes, DialogsType, MessageType} from '../types/Types';
+import {v1} from 'uuid';
 
 const dialogsInintialState: DialogsType = {
     dialogs: [
-        {id: 1, name: 'Natalia'},
-        {id: 2, name: 'Alex'},
-        {id: 3, name: 'Ekaterina'},
-        {id: 4, name: 'Uliana'}
+        {id: v1(), name: 'Natalia'},
+        {id: v1(), name: 'Alex'},
+        {id: v1(), name: 'Ekaterina'},
+        {id: v1(), name: 'Uliana'}
     ],
     messages: [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'I love you'},
-        {id: 3, message: 'How are you?'},
-        {id: 4, message: 'Hi, my girl'}
+        {id: v1(), message: 'Hi'},
+        {id: v1(), message: 'I love you'},
+        {id: v1(), message: 'How are you?'},
+        {id: v1(), message: 'Hi, my girl'}
     ],
     newMessage: ''
 }
@@ -20,11 +21,10 @@ const DialogsPageReducer = (state = dialogsInintialState, action: actionsTypes):
     switch (action.type) {
 
         case 'UPDATE-NEW-MESSAGE':
-            //state.newMessage = action.newMessage
             return {...state, newMessage: action.newMessage}
 
         case 'SEND-MESSAGE':
-            const newMessage: MessageType = {id: 5, message: state.newMessage}
+            const newMessage: MessageType = {id: action.id, message: state.newMessage}
             state.newMessage = ''
             return {...state, messages: [...state.messages, newMessage]}
 
@@ -43,6 +43,7 @@ export const updateNewMessageActionCreator = (newMessageText: string) => {
 export const sendMessageActionCreator = () => {
     return {
         type: 'SEND-MESSAGE',
+        id: v1()
     } as const
 }
 

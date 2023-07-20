@@ -8,7 +8,7 @@ import {BrowserRouter} from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 
- const rerenderEntireTree = (state: AppStateType) => {
+/* const rerenderEntireTree = (state: AppStateType) => {*/
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -18,8 +18,9 @@ import { Provider } from 'react-redux';
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
 
+
+/*
 rerenderEntireTree(store.getState())
 let state = store.getState()
-store.subscribe(()=> rerenderEntireTree(state))
+store.subscribe(()=> rerenderEntireTree(state))*/

@@ -41,7 +41,7 @@ export const Messages = (props: MessagesContainerType) => {
                     onChange={onChangeNewMessageHandler}
                     onKeyDown={onKeyDownEnterHandler}>
                 </textarea>
-                <button className={s.button} onClick={onClickSendMessageHandler}> Send</button>
+                <button className={s.button} onClick={onClickSendMessageHandler}> Send </button>
             </div>
 
         </div>

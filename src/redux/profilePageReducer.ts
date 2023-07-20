@@ -1,9 +1,10 @@
 import {actionsTypes, PostType, ProfileType} from '../types/Types';
+import {v1} from 'uuid';
 
 const dialogsInintialState: ProfileType = {
     posts: [
-        {id: 1, message: 'Hi, why nobody love me!', likesCount: 15},
-        {id: 2, message: 'It\'s our new program! Hey!', likesCount: 2},
+        {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
+        {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
     ],
     newMyPostText: ''
 }
@@ -12,7 +13,7 @@ const ProfilePageReducer = (state: ProfileType = dialogsInintialState, action: a
     switch (action.type) {
 
         case 'ADD-POST':
-            const newPost: PostType = {id: 4, message: action.newMyPostText, likesCount: 0}
+            const newPost: PostType = {id: action.id, message: action.newMyPostText, likesCount: 0}
             state.newMyPostText = ''
             return {...state, posts: [newPost, ...state.posts]}
 
@@ -28,7 +29,8 @@ const ProfilePageReducer = (state: ProfileType = dialogsInintialState, action: a
 export const addPostActionCreator = (newMyPostText: string) => {
     return {
         type: 'ADD-POST',
-        newMyPostText: newMyPostText
+        newMyPostText: newMyPostText,
+        id: v1()
     } as const
 }
 
