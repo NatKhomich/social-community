@@ -45,7 +45,6 @@ export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Me
 
 
 /*export const MessagesContainer = () => {
-
     return (
         <StoreContext.Consumer>
             {store => {
