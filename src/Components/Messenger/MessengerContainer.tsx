@@ -40,11 +40,11 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     }
 }
 
-//создание контейнерной компоненты для MessageItem
+//создание контейнерной компоненты для Messenger
 export const MessengerContainer = connect(mapStateToProps, mapDispatchToProps)(Messenger);
 
 
-/*export const MessagesContainer = () => {
+/*export const MessengerContainer = () => {
     return (
         <StoreContext.Consumer>
             {store => {
@@ -60,7 +60,7 @@ export const MessengerContainer = connect(mapStateToProps, mapDispatchToProps)(M
                 const onKeyDownEnter = () => {
                     store.dispatch(sendMessageActionCreator())
                 }
-                return <MessageItem messages={state.messages}
+                return <Messenger messages={state.messages}
                                  newMessage={state.newMessage}
                                  dialogs={state.dialogs}
                                  onClickSendMessage={onClickSendMessage}
