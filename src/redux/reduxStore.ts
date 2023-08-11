@@ -1,6 +1,6 @@
 import {combineReducers, createStore} from 'redux';
 import profilePageReducer from './profilePageReducer';
-import dialogsPageReducer from './dialogsPageReducer';
+import dialogsPageReducer from './messengerPageReducer';
 
 //новый стейт
 let rootReducer = combineReducers({

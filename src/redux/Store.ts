@@ -1,5 +1,5 @@
 import profilePageReducer from './profilePageReducer';
-import dialogsPageReducer from './dialogsPageReducer';
+import dialogsPageReducer from './messengerPageReducer';
 import {actionsTypes, DialogType, MessageType, PostType} from '../types/Types';
 import {v1} from 'uuid';
 

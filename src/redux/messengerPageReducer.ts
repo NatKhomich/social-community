@@ -1,7 +1,7 @@
-import {actionsTypes, DialogsType, MessageType} from '../types/Types';
+import {actionsTypes, MessageType, MessengerType} from '../types/Types';
 import {v1} from 'uuid';
 
-const dialogsInintialState: DialogsType = {
+const messengerInintialState: MessengerType = {
     dialogs: [
         {id: v1(), name: 'Natalia'},
         {id: v1(), name: 'Alex'},
@@ -17,7 +17,7 @@ const dialogsInintialState: DialogsType = {
     newMessage: ''
 }
 
-const DialogsPageReducer = (state = dialogsInintialState, action: actionsTypes): DialogsType => {
+const MessengerPageReducer = (state = messengerInintialState, action: actionsTypes): MessengerType => {
     switch (action.type) {
 
         case 'UPDATE-NEW-MESSAGE':
@@ -48,4 +48,4 @@ export const sendMessageActionCreator = () => {
 }
 
 
-export default DialogsPageReducer;
+export default MessengerPageReducer;

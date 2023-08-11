@@ -1,15 +1,23 @@
 import {addPostActionCreator, onChangePostActionCreator} from '../redux/profilePageReducer';
-import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/dialogsPageReducer';
+import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/messengerPageReducer';
 import {followActionCreator, setUsersActionCreator, unfollowActionCreator} from '../redux/usersPageReducer';
+
+export type ProfileType = {
+    posts: PostType[]
+    newMyPostText: string
+}
 
 export type PostType = {
     id: string
     message: string
     likesCount: number
 }
-export type ProfileType = {
-    posts: PostType[]
-    newMyPostText: string
+
+
+export type MessengerType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessage: string
 }
 
 export type DialogType = {
@@ -17,16 +25,11 @@ export type DialogType = {
     id: string
 }
 
-export type DialogsType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessage: string
-}
-
 export type MessageType = {
     message: string
     id: string
 }
+
 
 export type actionsTypes =
     ReturnType<typeof addPostActionCreator> |
