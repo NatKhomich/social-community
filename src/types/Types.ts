@@ -1,5 +1,6 @@
 import {addPostActionCreator, onChangePostActionCreator} from '../redux/profilePageReducer';
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/dialogsPageReducer';
+import {followActionCreator, setUsersActionCreator, unfollowActionCreator} from '../redux/usersPageReducer';
 
 export type PostType = {
     id: string
@@ -32,7 +33,12 @@ export type actionsTypes =
     ReturnType<typeof onChangePostActionCreator> |
 
     ReturnType<typeof updateNewMessageActionCreator> |
-    ReturnType<typeof sendMessageActionCreator>
+    ReturnType<typeof sendMessageActionCreator> |
+
+    ReturnType<typeof followActionCreator> |
+    ReturnType<typeof unfollowActionCreator> |
+    ReturnType<typeof setUsersActionCreator>
+
 
 /*
 export type reduxStoreType =
