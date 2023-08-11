@@ -1,0 +1,16 @@
+
+.dialog {
+    font-size: 18px;
+    margin-top: 10px;
+
+}
+
+.dialog img {
+    width: 30px;
+    border-radius: 50%;
+}
+
+.dialogNick {
+    text-decoration: none;
+    color: #2f3e46;
+}
