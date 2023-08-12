@@ -2,15 +2,13 @@
 .users {
     display: flex;
     flex-direction: column;
-    border: #2b9348 1px solid;
     margin-left: 30px;
 }
 
 .user {
-    width: 70%;
+    /*width: 70%;*/
     display: flex;
-    justify-content: space-between;
-    border: #ab0c36 3px solid;
+   align-items: center;
     margin-top: 30px;
     flex-wrap: wrap;
 }
@@ -20,8 +18,7 @@
 }
 
 .imgAndButton {
-    min-width: 30%;
-    border: #e8b50a 3px solid;
+   /* min-width: 30%;*/
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,9 +28,7 @@
 .dataBlock {
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 70%;
-    border: #93aac9 2px solid;
+  /*  min-width: 30%;*/
     border-radius: 2px;
 }
 
@@ -41,4 +36,8 @@
     font-size: 18px;
     color: #123869;
     margin: 10px 10px 0 10px;
+}
+
+.location {
+    display: flex;
 }

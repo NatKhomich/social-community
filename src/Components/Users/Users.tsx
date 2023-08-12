@@ -27,12 +27,12 @@ export const Users = (props: UsersContainerType) => {
                     </div>
 
                     <div className={s.dataBlock}>
-                        <div>
+                        <div className={s.nameAndStatus}>
                             <div className={s.dataText}>{el.fullName}</div>
                             <div className={s.dataText}>{el.status}</div>
                         </div>
 
-                        <div>
+                        <div className={s.location}>
                             <div className={s.dataText}>{el.location.country}</div>
                             <div className={s.dataText}>{el.location.city}</div>
                         </div>
