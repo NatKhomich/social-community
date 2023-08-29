@@ -36,7 +36,7 @@ export const Users = (props: UsersContainerType) => {
                 <div className={s.user} key={el.id}>
 
                     <div className={s.imgAndButton}>
-                        <div><img className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/></div>
+                        <div><img alt='' className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/></div>
                         {el.followed
                             ? <button onClick={onClickUnfollow(el.id)}> Unfollow </button>
                             : <button onClick={onClickFollow(el.id)}> Follow </button>
