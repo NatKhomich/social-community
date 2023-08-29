@@ -24,18 +24,18 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 type MapDispatchToPropsType = {
-    onClickFollow: (userID: string) => void
-    onClickUnfollow: (userID: string) => void
+    onClickFollow: (userID: number) => void
+    onClickUnfollow: (userID: number) => void
     setUsers: (users: UserPropsType[]) => void
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        onClickFollow: (userID: string) => {
+        onClickFollow: (userID: number) => {
             dispatch(followActionCreator(userID))
         },
 
-        onClickUnfollow: (userID: string) => {
+        onClickUnfollow: (userID: number) => {
             dispatch(unfollowActionCreator(userID))
         },
 
