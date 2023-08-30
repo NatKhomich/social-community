@@ -6,16 +6,12 @@ import {UsersContainerType} from './UsersContainer';
 
 export class Users extends React.Component<UsersContainerType> {
 
-    constructor(props: UsersContainerType) {
-        super(props)
-
-        if (this.props.usersPage.items.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(res => {
-                    debugger
-                    this.props.setUsers(res.data.items)
-                })
-        }
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(res => {
+                debugger
+                this.props.setUsers(res.data.items)
+            })
     }
 
     onClickUnfollow = (userID: number) => () => {
