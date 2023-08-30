@@ -7,10 +7,10 @@ import {UsersContainerType} from './UsersContainer';
 export class Users extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(res => {
-                debugger
                 this.props.setUsers(res.data.items)
+                this.props.setTotalUsersCount(res.data.totalCount)
             })
     }
 
@@ -22,9 +22,37 @@ export class Users extends React.Component<UsersContainerType> {
         this.props.onClickFollow(userID)
     }
 
+    setCurrentPage = (pageNumber: number) => () => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(res => {
+                this.props.setUsers(res.data.items)
+            })
+    }
+
     render() {
+
+        const pagesCount = Math.ceil(this.props.totalCountUser / this.props.pageSize)
+        const pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
         return (
             <div className={s.users}>
+                <div>
+                    {pages.map(el => {
+                        return (
+                            <button className={this.props.currentPage === el ? s.selectedPage : ''}
+                            onClick={this.setCurrentPage(el)}
+                            >
+                                {el}
+                            </button>
+                        )}
+                    )}
+                </div>
+
+
                 {this.props.usersPage.items.map(el =>
                     <div className={s.user} key={el.id}>
 

@@ -1,6 +1,11 @@
 import {addPostActionCreator, onChangePostActionCreator} from '../redux/profilePageReducer';
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/messengerPageReducer';
-import {followActionCreator, setUsersActionCreator, unfollowActionCreator} from '../redux/usersPageReducer';
+import {
+    followActionCreator,
+    setCurrentPageActionCreator,
+    setUsersActionCreator, setUsersTotalCountActionCreator,
+    unfollowActionCreator
+} from '../redux/usersPageReducer';
 
 export type ProfileType = {
     posts: PostType[]
@@ -40,7 +45,10 @@ export type actionsTypes =
 
     ReturnType<typeof followActionCreator> |
     ReturnType<typeof unfollowActionCreator> |
-    ReturnType<typeof setUsersActionCreator>
+    ReturnType<typeof setUsersActionCreator> |
+    ReturnType<typeof setCurrentPageActionCreator> |
+    ReturnType<typeof setUsersTotalCountActionCreator>
+
 
 
 /*
