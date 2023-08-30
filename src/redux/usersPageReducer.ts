@@ -43,7 +43,7 @@ const UsersPageReducer = (state: UsersType = usersInintialState, action: actions
                         ? {...el, followed: true}
                         : el)
             }
-//оставть один case? followed: !el.followed
+
         case 'UNFOLLOW':
             return {
                 ...state, items:
@@ -80,7 +80,5 @@ export const setUsersActionCreator = (users: UserPropsType[]) => {
         users
     } as const
 }
-
-
 
 export default UsersPageReducer;

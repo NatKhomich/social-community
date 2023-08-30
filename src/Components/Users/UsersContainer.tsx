@@ -1,5 +1,4 @@
 import {connect} from 'react-redux';
-import {Users} from './Users';
 import {AppStateType} from '../../redux/reduxStore';
 import {
     followActionCreator,
@@ -9,6 +8,7 @@ import {
     UsersType
 } from '../../redux/usersPageReducer';
 import {Dispatch} from 'redux';
+import {Users} from './Users';
 
 
 export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
