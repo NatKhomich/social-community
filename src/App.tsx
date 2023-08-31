@@ -4,7 +4,6 @@ import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
 import Profile from './Components/Profile/Profile';
 import {Route} from 'react-router-dom';
-import {Users} from './Components/Users/Users';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import {UsersContainer} from './Components/Users/UsersContainer';
 
