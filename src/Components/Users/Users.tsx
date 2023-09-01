@@ -36,13 +36,15 @@ const Users = (props: UsersPresentPropsType) => {
     return (
         <div className={s.users}>
             <div>
-                {pages.map(el => {
-                    return (
-                        <button className={props.currentPage === el ? s.selectedPage : ''}
-                                onClick={setCurrentPageHandler(el)}>
-                            {el}
-                        </button>
-                    )}
+                {pages.map((el) => {
+                        return (
+                            <button className={props.currentPage === el ? s.selectedPage : ''}
+                                    onClick={setCurrentPageHandler(el)}
+                                    key={el}>
+                                {el}
+                            </button>
+                        )
+                    }
                 )}
             </div>
 

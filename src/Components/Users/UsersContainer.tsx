@@ -12,10 +12,12 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 
+const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
+
 export class UsersComponent extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setUsers(res.data.items)
                 this.props.setTotalUsersCount(res.data.totalCount)
@@ -24,7 +26,7 @@ export class UsersComponent extends React.Component<UsersContainerType> {
 
     setCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`${baseUrl}/users?page=${pageNumber}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.setUsers(res.data.items)
             })
