@@ -22,7 +22,6 @@ export class UsersComponent extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-
         axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(res => {
                 this.props.toggleIsFetching(false)
@@ -42,20 +41,16 @@ export class UsersComponent extends React.Component<UsersContainerType> {
     }
 
     render() {
-        return (
-            <>
-                {this.props.isFetching ? <Preloader /> : null}
-
-                <Users onClickUnfollow={this.props.onClickUnfollow}
-                       onClickFollow={this.props.onClickFollow}
-                       setCurrentPage={this.setCurrentPage}
-                       totalCountUser={this.props.totalCountUser}
-                       pageSize={this.props.pageSize}
-                       currentPage={this.props.currentPage}
-                       usersPage={this.props.usersPage}
-                />
-            </>
-        );
+        return <>
+            {this.props.isFetching ? <Preloader/> : null}
+            <Users onClickUnfollow={this.props.onClickUnfollow}
+                   onClickFollow={this.props.onClickFollow}
+                   setCurrentPage={this.setCurrentPage}
+                   totalCountUser={this.props.totalCountUser}
+                   pageSize={this.props.pageSize}
+                   currentPage={this.props.currentPage}
+                   usersPage={this.props.usersPage}/>
+        </>
     }
 }
 
@@ -90,25 +85,18 @@ type MapDispatchToPropsType = {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        onClickFollow: (userID) => {
-            dispatch(followAC(userID))
-        },
-        onClickUnfollow: (userID) => {
-            dispatch(unfollowAC(userID))
-        },
-        setUsers: (users) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount) => {
-            dispatch(setUsersTotalCountAC(totalCount))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(isFetchingAC(isFetching))
-        }
+        onClickFollow: (userID) => dispatch(followAC(userID)),
+        onClickUnfollow: (userID) => dispatch(unfollowAC(userID)),
+        setUsers: (users) => dispatch(setUsersAC(users)),
+        setCurrentPage: (pageNumber) => dispatch(setCurrentPageAC(pageNumber)),
+        setTotalUsersCount: (totalCount) => dispatch(setUsersTotalCountAC(totalCount)),
+        toggleIsFetching: (isFetching: boolean) => dispatch(isFetchingAC(isFetching))
     }
 }
 
+
 export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersComponent);
+
+//вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
+//{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку
+// () => store.dispatch(AC)и передаёт в props компонента
