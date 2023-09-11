@@ -7,24 +7,13 @@ import {MessageItem} from './MessageItem/MessageItem';
 
 export const Messenger = (props: MessengerContainerType) => {
 
-    //const messageElement = props.dialogsPage.messages.map(el => <div className={s.message} key={el.id}> {el.message} </div>)
-    const messageElement = props.dialogsPage.messages.map(el => <MessageItem key={el.id} message={el.message} id={el.id}/>)
+    const messageElement = props.messages.map(el => <MessageItem key={el.id} message={el.message} id={el.id}/>)
+    const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
 
-
-    const dialogItemElement = props.dialogsPage.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)
-
-    const onClickSendMessageHandler = () => {
-        props.onClickSendMessage()
-    }
-
-    const onChangeNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.onChangeNewMessage(e.currentTarget.value)
-    }
-
+    const onClickSendMessageHandler = () => props.onClickSendMessage()
+    const onChangeNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.onChangeNewMessage(e.currentTarget.value)
     const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === 'Enter') {
-            props.onKeyDownEnter()
-        }
+        if (e.key === 'Enter') props.onKeyDownEnter()
     }
 
     return (
@@ -33,11 +22,10 @@ export const Messenger = (props: MessengerContainerType) => {
                 <div> {dialogItemElement} </div>
                 <div className={s.messages}> {messageElement} </div>
             </div>
-
             <div className={s.messageField}>
                 <textarea
                     className={s.textarea}
-                    value={props.dialogsPage.newMessage}
+                    value={props.newMessage}
                     onChange={onChangeNewMessageHandler}
                     onKeyDown={onKeyDownEnterHandler}>
                 </textarea>

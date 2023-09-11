@@ -1,7 +1,13 @@
 import React from 'react';
 import s from './Post.module.css';
-import { PostType} from '../../../../types/Types';
 import avatarMessages from '../../../../image/avatar_messages.jpg'
+
+
+export type PostType = {
+    id: string
+    message: string
+    likesCount: number
+}
 
 const Post = (props: PostType) => {
     return (

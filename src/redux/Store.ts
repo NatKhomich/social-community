@@ -1,14 +1,14 @@
-import profilePageReducer from './profilePageReducer';
-import dialogsPageReducer from './messengerPageReducer';
-import {actionsTypes, DialogType, MessageType, PostType} from '../types/Types';
 import {v1} from 'uuid';
+import {PostType} from '../Components/Profile/MyPosts/Post/Post';
+import {MessageType} from '../Components/Messenger/MessageItem/MessageItem';
+import {DialogType} from '../Components/Messenger/DialogItem/DialogItem';
 
 export type StoreType = {
     _state: RootStateType
     subscribe: (observer: () => void) => void
     rerenderEntireTree: () => void
     getState: () => RootStateType
-    dispatch: (action: actionsTypes) => void
+    // dispatch: (action: actionsTypes) => void
 }
 
 export type RootStateType = {
@@ -58,12 +58,12 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    dispatch(action) {
+   /* dispatch(action) {
         this._state.profilePage = profilePageReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsPageReducer(this._state.dialogsPage, action)
 
         this.rerenderEntireTree()
-    }
+    }*/
 }
 
 

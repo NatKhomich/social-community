@@ -1,56 +1,51 @@
 import React from 'react';
-import {sendMessageActionCreator, updateNewMessageActionCreator}
-    from '../../redux/messengerPageReducer';
+import {sendMessageAC, updateNewMessageAC} from '../../redux/messengerPageReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {Dispatch} from 'redux';
-import {MessengerType} from '../../types/Types';
+import {DialogType} from './DialogItem/DialogItem';
+import {MessageType} from './MessageItem/MessageItem';
 
 
 export type MessengerContainerType = MapStateToPropsType & MapDispatchToPropsType
-
 type MapStateToPropsType = {
-    dialogsPage: MessengerType
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessage: string
 }
-
-let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    return {
-        dialogsPage: state.dialogsPage
-    }
-}
-
 type MapDispatchToPropsType = {
     onClickSendMessage: () => void
     onChangeNewMessage: (newMessage: string) => void
     onKeyDownEnter: () => void
 }
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        onClickSendMessage: () => {
-            dispatch(sendMessageActionCreator())
-        },
-        onChangeNewMessage: (newMessage: string) => {
-            dispatch(updateNewMessageActionCreator(newMessage))
-        },
-        onKeyDownEnter: () => {
-            dispatch(sendMessageActionCreator())
-        }
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessage: state.dialogsPage.newMessage
     }
 }
 
-//создание контейнерной компоненты для Messenger
-export const MessengerContainer = connect(mapStateToProps, mapDispatchToProps)(Messenger);
+export const MessengerContainer = connect(mapStateToProps,
+    {
+        onClickSendMessage: sendMessageAC,
+        onChangeNewMessage: updateNewMessageAC,
+        onKeyDownEnter: sendMessageAC
+    })(Messenger);
 
-
+/*let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+    return {
+        onClickSendMessage: () => dispatch(sendMessageAC()),
+        onChangeNewMessage: (newMessage: string) => dispatch(updateNewMessageAC(newMessage)),
+        onKeyDownEnter: () => dispatch(sendMessageAC())
+    }
+}*/
 /*export const MessengerContainer = () => {
     return (
         <StoreContext.Consumer>
             {store => {
-
                 let state = store.getState().dialogsPage
-
                 const onClickSendMessage = () => {
                     store.dispatch(sendMessageActionCreator())
                 }

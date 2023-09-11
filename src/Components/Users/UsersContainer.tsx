@@ -2,15 +2,14 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
 import {
     followAC,
-    isFetchingAC,
     setCurrentPageAC,
     setUsersAC,
     setUsersTotalCountAC,
+    toggleIsFetchingAC,
     unfollowAC,
     UserPropsType,
     UsersType
 } from '../../redux/usersPageReducer';
-import {Dispatch} from 'redux';
 import React from 'react';
 import axios from 'axios';
 import Users from './Users';
@@ -26,7 +25,7 @@ export class UsersComponent extends React.Component<UsersContainerType> {
             .then(res => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(res.data.items)
-                this.props.setTotalUsersCount(res.data.totalCount)
+                this.props.setUsersTotalCount(res.data.totalCount)
             })
     }
 
@@ -43,13 +42,14 @@ export class UsersComponent extends React.Component<UsersContainerType> {
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users onClickUnfollow={this.props.onClickUnfollow}
-                   onClickFollow={this.props.onClickFollow}
+            <Users onClickUnfollow={this.props.unfollow}
+                   onClickFollow={this.props.follow}
                    setCurrentPage={this.setCurrentPage}
                    totalCountUser={this.props.totalCountUser}
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
-                   usersPage={this.props.usersPage}/>
+                   usersPage={this.props.usersPage}
+            />
         </>
     }
 }
@@ -63,6 +63,14 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
 }
+type MapDispatchToPropsType = {
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    setUsers: (users: UserPropsType[]) => void
+    setCurrentPage: (currentPage: number) => void
+    setUsersTotalCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
+}
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
@@ -74,16 +82,21 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-type MapDispatchToPropsType = {
-    onClickFollow: (userID: number) => void
-    onClickUnfollow: (userID: number) => void
-    setUsers: (users: UserPropsType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
+export const UsersContainer = connect(mapStateToProps,
+    {
+        follow: followAC,
+        unfollow: unfollowAC,
+        setUsers: setUsersAC,
+        setCurrentPage: setCurrentPageAC,
+        setUsersTotalCount: setUsersTotalCountAC,
+        toggleIsFetching: toggleIsFetchingAC
+    })(UsersComponent);
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+//вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
+//{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку
+// () => store.dispatch(AC)и передаёт в props компонента
+
+/*const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         onClickFollow: (userID) => dispatch(followAC(userID)),
         onClickUnfollow: (userID) => dispatch(unfollowAC(userID)),
@@ -92,11 +105,5 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         setTotalUsersCount: (totalCount) => dispatch(setUsersTotalCountAC(totalCount)),
         toggleIsFetching: (isFetching: boolean) => dispatch(isFetchingAC(isFetching))
     }
-}
-
-
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersComponent);
-
-//вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
-//{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку
-// () => store.dispatch(AC)и передаёт в props компонента
+}*/
+// export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersComponent);

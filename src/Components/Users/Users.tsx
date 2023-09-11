@@ -20,15 +20,9 @@ const Users = (props: UsersPresentPropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-    const setCurrentPageHandler = (numPage: number) => () => {
-        props.setCurrentPage(numPage)
-    }
-    const onClickUnfollowHandler = (userID: number) => () => {
-        props.onClickUnfollow(userID)
-    }
-    const onClickFollowHandler = (userID: number) => () => {
-        props.onClickFollow(userID)
-    }
+    const setCurrentPageHandler = (numPage: number) => () => props.setCurrentPage(numPage)
+    const onClickUnfollowHandler = (userID: number) => () => props.onClickUnfollow(userID)
+    const onClickFollowHandler = (userID: number) => () => props.onClickFollow(userID)
 
     return (
         <div className={s.users}>

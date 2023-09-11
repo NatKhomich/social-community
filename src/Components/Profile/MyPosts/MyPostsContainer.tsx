@@ -1,48 +1,45 @@
 import React from 'react';
-import {addPostActionCreator, onChangePostActionCreator} from '../../../redux/profilePageReducer';
+import {addPostAC, onChangePostAC} from '../../../redux/profilePageReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../redux/reduxStore';
-import {ProfileType} from '../../../types/Types';
-import {Dispatch} from 'redux';
+import {PostType} from './Post/Post';
+
 
 export type MyPostsContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
-    dialogsPage: ProfileType
+    posts: PostType[]
+    newPostText: string
+}
+type MapDispatchToPropsType = {
+    addPost: (newMyPostText: string) => void
+    onChangePost: (newText: string) => void
+    onKeyDown: (newText: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        dialogsPage: state.profilePage
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
     }
 }
 
-type MapDispatchToPropsType = {
-    addPost: (newMyPostText: string) => void
-    onChangePost: (newText: string) => void
-    onKeyDownEnter: (newText: string) => void
-}
+export const MyPostsContainer = connect(mapStateToProps,
+    {
+        addPost: addPostAC,
+        onChangePost: onChangePostAC,
+        onKeyDown: addPostAC
+    })(MyPosts)
 
-let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
+/*let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addPost: (newMyPostText: string) => {
-            dispatch(addPostActionCreator(newMyPostText))
-        },
-        onChangePost: (newText: string) => {
-            dispatch(onChangePostActionCreator(newText))
-        },
-        onKeyDownEnter: (newText: string) => {
-            dispatch(addPostActionCreator(newText))
-        }
+        addPost: (newMyPostText: string) => dispatch(addPostActionCreator(newMyPostText)),
+        onChangePost: (newText: string) => dispatch(onChangePostActionCreator(newText)),
+        onKeyDown: (newText: string) => dispatch(addPostActionCreator(newText))
     }
-}
-
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
-
-
-/*
-export const MyPostsContainer = () => {
+}*/
+/*export const MyPostsContainer = () => {
     return (
         <StoreContext.Consumer>
             {store => {

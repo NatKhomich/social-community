@@ -1,4 +1,3 @@
-import {actionsTypes} from '../types/Types';
 
 export type UserPropsType = {
     name: string
@@ -26,7 +25,7 @@ const usersInintialState: UsersType = {
     isFetching: false
 }
 
-const UsersPageReducer = (state: UsersType = usersInintialState, action: actionsTypes): UsersType => {
+const UsersPageReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, items: state.items.map(el => el.id === action.userID ? {...el, followed: true} : el)}
@@ -50,7 +49,10 @@ export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID} as con
 export const setUsersAC = (users: UserPropsType[]) => ({type: 'SET-USERS', users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
 export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount} as const)
-export const isFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 
+type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
+    | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setUsersTotalCountAC> | ReturnType<typeof toggleIsFetchingAC>
 
 export default UsersPageReducer;

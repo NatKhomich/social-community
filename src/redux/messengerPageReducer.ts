@@ -1,5 +1,12 @@
-import {actionsTypes, MessageType, MessengerType} from '../types/Types';
 import {v1} from 'uuid';
+import {DialogType} from '../Components/Messenger/DialogItem/DialogItem';
+import {MessageType} from '../Components/Messenger/MessageItem/MessageItem';
+
+export type MessengerType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessage: string
+}
 
 const messengerInintialState: MessengerType = {
     dialogs: [
@@ -17,35 +24,23 @@ const messengerInintialState: MessengerType = {
     newMessage: ''
 }
 
-const MessengerPageReducer = (state = messengerInintialState, action: actionsTypes): MessengerType => {
+const MessengerPageReducer = (state = messengerInintialState, action: ActionsType): MessengerType => {
     switch (action.type) {
-
         case 'UPDATE-NEW-MESSAGE':
             return {...state, newMessage: action.newMessage}
-
         case 'SEND-MESSAGE':
             const newMessage: MessageType = {id: action.id, message: state.newMessage}
             state.newMessage = ''
             return {...state, messages: [...state.messages, newMessage]}
-
         default:
             return state
     }
 };
 
-export const updateNewMessageActionCreator = (newMessageText: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE',
-        newMessage: newMessageText
-    } as const
-}
+export const updateNewMessageAC = (newMessage: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessage} as const)
+export const sendMessageAC = () => ({type: 'SEND-MESSAGE', id: v1()} as const)
 
-export const sendMessageActionCreator = () => {
-    return {
-        type: 'SEND-MESSAGE',
-        id: v1()
-    } as const
-}
+type ActionsType = ReturnType<typeof updateNewMessageAC> | ReturnType<typeof sendMessageAC>
 
 
 export default MessengerPageReducer;

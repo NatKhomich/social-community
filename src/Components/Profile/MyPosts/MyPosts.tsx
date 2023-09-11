@@ -6,29 +6,18 @@ import {MyPostsContainerType} from './MyPostsContainer';
 
 const MyPosts = (props: MyPostsContainerType) => {
 
-    let postElement = props.dialogsPage.posts.map(el => {
-
-        return (
-            <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
-        )
+    let postElement = props.posts.map(el => {
+        return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
     })
 
     const addPostHandler = () => {
-        /*props.dispatch(addPostActionCreator(props.newMyPostText))*/
-        if (props.dialogsPage.newMyPostText !== '') props.addPost(props.dialogsPage.newMyPostText)
+        if (props.newPostText !== '')
+            props.addPost(props.newPostText)
     }
-
-    const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        /* props.dispatch(onChangePostActionCreator(e.currentTarget.value))*/
-        props.onChangePost(e.currentTarget.value)
-
-    }
-
-    const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.key === 'Enter') {
-            /* props.dispatch(addPostActionCreator(props.newMyPostText))*/
+    const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.onChangePost(e.currentTarget.value)
+    const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter')
             props.addPost(e.currentTarget.value)
-        }
     }
 
     return (
@@ -37,10 +26,9 @@ const MyPosts = (props: MyPostsContainerType) => {
             <div className={s.textareaAndButton}>
                 <textarea
                     className={s.textarea}
-                    onKeyDown={onKeyDownEnterHandler}
+                    onKeyDown={onKeyDownHandler}
                     onChange={onChangePostHandler}
-                    value={props.dialogsPage.newMyPostText}/>
-
+                    value={props.newPostText}/>
                 <button className={s.button} onClick={addPostHandler}> Add post</button>
             </div>
             <div className={s.posts}>
