@@ -1,10 +1,12 @@
 import {addPostActionCreator, onChangePostActionCreator} from '../redux/profilePageReducer';
 import {sendMessageActionCreator, updateNewMessageActionCreator} from '../redux/messengerPageReducer';
 import {
-    followActionCreator,
-    setCurrentPageActionCreator,
-    setUsersActionCreator, setUsersTotalCountActionCreator,
-    unfollowActionCreator
+    followAC,
+    isFetchingAC,
+    setCurrentPageAC,
+    setUsersAC,
+    setUsersTotalCountAC,
+    unfollowAC
 } from '../redux/usersPageReducer';
 
 export type ProfileType = {
@@ -17,7 +19,6 @@ export type PostType = {
     message: string
     likesCount: number
 }
-
 
 export type MessengerType = {
     dialogs: DialogType[]
@@ -43,13 +44,12 @@ export type actionsTypes =
     ReturnType<typeof updateNewMessageActionCreator> |
     ReturnType<typeof sendMessageActionCreator> |
 
-    ReturnType<typeof followActionCreator> |
-    ReturnType<typeof unfollowActionCreator> |
-    ReturnType<typeof setUsersActionCreator> |
-    ReturnType<typeof setCurrentPageActionCreator> |
-    ReturnType<typeof setUsersTotalCountActionCreator>
-
-
+    ReturnType<typeof followAC> |
+    ReturnType<typeof unfollowAC> |
+    ReturnType<typeof setUsersAC> |
+    ReturnType<typeof setCurrentPageAC> |
+    ReturnType<typeof setUsersTotalCountAC> |
+    ReturnType<typeof isFetchingAC>
 
 /*
 export type reduxStoreType =

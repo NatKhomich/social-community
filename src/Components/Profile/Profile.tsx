@@ -8,7 +8,6 @@ const Profile = () => {
     return (
         <div className={s.profile}>
             <ProfileInfo/>
-
             <MyPostsContainer />
         </div>
     );

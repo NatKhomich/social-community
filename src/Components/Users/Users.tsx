@@ -20,23 +20,19 @@ const Users = (props: UsersPresentPropsType) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     const setCurrentPageHandler = (numPage: number) => () => {
         props.setCurrentPage(numPage)
     }
-
     const onClickUnfollowHandler = (userID: number) => () => {
         props.onClickUnfollow(userID)
     }
-
     const onClickFollowHandler = (userID: number) => () => {
         props.onClickFollow(userID)
     }
 
     return (
         <div className={s.users}>
-            <div>
-                {pages.map((el) => {
+            <div> {pages.map((el) => {
                         return (
                             <button className={props.currentPage === el ? s.selectedPage : ''}
                                     onClick={setCurrentPageHandler(el)}
@@ -44,13 +40,10 @@ const Users = (props: UsersPresentPropsType) => {
                                 {el}
                             </button>
                         )
-                    }
-                )}
+                    })}
             </div>
-
             {props.usersPage.items.map(el =>
                 <div className={s.user} key={el.id}>
-
                     <div className={s.imgAndButton}>
                         <div><img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
                         </div>
@@ -59,7 +52,6 @@ const Users = (props: UsersPresentPropsType) => {
                             : <button onClick={onClickFollowHandler(el.id)}> Follow </button>
                         }
                     </div>
-
                     <div className={s.dataBlock}>
                         <div className={s.nameAndStatus}>
                             <div className={s.dataText}>{el.name}</div>

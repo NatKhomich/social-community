@@ -9,13 +9,10 @@ import {UsersContainer} from './Components/Users/UsersContainer';
 
 
 function App() {
-
     return (
         <div>
             <Header/>
-
             <div className={'appWrapper'}>
-
                 <div className={'container'}>
                     <Navbar/>
                     <div className={'content'}>
@@ -25,10 +22,8 @@ function App() {
                     </div>
                 </div>
             </div>
-
         </div>
     );
-
 }
 
 
