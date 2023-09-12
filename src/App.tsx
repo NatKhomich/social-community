@@ -2,11 +2,10 @@ import React from 'react';
 import './App.css';
 import Header from './Components/Header/Header';
 import Navbar from './Components/Navbar/Navbar';
-import Profile from './Components/Profile/Profile';
 import {Route} from 'react-router-dom';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
-import {UsersContainer} from './Components/Users/UsersContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
+import UsersContainer from './Components/Users/UsersContainer';
 
 
 function App() {

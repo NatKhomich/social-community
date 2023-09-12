@@ -17,7 +17,7 @@ import {Preloader} from '../Common/Preloader/Preloader';
 
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 
-export class UsersComponent extends React.Component<UsersContainerType> {
+class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
@@ -82,7 +82,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const UsersContainer = connect(mapStateToProps,
+export default connect(mapStateToProps,
     {
         follow: followAC,
         unfollow: unfollowAC,
@@ -90,7 +90,7 @@ export const UsersContainer = connect(mapStateToProps,
         setCurrentPage: setCurrentPageAC,
         setUsersTotalCount: setUsersTotalCountAC,
         toggleIsFetching: toggleIsFetchingAC
-    })(UsersComponent);
+    })(UsersContainer);
 
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
 //{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку

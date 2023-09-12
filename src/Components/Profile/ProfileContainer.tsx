@@ -9,14 +9,12 @@ import {ProfileResponseType, setUserProfileAC} from '../../redux/profilePageRedu
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 
 class ProfileContainer extends React.Component<ProfileContainerType>{
-
     componentDidMount() {
         axios.get(`${baseUrl}/profile/2`)
             .then(res => {
                 this.props.setUserProfile(res.data)
             })
     }
-
     render() {
         return <Profile profile={this.props.profile} />
     }
@@ -27,7 +25,6 @@ export type ProfileContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
     profile: ProfileResponseType
 }
-
 type MapDispatchToPropsType = {
     setUserProfile: (profile: ProfileResponseType) => void
 }
@@ -37,8 +34,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         profile: state.profilePage.profile
     }
 }
+//const witchUrlDataContainer = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,
-    {
-        setUserProfile: setUserProfileAC
-    })(ProfileContainer);
+export default connect(mapStateToProps, {setUserProfile: setUserProfileAC})(ProfileContainer);

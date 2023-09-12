@@ -9,7 +9,6 @@ type ProfilePropsType = {
 }
 
 const Profile = (props: ProfilePropsType) => {
-
     return (
         <div className={s.profile}>
             <ProfileInfo profile={props.profile}/>
