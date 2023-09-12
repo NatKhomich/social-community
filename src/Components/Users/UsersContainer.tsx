@@ -13,7 +13,7 @@ import {
 import React from 'react';
 import axios from 'axios';
 import Users from './Users';
-import {Preloader} from '../common/Preloader/Preloader';
+import {Preloader} from '../Common/Preloader/Preloader';
 
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 

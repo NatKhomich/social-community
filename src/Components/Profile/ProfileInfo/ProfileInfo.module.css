@@ -42,9 +42,17 @@
 }
 
 .name {
-    color: #ff8fab;
+    color: rgba(35, 58, 75, 0.98);
     margin-top: 20px;
     margin-bottom: 30px;
     font-size: 25px;
-    text-align: center;
+    font-weight: 600;
+}
+
+
+.list {
+    list-style-type: none;
+    font-size: 16px;
+    font-style: inherit;
+    color: #2f3e46;
 }

@@ -1,20 +1,64 @@
 import {v1} from 'uuid';
 import {PostType} from '../Components/Profile/MyPosts/Post/Post';
 
+export type ProfileResponseType = {
+    aboutMe:string
+    contacts: {
+        facebook: string
+        website: null | string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null | string
+        github: string
+        mainLink: null | string
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
+
 export type ProfileType = {
     posts: PostType[]
     newPostText: string
+    profile: ProfileResponseType
 }
 
-const dialogsInintialState: ProfileType = {
+const profileInintialState: ProfileType = {
     posts: [
         {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
         {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: {
+        aboutMe: '',
+        contacts: {
+            facebook: '',
+            website: '',
+            vk: '',
+            twitter: '',
+            instagram: '',
+            youtube: '',
+            github: '',
+            mainLink: '',
+        },
+        lookingForAJob: false,
+        lookingForAJobDescription: '',
+        fullName: '',
+        userId: 0,
+        photos: {
+            small: '',
+            large: '',
+        }
+    }
 }
 
-const ProfilePageReducer = (state: ProfileType = dialogsInintialState, action: ActionsType): ProfileType => {
+const ProfilePageReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {id: action.id, message: action.newPostText, likesCount: 0}
@@ -22,14 +66,19 @@ const ProfilePageReducer = (state: ProfileType = dialogsInintialState, action: A
             return {...state, posts: [newPost, ...state.posts]}
         case 'UPDATE-NEW-POST-TEXT':
             return {...state, newPostText: action.newText}
+        case 'SET-USER-PROFILE':
+            return {...state, profile: action.profile}
         default:
             return state
     }
 };
 
-export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText: newPostText, id: v1()} as const)
-export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const)
+export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText, id: v1()} as const)
+export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
+export const setUserProfileAC = (profile: any) => ({type: 'SET-USER-PROFILE', profile} as const)
 
-type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof onChangePostAC>
+type ActionsType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof onChangePostAC>
+    | ReturnType<typeof setUserProfileAC>
 
 export default ProfilePageReducer;

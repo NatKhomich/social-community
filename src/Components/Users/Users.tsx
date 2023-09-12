@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.css';
 import userAvatar from '../../image/userAvatar.jpg';
 import {UsersType} from '../../redux/usersPageReducer';
+import {NavLink} from 'react-router-dom';
 
 type UsersPresentPropsType = {
     onClickUnfollow: (userID: number) => void
@@ -39,7 +40,10 @@ const Users = (props: UsersPresentPropsType) => {
             {props.usersPage.items.map(el =>
                 <div className={s.user} key={el.id}>
                     <div className={s.imgAndButton}>
-                        <div><img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
+                        <div>
+                            <NavLink to={'/profile'}>
+                                <img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
+                            </NavLink>
                         </div>
                         {el.followed
                             ? <button onClick={onClickUnfollowHandler(el.id)}> Unfollow </button>

@@ -6,6 +6,7 @@ import Profile from './Components/Profile/Profile';
 import {Route} from 'react-router-dom';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import {UsersContainer} from './Components/Users/UsersContainer';
+import ProfileContainer from './Components/Profile/ProfileContainer';
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
                 <div className={'container'}>
                     <Navbar/>
                     <div className={'content'}>
-                        <Route path={'/profile'} render={() => <Profile />}/>
+                        <Route path={'/profile'} render={() => <ProfileContainer />}/>
                         <Route path={'/messenger'} render={() => <MessengerContainer />}/>
                         <Route path={'/users'} render={() => <UsersContainer />}/>
                     </div>
