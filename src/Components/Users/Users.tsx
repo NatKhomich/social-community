@@ -41,7 +41,7 @@ const Users = (props: UsersPresentPropsType) => {
                 <div className={s.user} key={el.id}>
                     <div className={s.imgAndButton}>
                         <div>
-                            <NavLink to={'/profile'}>
+                            <NavLink to={'/profile/'+el.id}>
                                 <img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
                             </NavLink>
                         </div>
