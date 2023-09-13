@@ -6,26 +6,27 @@ import {AppStateType} from '../../redux/reduxStore';
 import {ProfileResponseType, setUserProfileAC} from '../../redux/profilePageReducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 
+export type PropsType = MapStateToPropsType & MapDispatchToPropsType
+type PathParamsType = { userId: string }
+type ProfileContainerType = RouteComponentProps<PathParamsType> & PropsType
+
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 
-class ProfileContainer extends React.Component<ProfileContainerType>{
+class ProfileContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if(!userId) {
+        if (!userId) {
             userId = '2'
         }
-
-        axios.get(`${baseUrl}/profile/`+userId)
+        axios.get(`${baseUrl}/profile/` + userId)
             .then(res => {
                 this.props.setUserProfile(res.data)
             })
     }
     render() {
-        return <Profile profile={this.props.profile} />
+        return <Profile profile={this.props.profile}/>
     }
 }
-
-export type PropsType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
     profile: ProfileResponseType
@@ -39,10 +40,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         profile: state.profilePage.profile
     }
 }
-type PathParamsType = {
-    userId: string
-}
-type ProfileContainerType = RouteComponentProps<PathParamsType> & PropsType
 
 const witchUrlDataContainer = withRouter(ProfileContainer)
 

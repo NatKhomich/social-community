@@ -1,12 +1,43 @@
 
-.header{
+.header {
     background-color: #ffe5ec;
     margin-bottom: 5px;
     height: 60px;
     display: flex;
-   /* width: 100%;*/
+    justify-content: space-between;
 }
-header img{
+
+header img {
     width: 50px;
     margin-left: 10px;
+}
+
+.loginBlock {
+margin: 8px 20px 0 0 ;
+}
+
+.login {
+    background-color: #555555;
+    font-size: 15px;
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+}
+
+.login:hover {
+    background-color: #c29fb7;
+    color: white;
+}
+
+.loginText {
+    margin: 18px 20px 0 0;
+    font-size: 17px;
+    font-weight: 600;
 }

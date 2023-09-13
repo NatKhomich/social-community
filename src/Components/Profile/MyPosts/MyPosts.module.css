@@ -42,11 +42,7 @@
     margin: 10px 0 0 20px;
     width: 150px;
     height: 40px;
-    /*position: absolute;
-    right: 25px;
-    top: 130px;*/
-
-
+    cursor: pointer;
     border: none;
     border-radius: 10px;
     background-color: #ffe5ec;

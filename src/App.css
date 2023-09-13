@@ -1,21 +1,25 @@
 .container {
-
     display: flex;
     max-width: 90%;
     margin: 0 auto;
+    cursor: auto;
 }
 
 .appWrapper {
     font-family: Arial, serif;
- /*   background-color: #f1eff0;*/
+    cursor: auto;
 }
 
 .content {
     background-color: #eff9fd;
     border-radius: 10px;
     width: 100%;
+    cursor: auto;
 }
 
+#root {
+    cursor: auto;
+}
 
 
 /*.appWrapper {

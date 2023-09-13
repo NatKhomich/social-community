@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../../redux/reduxStore';
 import {PostType} from './Post/Post';
 
-
 export type MyPostsContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
