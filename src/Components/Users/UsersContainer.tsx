@@ -21,7 +21,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
             .then(res => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(res.data.items)
@@ -32,7 +32,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     setCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${pageNumber}&count=${this.props.pageSize}`)
+        axios.get(`${baseUrl}/users?page=${pageNumber}&count=${this.props.pageSize}`,{withCredentials: true})
             .then(res => {
                 this.props.setUsers(res.data.items)
                 this.props.toggleIsFetching(false)
