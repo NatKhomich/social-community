@@ -33,35 +33,3 @@ export const MessengerContainer = connect(mapStateToProps,
         onChangeNewMessage: updateNewMessageAC,
         onKeyDownEnter: sendMessageAC
     })(Messenger);
-
-/*let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        onClickSendMessage: () => dispatch(sendMessageAC()),
-        onChangeNewMessage: (newMessage: string) => dispatch(updateNewMessageAC(newMessage)),
-        onKeyDownEnter: () => dispatch(sendMessageAC())
-    }
-}*/
-/*export const MessengerContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState().dialogsPage
-                const onClickSendMessage = () => {
-                    store.dispatch(sendMessageActionCreator())
-                }
-                const onChangeNewMessage = (newMessage: string) => {
-                    store.dispatch(updateNewMessageActionCreator(newMessage))
-                }
-                const onKeyDownEnter = () => {
-                    store.dispatch(sendMessageActionCreator())
-                }
-                return <Messenger messages={state.messages}
-                                 newMessage={state.newMessage}
-                                 dialogs={state.dialogs}
-                                 onClickSendMessage={onClickSendMessage}
-                                 onChangeNewMessage={onChangeNewMessage}
-                                 onKeyDownEnter={onKeyDownEnter}/>
-            }}
-        </StoreContext.Consumer>
-    );
-};*/

@@ -19,8 +19,7 @@ class HeaderContainer extends React.Component<HeaderContainerType> {
     }
 }
 
-export type HeaderContainerType = MapStateToPropsType & MapDispatchToPropsType
-
+type HeaderContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
     isAuth: boolean
     login: string | null
@@ -28,6 +27,7 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     setAuthUserData: (data: authType) => void
 }
+
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
