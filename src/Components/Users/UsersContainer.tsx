@@ -14,6 +14,7 @@ import React from 'react';
 import axios from 'axios';
 import Users from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
+import {socialAPI} from '../../api/api';
 
 const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 
@@ -21,7 +22,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+            socialAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(res => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(res.data.items)
@@ -32,7 +33,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     setCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${pageNumber}&count=${this.props.pageSize}`,{withCredentials: true})
+            socialAPI.getUsersCurrentPage(pageNumber, this.props.pageSize)
             .then(res => {
                 this.props.setUsers(res.data.items)
                 this.props.toggleIsFetching(false)
