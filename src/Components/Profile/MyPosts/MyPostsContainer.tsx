@@ -30,36 +30,3 @@ export const MyPostsContainer = connect(mapStateToProps,
         onChangePost: onChangePostAC,
         onKeyDown: addPostAC
     })(MyPosts)
-
-/*let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-    return {
-        addPost: (newMyPostText: string) => dispatch(addPostActionCreator(newMyPostText)),
-        onChangePost: (newText: string) => dispatch(onChangePostActionCreator(newText)),
-        onKeyDown: (newText: string) => dispatch(addPostActionCreator(newText))
-    }
-}*/
-/*export const MyPostsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                let state = store.getState().profilePage
-                const addPost = () => {
-                    store.dispatch(addPostActionCreator(state.newMyPostText))
-                }
-                const onChangePost = (newText: string) => {
-                    store.dispatch(onChangePostActionCreator(newText))
-                }
-                const onKeyDownEnter = (newText: string) => {
-                    store.dispatch(addPostActionCreator(newText))
-                }
-
-
-                return <MyPosts posts={state.posts}
-                                newMyPostText={state.newMyPostText}
-                                addPost={addPost}
-                                onChangePost={onChangePost}
-                                onKeyDownEnter={onKeyDownEnter}/>}}
-        </StoreContext.Consumer>
-    );
-};
-*/

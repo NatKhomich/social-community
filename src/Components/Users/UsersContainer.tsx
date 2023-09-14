@@ -11,17 +11,14 @@ import {
     UsersType
 } from '../../redux/usersPageReducer';
 import React from 'react';
-import axios from 'axios';
 import Users from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
-
-const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
+import {socialAPI} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersContainerType> {
-
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+        socialAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(res => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(res.data.items)
@@ -32,18 +29,36 @@ class UsersContainer extends React.Component<UsersContainerType> {
     setCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
-        axios.get(`${baseUrl}/users?page=${pageNumber}&count=${this.props.pageSize}`,{withCredentials: true})
+        socialAPI.getUsersCurrentPage(pageNumber, this.props.pageSize)
             .then(res => {
                 this.props.setUsers(res.data.items)
                 this.props.toggleIsFetching(false)
             })
     }
 
+    follow = (userId: number) => {
+        socialAPI.follow(userId)
+            .then(res => {
+                if(res.data.resultCode === 0) {
+                   this.props.follow(userId)
+                }
+            })
+    }
+
+    unfollow = (userId: number) => {
+        socialAPI.unfollow(userId)
+            .then(res => {
+                if(res.data.resultCode === 0) {
+                    this.props.unfollow(userId)
+                }
+            })
+    }
+
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users onClickUnfollow={this.props.unfollow}
-                   onClickFollow={this.props.follow}
+            <Users onClickUnfollow={this.unfollow}
+                   onClickFollow={this.follow}
                    setCurrentPage={this.setCurrentPage}
                    totalCountUser={this.props.totalCountUser}
                    pageSize={this.props.pageSize}
@@ -64,8 +79,8 @@ type MapStateToPropsType = {
     isFetching: boolean
 }
 type MapDispatchToPropsType = {
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setUsers: (users: UserPropsType[]) => void
     setCurrentPage: (currentPage: number) => void
     setUsersTotalCount: (totalCount: number) => void
