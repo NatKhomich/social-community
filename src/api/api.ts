@@ -19,7 +19,7 @@ export const socialAPI = {
         return instance.get(`/users?page=${pageNumber}&count=${pageSize}`)
     },
     follow(userId: number) {
-        return instance.post(`/follow/${userId}`)
+        return instance.post(`/follow/${userId}`, {})
     },
     unfollow(userId: number) {
         return instance.delete(`/follow/${userId}`)
