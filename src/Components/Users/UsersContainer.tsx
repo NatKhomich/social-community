@@ -16,7 +16,6 @@ import {Preloader} from '../Common/Preloader/Preloader';
 import {socialAPI} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersContainerType> {
-
     componentDidMount() {
         this.props.toggleIsFetching(true)
             socialAPI.getUsers(this.props.currentPage, this.props.pageSize)
@@ -26,7 +25,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
                 this.props.setUsersTotalCount(res.data.totalCount)
             })
     }
-
     setCurrentPage = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toggleIsFetching(true)
@@ -68,8 +66,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 }
 
-export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
-
+type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
     usersPage: UsersType
     pageSize: number

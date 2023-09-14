@@ -3,7 +3,6 @@ import s from './Users.module.css';
 import userAvatar from '../../image/userAvatar.jpg';
 import {UsersType} from '../../redux/usersPageReducer';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
 
 type UsersPresentPropsType = {
     onClickUnfollow: (userID: number) => void
