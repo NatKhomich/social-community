@@ -23,41 +23,26 @@ const Users = (props: UsersPresentPropsType) => {
         pages.push(i)
     }
     const setCurrentPageHandler = (numPage: number) => () => props.setCurrentPage(numPage)
-    const onClickUnfollowHandler = (userID: number) => () => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {withCredentials: true})
-            .then(res => {
-                if(res.data.resultCode ===  0) {
-                    props.onClickFollow(userID)
-                }
-            })
-        props.onClickUnfollow(userID)
-    }
-    const onClickFollowHandler = (userID: number) => () => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`, {}, {withCredentials: true})
-            .then(res => {
-                if(res.data.resultCode ===  0) {
-                    props.onClickFollow(userID)
-                }
-            })
-    }
+    const onClickUnfollowHandler = (userId: number) => () => props.onClickUnfollow(userId)
+    const onClickFollowHandler = (userId: number) => () => {props.onClickFollow(userId)}
 
     return (
         <div className={s.users}>
             <div> {pages.map((el) => {
-                        return (
-                            <button className={props.currentPage === el ? s.selectedPage : ''}
-                                    onClick={setCurrentPageHandler(el)}
-                                    key={el}>
-                                {el}
-                            </button>
-                        )
-                    })}
+                return (
+                    <button className={props.currentPage === el ? s.selectedPage : ''}
+                            onClick={setCurrentPageHandler(el)}
+                            key={el}>
+                        {el}
+                    </button>
+                )
+            })}
             </div>
             {props.usersPage.items.map(el =>
                 <div className={s.user} key={el.id}>
                     <div className={s.imgAndButton}>
                         <div>
-                            <NavLink to={'/profile/'+el.id}>
+                            <NavLink to={'/profile/' + el.id}>
                                 <img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
                             </NavLink>
                         </div>

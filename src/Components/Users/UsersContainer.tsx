@@ -11,12 +11,9 @@ import {
     UsersType
 } from '../../redux/usersPageReducer';
 import React from 'react';
-import axios from 'axios';
 import Users from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
 import {socialAPI} from '../../api/api';
-
-const baseUrl = 'https://social-network.samuraijs.com/api/1.0'
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
@@ -39,12 +36,28 @@ class UsersContainer extends React.Component<UsersContainerType> {
                 this.props.toggleIsFetching(false)
             })
     }
+    follow = (userId: number) => {
+        socialAPI.follow(userId)
+            .then(res => {
+                if(res.data.resultCode === 0) {
+                    this.props.follow(userId)
+                }
+            })
+    }
+    unfollow = (userId: number) => {
+        socialAPI.unfollow(userId)
+            .then(res => {
+                if(res.data.resultCode === 0) {
+                    this.props.unfollow(userId)
+                }
+            })
+    }
 
     render() {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
-            <Users onClickUnfollow={this.props.unfollow}
-                   onClickFollow={this.props.follow}
+            <Users onClickUnfollow={this.unfollow}
+                   onClickFollow={this.follow}
                    setCurrentPage={this.setCurrentPage}
                    totalCountUser={this.props.totalCountUser}
                    pageSize={this.props.pageSize}
