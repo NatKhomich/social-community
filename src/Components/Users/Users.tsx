@@ -12,6 +12,7 @@ type UsersPresentPropsType = {
     pageSize: number
     currentPage: number
     usersPage: UsersType
+    followingProgress: boolean
 }
 
 const Users = (props: UsersPresentPropsType) => {
@@ -22,8 +23,8 @@ const Users = (props: UsersPresentPropsType) => {
         pages.push(i)
     }
     const setCurrentPageHandler = (numPage: number) => () => props.setCurrentPage(numPage)
-    const onClickFollowHandler = (userId: number) => () => props.onClickFollow(userId)
-    const onClickUnfollowHandler = (userId: number) => () => props.onClickUnfollow(userId)
+    const onClickFollowHandler = (userId: number) => props.onClickFollow(userId)
+    const onClickUnfollowHandler = (userId: number) => props.onClickUnfollow(userId)
 
     return (
         <div className={s.users}>
@@ -46,8 +47,12 @@ const Users = (props: UsersPresentPropsType) => {
                             </NavLink>
                         </div>
                         {el.followed
-                            ? <button onClick={onClickUnfollowHandler(el.id)}> Unfollow </button>
-                            : <button onClick={onClickFollowHandler(el.id)}> Follow </button>
+                            ? <button onClick={() => onClickUnfollowHandler(el.id)}
+                                      disabled={props.followingProgress}
+                            > Unfollow </button>
+                            : <button onClick={() => onClickFollowHandler(el.id)}
+                                      disabled={props.followingProgress}
+                            > Follow </button>
                         }
                     </div>
                     <div className={s.dataBlock}>

@@ -5,7 +5,7 @@ import {
     setCurrentPageAC,
     setUsersAC,
     setUsersTotalCountAC,
-    toggleIsFetchingAC,
+    toggleIsFetchingAC, toggleIsFollowingProgressAC,
     unfollowAC,
     UserPropsType,
     UsersType
@@ -38,18 +38,22 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 
     follow = (userId: number) => {
+        this.props.followingIsProgress(true)
         socialAPI.follow(userId)
             .then(res => {
                 if(res.data.resultCode ===  0) {
                     this.props.follow(userId)
+                   this.props.followingIsProgress(false)
                 }
             })
     }
     unfollow = (userId: number) => {
+       this.props.followingIsProgress(true)
         socialAPI.unfollow(userId)
             .then(res => {
                 if(res.data.resultCode ===  0) {
                     this.props.unfollow(userId)
+                   this.props.followingIsProgress(false)
                 }
             })
     }
@@ -64,6 +68,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
                    pageSize={this.props.pageSize}
                    currentPage={this.props.currentPage}
                    usersPage={this.props.usersPage}
+                   followingProgress={this.props.followingProgress}
             />
         </>
     }
@@ -77,6 +82,8 @@ type MapStateToPropsType = {
     totalCountUser: number
     currentPage: number
     isFetching: boolean
+    followingProgress: boolean
+
 }
 type MapDispatchToPropsType = {
     follow: (userID: number) => void
@@ -85,6 +92,7 @@ type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setUsersTotalCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    followingIsProgress: (followingProgress: boolean) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -93,7 +101,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalCountUser: state.usersPage.totalCountUser,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        followingProgress: state.usersPage.followingProgress
     }
 }
 
@@ -104,7 +113,8 @@ export default connect(mapStateToProps,
         setUsers: setUsersAC,
         setCurrentPage: setCurrentPageAC,
         setUsersTotalCount: setUsersTotalCountAC,
-        toggleIsFetching: toggleIsFetchingAC
+        toggleIsFetching: toggleIsFetchingAC,
+        followingIsProgress: toggleIsFollowingProgressAC
     })(UsersContainer);
 
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
