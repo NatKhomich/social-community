@@ -38,22 +38,22 @@ class UsersContainer extends React.Component<UsersContainerType> {
     }
 
     follow = (userId: number) => {
-        this.props.followingIsProgress(true)
+        this.props.followingIsProgress(userId, true)
         socialAPI.follow(userId)
             .then(res => {
                 if(res.data.resultCode ===  0) {
                     this.props.follow(userId)
-                   this.props.followingIsProgress(false)
+                   this.props.followingIsProgress(userId, false)
                 }
             })
     }
     unfollow = (userId: number) => {
-       this.props.followingIsProgress(true)
+       this.props.followingIsProgress(userId, true)
         socialAPI.unfollow(userId)
             .then(res => {
                 if(res.data.resultCode ===  0) {
                     this.props.unfollow(userId)
-                   this.props.followingIsProgress(false)
+                   this.props.followingIsProgress(userId, false)
                 }
             })
     }
@@ -82,7 +82,7 @@ type MapStateToPropsType = {
     totalCountUser: number
     currentPage: number
     isFetching: boolean
-    followingProgress: boolean
+    followingProgress: number[]
 
 }
 type MapDispatchToPropsType = {
@@ -92,7 +92,7 @@ type MapDispatchToPropsType = {
     setCurrentPage: (currentPage: number) => void
     setUsersTotalCount: (totalCount: number) => void
     toggleIsFetching: (isFetching: boolean) => void
-    followingIsProgress: (followingProgress: boolean) => void
+    followingIsProgress: ( userId: number, followingProgress: boolean) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {

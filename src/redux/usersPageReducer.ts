@@ -15,7 +15,7 @@ export type UsersType = {
     totalCountUser: number
     currentPage: number
     isFetching: boolean
-    followingProgress: boolean
+    followingProgress: number[]
 }
 const usersInintialState: UsersType = {
     items: [],
@@ -23,7 +23,7 @@ const usersInintialState: UsersType = {
     totalCountUser: 0,
     currentPage: 1,
     isFetching: false,
-    followingProgress: false
+    followingProgress: []
 }
 
 const UsersPageReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
@@ -41,7 +41,9 @@ const UsersPageReducer = (state: UsersType = usersInintialState, action: Actions
         case 'TOGGLE-IS-FETCHING' :
             return {...state, isFetching: action.isFetching}
         case 'TOGGLE-IS-FOLLOWING-PROGRESS': {
-            return {...state, followingProgress: action.followingProgress}
+            return {...state,
+                followingProgress: action.followingProgress ? [...state.followingProgress, action.userId]
+                    : state.followingProgress.filter(id => id !== action.userId)}
         }
         default:
             return state
@@ -54,8 +56,8 @@ export const setUsersAC = (users: UserPropsType[]) => ({type: 'SET-USERS', users
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
 export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount} as const)
 export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
-export const toggleIsFollowingProgressAC = (followingProgress: boolean) => (
-    {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', followingProgress} as const)
+export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
+    {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
 
 type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>

@@ -12,7 +12,7 @@ type UsersPresentPropsType = {
     pageSize: number
     currentPage: number
     usersPage: UsersType
-    followingProgress: boolean
+    followingProgress: number[]
 }
 
 const Users = (props: UsersPresentPropsType) => {
@@ -48,10 +48,10 @@ const Users = (props: UsersPresentPropsType) => {
                         </div>
                         {el.followed
                             ? <button onClick={() => onClickUnfollowHandler(el.id)}
-                                      disabled={props.followingProgress}
+                                      disabled={props.followingProgress.some(id => id === el.id)}
                             > Unfollow </button>
                             : <button onClick={() => onClickFollowHandler(el.id)}
-                                      disabled={props.followingProgress}
+                                      disabled={props.followingProgress.some(id => id === el.id)}
                             > Follow </button>
                         }
                     </div>
