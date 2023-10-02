@@ -1,61 +1,26 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    setUsersTotalCountAC,
-    toggleIsFetchingAC, toggleIsFollowingProgressAC,
-    unfollowAC,
-    UserPropsType,
-    UsersType
-} from '../../redux/usersPageReducer';
+import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../redux/usersPageReducer';
 import React from 'react';
 import Users from './Users';
 import {Preloader} from '../Common/Preloader/Preloader';
-import {socialAPI} from '../../api/api';
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-            socialAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(res => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(res.data.items)
-                this.props.setUsersTotalCount(res.data.totalCount)
-            })
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     setCurrentPage = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        this.props.toggleIsFetching(true)
-            socialAPI.getUsersCurrentPage(pageNumber, this.props.pageSize)
-            .then(res => {
-                this.props.setUsers(res.data.items)
-                this.props.toggleIsFetching(false)
-            })
+       this.props.setCurrentPage(pageNumber, this.props.pageSize)
     }
 
     follow = (userId: number) => {
-        this.props.followingIsProgress(userId, true)
-        socialAPI.follow(userId)
-            .then(res => {
-                if(res.data.resultCode ===  0) {
-                    this.props.follow(userId)
-                   this.props.followingIsProgress(userId, false)
-                }
-            })
+        this.props.follow(userId)
     }
+
     unfollow = (userId: number) => {
-       this.props.followingIsProgress(userId, true)
-        socialAPI.unfollow(userId)
-            .then(res => {
-                if(res.data.resultCode ===  0) {
-                    this.props.unfollow(userId)
-                   this.props.followingIsProgress(userId, false)
-                }
-            })
+        this.props.unfollow(userId)
     }
 
     render() {
@@ -88,11 +53,8 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    setUsers: (users: UserPropsType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setUsersTotalCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-    followingIsProgress: ( userId: number, followingProgress: boolean) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    setCurrentPage: (pageNumber: number, pageSize: number) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -108,13 +70,10 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 export default connect(mapStateToProps,
     {
-        follow: followAC,
-        unfollow: unfollowAC,
-        setUsers: setUsersAC,
-        setCurrentPage: setCurrentPageAC,
-        setUsersTotalCount: setUsersTotalCountAC,
-        toggleIsFetching: toggleIsFetchingAC,
-        followingIsProgress: toggleIsFollowingProgressAC
+        follow: followTC,
+        unfollow: unfollowTC,
+        getUsers: getUsersTC,
+        setCurrentPage: setCurrentPageTC
     })(UsersContainer);
 
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект

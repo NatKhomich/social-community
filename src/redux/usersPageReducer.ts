@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {socialAPI} from '../api/api';
+
 export type UserPropsType = {
     name: string
     id: number
@@ -58,6 +61,47 @@ export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-T
 export const toggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
     {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
+
+
+export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+    socialAPI.getUsers(currentPage, pageSize)
+        .then(res => {
+            dispatch(toggleIsFetchingAC(false))
+            dispatch(setUsersAC(res.data.items))
+            dispatch(setUsersTotalCountAC(res.data.totalCount))
+        })
+}
+export const setCurrentPageTC = (pageNumber: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(setCurrentPageAC(pageNumber))
+    dispatch(toggleIsFetchingAC(true))
+    socialAPI.getUsersCurrentPage(pageNumber, pageSize)
+        .then(res => {
+            dispatch(setUsersAC(res.data.items))
+            dispatch(toggleIsFetchingAC(false))
+        })
+}
+export const followTC = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingProgressAC(userId, true))
+    socialAPI.follow(userId)
+        .then(res => {
+            if(res.data.resultCode === 0) {
+                dispatch(followAC(userId))
+                dispatch(toggleIsFollowingProgressAC(userId, false))
+            }
+        })
+}
+export const unfollowTC = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingProgressAC(userId, true))
+    socialAPI.unfollow(userId)
+        .then(res => {
+            if(res.data.resultCode === 0) {
+                dispatch(unfollowAC(userId))
+                dispatch(toggleIsFollowingProgressAC(userId, false))
+            }
+        })
+}
+
 
 type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>
