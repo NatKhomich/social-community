@@ -7,12 +7,28 @@ import UsersContainer from './Components/Users/UsersContainer';
 import {Route} from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import {Login} from './Components/Login/Login';
+import {LinearProgress} from '@mui/material';
+import {connect} from 'react-redux';
+import {AppStateType} from './redux/reduxStore';
+import {RequestStatusType} from './redux/appReducer';
 
+type mapStateToPropsType = {
+    status: RequestStatusType
+}
+const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+    return {
+        status: state.app.status
+    }
+}
+type AppType = {
+    status: RequestStatusType
+}
 
-function App() {
+function App(props: AppType) {
     return (
         <div>
             <HeaderContainer />
+            {props.status === 'loading' ? <LinearProgress color="primary" /> : ''}
             <div className={'appWrapper'}>
                 <div className={'container'}>
                     <Navbar/>
@@ -28,5 +44,6 @@ function App() {
     );
 }
 
+export const AppContainer = connect(mapStateToProps)(App)
 
-export default App;
+
