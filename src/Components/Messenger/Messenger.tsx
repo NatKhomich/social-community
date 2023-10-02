@@ -3,6 +3,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {DialogItem} from './DialogItem/DialogItem';
 import {MessengerContainerType} from './MessengerContainer';
 import {MessageItem} from './MessageItem/MessageItem';
+import {Redirect} from 'react-router-dom';
 
 
 export const Messenger = (props: MessengerContainerType) => {
@@ -14,6 +15,10 @@ export const Messenger = (props: MessengerContainerType) => {
     const onChangeNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.onChangeNewMessage(e.currentTarget.value)
     const onKeyDownEnterHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter') props.onKeyDownEnter()
+    }
+
+    if(!props.isAuth) {
+        return <Redirect to={'/login'} />
     }
 
     return (
