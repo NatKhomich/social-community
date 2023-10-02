@@ -6,12 +6,15 @@ const instance = axios.create({
 })
 
 export const socialAPI = {
+    //auth
     getAuthMe() {
         return instance.get(`/auth/me`)
     },
+    //profile
     getProfile(userId: string) {
         return instance.get(`/profile/${userId}`)
     },
+    //users
     getUsers(currentPage: number, pageSize: number) {
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
     },

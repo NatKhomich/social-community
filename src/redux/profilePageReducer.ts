@@ -1,33 +1,8 @@
 import {v1} from 'uuid';
 import {PostType} from '../Components/Profile/MyPosts/Post/Post';
-
-export type ProfileResponseType = {
-    aboutMe:string
-    contacts: {
-        facebook: string
-        website: null | string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: null | string
-        github: string
-        mainLink: null | string
-    },
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: number
-    photos: {
-        small: string
-        large: string
-    }
-}
-
-export type ProfileType = {
-    posts: PostType[]
-    newPostText: string
-    profile: ProfileResponseType
-}
+import {Dispatch} from 'redux';
+import {socialAPI} from '../api/api';
+import {toggleIsFetchingAC} from './usersPageReducer';
 
 const profileInintialState: ProfileType = {
     posts: [
@@ -75,10 +50,47 @@ const ProfilePageReducer = (state: ProfileType = profileInintialState, action: A
 
 export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText, id: v1()} as const)
 export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
-export const setUserProfileAC = (profile: any) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'SET-USER-PROFILE', profile} as const)
+
+export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetchingAC(true))
+    socialAPI.getProfile(userId)
+        .then(res => {
+            dispatch(setUserProfileAC(res.data))
+            dispatch(toggleIsFetchingAC(false))
+        })
+}
 
 type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof onChangePostAC>
     | ReturnType<typeof setUserProfileAC>
+
+export type ProfileResponseType = {
+    aboutMe:string
+    contacts: {
+        facebook: string
+        website: null | string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: null | string
+        github: string
+        mainLink: null | string
+    },
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
+
+export type ProfileType = {
+    posts: PostType[]
+    newPostText: string
+    profile: ProfileResponseType
+}
 
 export default ProfilePageReducer;

@@ -2,17 +2,11 @@ import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {authType, setAuthUserDataAC} from '../../redux/authReducer';
-import {socialAPI} from '../../api/api';
+import {setAuthUserDataTC} from '../../redux/authReducer';
 
 class HeaderContainer extends React.Component<HeaderContainerType> {
     componentDidMount() {
-        socialAPI.getAuthMe()
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    this.props.setAuthUserData(res.data.data)
-                }
-            })
+        this.props.setAuthUserData()
     }
 
     render() {
@@ -26,7 +20,7 @@ type MapStateToPropsType = {
     login: string | null
 }
 type MapDispatchToPropsType = {
-    setAuthUserData: (data: authType) => void
+    setAuthUserData: () => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -37,4 +31,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 export default connect(mapStateToProps,
-    {setAuthUserData: setAuthUserDataAC})(HeaderContainer)
+    {setAuthUserData: setAuthUserDataTC})(HeaderContainer)

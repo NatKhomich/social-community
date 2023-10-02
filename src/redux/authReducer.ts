@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {socialAPI} from '../api/api';
+
 export type authType = {
     id: null | number
     login: null | string
@@ -22,6 +25,15 @@ const authReducer = (state: authType = inintialState, action: ActionsType): auth
 }
 
 export const setAuthUserDataAC = (data: authType) => ({type: 'SET-USER-DATA', data} as const)
+
+export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
+    socialAPI.getAuthMe()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserDataAC(res.data.data))
+            }
+        })
+}
 
 type ActionsType = ReturnType<typeof setAuthUserDataAC>
 

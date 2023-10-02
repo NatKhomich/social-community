@@ -2,25 +2,23 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {ProfileResponseType, setUserProfileAC} from '../../redux/profilePageReducer';
+import {ProfileResponseType, setUserProfileTC} from '../../redux/profilePageReducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {socialAPI} from '../../api/api';
 
 export type PropsType = MapStateToPropsType & MapDispatchToPropsType
 type PathParamsType = { userId: string }
 type ProfileContainerType = RouteComponentProps<PathParamsType> & PropsType
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
+
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = '2'
         }
-       socialAPI.getProfile(userId)
-            .then(res => {
-                this.props.setUserProfile(res.data)
-            })
+       this.props.setUserProfile(userId)
     }
+
     render() {
         return <Profile profile={this.props.profile}/>
     }
@@ -30,7 +28,7 @@ type MapStateToPropsType = {
     profile: ProfileResponseType
 }
 type MapDispatchToPropsType = {
-    setUserProfile: (profile: ProfileResponseType) => void
+    setUserProfile: (userId: string) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -42,4 +40,4 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 const witchUrlDataContainer = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps,
-    {setUserProfile: setUserProfileAC})(witchUrlDataContainer)
+    {setUserProfile: setUserProfileTC})(witchUrlDataContainer)
