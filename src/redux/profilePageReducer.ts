@@ -2,7 +2,7 @@ import {v1} from 'uuid';
 import {PostType} from '../Components/Profile/MyPosts/Post/Post';
 import {Dispatch} from 'redux';
 import {socialAPI} from '../api/api';
-import {toggleIsFetchingAC} from './usersPageReducer';
+import {changeStatusLoadingAC} from './appReducer';
 
 const profileInintialState: ProfileType = {
     posts: [
@@ -53,11 +53,11 @@ export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT
 export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
 export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
-    dispatch(toggleIsFetchingAC(true))
+    dispatch(changeStatusLoadingAC('loading'))
     socialAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfileAC(res.data))
-            dispatch(toggleIsFetchingAC(false))
+            dispatch(changeStatusLoadingAC('succeeded'))
         })
 }
 

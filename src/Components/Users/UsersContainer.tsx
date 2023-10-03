@@ -3,7 +3,6 @@ import {AppStateType} from '../../redux/reduxStore';
 import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../redux/usersPageReducer';
 import React from 'react';
 import Users from './Users';
-import {Preloader} from '../Common/Preloader/Preloader';
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
@@ -25,7 +24,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+            {/*{this.props.isFetching ? <Preloader/> : null}*/}
             <Users onClickUnfollow={this.unfollow}
                    onClickFollow={this.follow}
                    setCurrentPage={this.setCurrentPage}
@@ -46,7 +45,6 @@ type MapStateToPropsType = {
     pageSize: number
     totalCountUser: number
     currentPage: number
-    isFetching: boolean
     followingProgress: number[]
 
 }
@@ -63,7 +61,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalCountUser: state.usersPage.totalCountUser,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
         followingProgress: state.usersPage.followingProgress
     }
 }

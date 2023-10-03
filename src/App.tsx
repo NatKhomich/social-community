@@ -28,7 +28,7 @@ function App(props: AppType) {
     return (
         <div>
             <HeaderContainer />
-            {props.status === 'loading' ? <LinearProgress color="primary" /> : ''}
+            {props.status === 'loading' ? <LinearProgress color="primary"/> : ''}
             <div className={'appWrapper'}>
                 <div className={'container'}>
                     <Navbar/>
