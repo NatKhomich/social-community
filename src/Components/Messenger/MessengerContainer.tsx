@@ -8,8 +8,6 @@ import {MessageType} from './MessageItem/MessageItem';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
 
-//const AuthRedirectComponent = withAuthRedirect(Messenger)
-
 export type MessengerContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
     dialogs: DialogType[]
@@ -29,13 +27,6 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         newMessage: state.dialogsPage.newMessage,
     }
 }
-
-// export const MessengerContainer = connect(mapStateToProps,
-//     {
-//         onClickSendMessage: sendMessageAC,
-//         onChangeNewMessage: updateNewMessageAC,
-//         onKeyDownEnter: sendMessageAC
-//     })(AuthRedirectComponent);
 
 export const MessengerContainer = compose<React.ComponentType>(
     connect(mapStateToProps,
