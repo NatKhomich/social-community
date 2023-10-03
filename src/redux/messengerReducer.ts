@@ -2,12 +2,6 @@ import {v1} from 'uuid';
 import {DialogType} from '../Components/Messenger/DialogItem/DialogItem';
 import {MessageType} from '../Components/Messenger/MessageItem/MessageItem';
 
-export type MessengerType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    newMessage: string
-}
-
 const messengerInintialState: MessengerType = {
     dialogs: [
         {id: v1(), name: 'Natalia'},
@@ -24,7 +18,7 @@ const messengerInintialState: MessengerType = {
     newMessage: ''
 }
 
-const MessengerPageReducer = (state = messengerInintialState, action: ActionsType): MessengerType => {
+export const messengerReducer = (state = messengerInintialState, action: ActionsType): MessengerType => {
     switch (action.type) {
         case 'UPDATE-NEW-MESSAGE':
             return {...state, newMessage: action.newMessage}
@@ -40,7 +34,11 @@ const MessengerPageReducer = (state = messengerInintialState, action: ActionsTyp
 export const updateNewMessageAC = (newMessage: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessage} as const)
 export const sendMessageAC = () => ({type: 'SEND-MESSAGE', id: v1()} as const)
 
+
 type ActionsType = ReturnType<typeof updateNewMessageAC> | ReturnType<typeof sendMessageAC>
+export type MessengerType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    newMessage: string
+}
 
-
-export default MessengerPageReducer;

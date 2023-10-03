@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import {ProfileResponseType} from '../../../redux/profilePageReducer';
+import {ProfileResponseType} from '../../../redux/profileReducer';
 import {Preloader} from '../../Common/Preloader/Preloader';
 import userAvatar from '../../../image/userAvatar.jpg'
 

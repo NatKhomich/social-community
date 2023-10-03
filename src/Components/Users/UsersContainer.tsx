@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../redux/usersPageReducer';
+import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../redux/usersReducer';
 import React from 'react';
 import Users from './Users';
+import {compose} from 'redux';
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
@@ -24,7 +25,6 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
     render() {
         return <>
-            {/*{this.props.isFetching ? <Preloader/> : null}*/}
             <Users onClickUnfollow={this.unfollow}
                    onClickFollow={this.follow}
                    setCurrentPage={this.setCurrentPage}
@@ -65,13 +65,13 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export default connect(mapStateToProps,
+export default compose<React.ComponentType>(connect(mapStateToProps,
     {
         follow: followTC,
         unfollow: unfollowTC,
         getUsers: getUsersTC,
         setCurrentPage: setCurrentPageTC
-    })(UsersContainer);
+    }))(UsersContainer)
 
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
 //{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку

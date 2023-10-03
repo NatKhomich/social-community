@@ -33,7 +33,7 @@ const profileInintialState: ProfileType = {
     }
 }
 
-const ProfilePageReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
+export const profileReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {id: action.id, message: action.newPostText, likesCount: 0}
@@ -92,5 +92,3 @@ export type ProfileType = {
     newPostText: string
     profile: ProfileResponseType
 }
-
-export default ProfilePageReducer;

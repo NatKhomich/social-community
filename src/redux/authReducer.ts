@@ -16,7 +16,7 @@ const inintialState = {
     isAuth: false
 }
 
-const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
+export const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
     switch (action.type) {
         case 'SET-USER-DATA':
             return {...state, ...action.data, isAuth: true}
@@ -39,5 +39,3 @@ export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
 }
 
 type ActionsType = ReturnType<typeof setAuthUserDataAC>
-
-export default authReducer;

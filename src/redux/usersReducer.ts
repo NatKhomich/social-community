@@ -2,7 +2,7 @@ import {Dispatch} from 'redux';
 import {socialAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 
-export type UserPropsType = {
+export type UsersResponseType = {
     name: string
     id: number
     uniqueUrlName: null | string
@@ -14,7 +14,7 @@ export type UserPropsType = {
     followed: boolean
 }
 export type UsersType = {
-    items: UserPropsType[]
+    items: UsersResponseType[]
     pageSize: number
     totalCountUser: number
     currentPage: number
@@ -25,11 +25,11 @@ const usersInintialState: UsersType = {
     pageSize: 10,
     totalCountUser: 0,
     currentPage: 1,
-   /* isFetching: false,*/
     followingProgress: []
+    /* isFetching: false,*/
 }
 
-const UsersPageReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
+export const usersReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, items: state.items.map(el => el.id === action.userID ? {...el, followed: true} : el)}
@@ -53,7 +53,7 @@ const UsersPageReducer = (state: UsersType = usersInintialState, action: Actions
 
 export const followAC = (userID: number) => ({type: 'FOLLOW', userID} as const)
 export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID} as const)
-export const setUsersAC = (users: UserPropsType[]) => ({type: 'SET-USERS', users} as const)
+export const setUsersAC = (users: UsersResponseType[]) => ({type: 'SET-USERS', users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
 export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount} as const)
 export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
@@ -108,4 +108,3 @@ type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>
     | ReturnType<typeof setUsersTotalCountAC> | ReturnType<typeof toggleIsFollowingProgressAC>
 
-export default UsersPageReducer;

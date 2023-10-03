@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Navbar from './Components/Navbar/Navbar';
-import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import {Route} from 'react-router-dom';
@@ -11,17 +10,19 @@ import {LinearProgress} from '@mui/material';
 import {connect} from 'react-redux';
 import {AppStateType} from './redux/reduxStore';
 import {RequestStatusType} from './redux/appReducer';
+import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 
+type AppType = {
+    status: RequestStatusType
+}
 type mapStateToPropsType = {
     status: RequestStatusType
 }
+
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         status: state.app.status
     }
-}
-type AppType = {
-    status: RequestStatusType
 }
 
 function App(props: AppType) {

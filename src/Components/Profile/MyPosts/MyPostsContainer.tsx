@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPostAC, onChangePostAC} from '../../../redux/profilePageReducer';
+import {addPostAC, onChangePostAC} from '../../../redux/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../redux/reduxStore';

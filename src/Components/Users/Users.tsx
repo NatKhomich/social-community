@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Users.module.css';
 import userAvatar from '../../image/userAvatar.jpg';
-import {UsersType} from '../../redux/usersPageReducer';
+import {UsersType} from '../../redux/usersReducer';
 import {NavLink} from 'react-router-dom';
 
 type UsersPresentPropsType = {

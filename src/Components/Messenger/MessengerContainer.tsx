@@ -1,13 +1,14 @@
 import React from 'react';
-import {sendMessageAC, updateNewMessageAC} from '../../redux/messengerPageReducer';
+import {sendMessageAC, updateNewMessageAC} from '../../redux/messengerReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
 import {DialogType} from './DialogItem/DialogItem';
 import {MessageType} from './MessageItem/MessageItem';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
+import {compose} from 'redux';
 
-const AuthRedirectComponent = withAuthRedirect(Messenger)
+//const AuthRedirectComponent = withAuthRedirect(Messenger)
 
 export type MessengerContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
@@ -29,9 +30,20 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const MessengerContainer = connect(mapStateToProps,
-    {
-        onClickSendMessage: sendMessageAC,
-        onChangeNewMessage: updateNewMessageAC,
-        onKeyDownEnter: sendMessageAC
-    })(AuthRedirectComponent);
+// export const MessengerContainer = connect(mapStateToProps,
+//     {
+//         onClickSendMessage: sendMessageAC,
+//         onChangeNewMessage: updateNewMessageAC,
+//         onKeyDownEnter: sendMessageAC
+//     })(AuthRedirectComponent);
+
+export const MessengerContainer = compose<React.ComponentType>(
+    connect(mapStateToProps,
+        {
+            onClickSendMessage: sendMessageAC,
+            onChangeNewMessage: updateNewMessageAC,
+            onKeyDownEnter: sendMessageAC
+        }),
+    withAuthRedirect
+)(Messenger)
+

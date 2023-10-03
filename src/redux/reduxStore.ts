@@ -1,16 +1,15 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import profilePageReducer from './profilePageReducer';
-import dialogsPageReducer from './messengerPageReducer';
-import usersPageReducer from './usersPageReducer';
-import authReducer from './authReducer';
 import thunk from 'redux-thunk';
 import {appReducer} from './appReducer';
+import {authReducer} from './authReducer';
+import {usersReducer} from './usersReducer';
+import {profileReducer} from './profileReducer';
+import {messengerReducer} from './messengerReducer';
 
-//новый стейт
 let rootReducer = combineReducers({
-    profilePage: profilePageReducer,
-    dialogsPage: dialogsPageReducer,
-    usersPage: usersPageReducer,
+    profilePage: profileReducer,
+    dialogsPage: messengerReducer,
+    usersPage: usersReducer,
     auth: authReducer,
     app: appReducer
 })
