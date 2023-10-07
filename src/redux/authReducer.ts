@@ -34,8 +34,12 @@ export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
             if (res.data.resultCode === 0) {
                 dispatch(setAuthUserDataAC(res.data.data))
                 dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                dispatch(changeStatusLoadingAC('succeeded'))
             }
-        })
+        }).catch(() => {
+        dispatch(changeStatusLoadingAC('succeeded'))
+    })
 }
 
 type ActionsType = ReturnType<typeof setAuthUserDataAC>
