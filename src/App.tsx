@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import {Login} from './Components/Login/Login';
 import {LinearProgress} from '@mui/material';
@@ -11,6 +11,7 @@ import {connect} from 'react-redux';
 import {AppStateType} from './redux/reduxStore';
 import {RequestStatusType} from './redux/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
+import imageError from './image/404.jpg'
 
 type AppType = {
     status: RequestStatusType
@@ -38,6 +39,9 @@ function App(props: AppType) {
                         <Route path={'/messenger'} render={() => <MessengerContainer />}/>
                         <Route path={'/users'} render={() => <UsersContainer />}/>
                         <Route path={'/login'} render={() => <Login />}/>
+
+                        <Route path = '/404' render = {() => <img src={imageError} alt="error"/>}/>
+                        <Redirect from = '*' to = '/404'/>
                     </div>
                 </div>
             </div>

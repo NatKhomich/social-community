@@ -16,7 +16,11 @@
     border-radius: 10px;
     width: 100%;
     cursor: auto;
+}
 
+.content img {
+    max-width: 90%;
+    max-height: 80vh;
 }
 
 #root {
