@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {socialAPI} from '../api/api';
+import {authAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 
 export type authType = {
@@ -29,7 +29,7 @@ export const setAuthUserDataAC = (data: authType) => ({type: 'SET-USER-DATA', da
 
 export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    socialAPI.getAuthMe()
+    authAPI.getAuthMe()
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(setAuthUserDataAC(res.data.data))

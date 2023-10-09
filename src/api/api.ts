@@ -5,22 +5,34 @@ const instance = axios.create({
     withCredentials: true
 })
 
-export const socialAPI = {
-    //auth
+export const authAPI = {
     getAuthMe() {
         return instance.get(`/auth/me`)
-    },
-    //profile
-    getProfile(userId: string) {
-        return instance.get(`/profile/${userId}`)
-    },
-    //users
+    }
+}
+
+export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
     },
     getUsersCurrentPage(pageNumber: number, pageSize: number) {
         return instance.get(`/users?page=${pageNumber}&count=${pageSize}`)
+    }
+}
+
+export const profileAPI = {
+    getProfile(userId: string) {
+        return instance.get(`/profile/${userId}`)
     },
+    getStatus(userId: number) {
+        return instance.get(`/profile/status/${userId}`)
+    },
+    updateStatus(status: string) {
+        return instance.put('/profile/status', {status})
+    }
+}
+
+export const followAPI = {
     follow(userId: number) {
         return instance.post(`/follow/${userId}`, {})
     },

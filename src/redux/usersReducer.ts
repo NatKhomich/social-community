@@ -1,5 +1,5 @@
 import {Dispatch} from 'redux';
-import {socialAPI} from '../api/api';
+import {followAPI, usersAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 
 export type UsersResponseType = {
@@ -62,7 +62,7 @@ export const toggleIsFollowingProgressAC = (userId: number, followingProgress: b
 
 export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    socialAPI.getUsers(currentPage, pageSize)
+    usersAPI.getUsers(currentPage, pageSize)
         .then(res => {
             dispatch(setUsersAC(res.data.items))
             dispatch(setUsersTotalCountAC(res.data.totalCount))
@@ -72,7 +72,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: 
 export const setCurrentPageTC = (pageNumber: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     dispatch(setCurrentPageAC(pageNumber))
-    socialAPI.getUsersCurrentPage(pageNumber, pageSize)
+    usersAPI.getUsersCurrentPage(pageNumber, pageSize)
         .then(res => {
             dispatch(setUsersAC(res.data.items))
             dispatch(changeStatusLoadingAC('succeeded'))
@@ -81,7 +81,7 @@ export const setCurrentPageTC = (pageNumber: number, pageSize: number) => (dispa
 export const followTC = (userId: number) => (dispatch: Dispatch) => {
     dispatch(toggleIsFollowingProgressAC(userId, true))
     dispatch(changeStatusLoadingAC('loading'))
-    socialAPI.follow(userId)
+    followAPI.follow(userId)
         .then(res => {
             if(res.data.resultCode === 0) {
                 dispatch(followAC(userId))
@@ -93,7 +93,7 @@ export const followTC = (userId: number) => (dispatch: Dispatch) => {
 export const unfollowTC = (userId: number) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     dispatch(toggleIsFollowingProgressAC(userId, true))
-    socialAPI.unfollow(userId)
+    followAPI.unfollow(userId)
         .then(res => {
             if(res.data.resultCode === 0) {
                 dispatch(unfollowAC(userId))

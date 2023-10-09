@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import {PostType} from '../Components/Profile/MyPosts/Post/Post';
 import {Dispatch} from 'redux';
-import {socialAPI} from '../api/api';
+import {profileAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 
 const profileInintialState: ProfileType = {
@@ -30,7 +30,8 @@ const profileInintialState: ProfileType = {
             small: '',
             large: '',
         }
-    }
+    },
+    status: ''
 }
 
 export const profileReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
@@ -43,6 +44,8 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
             return {...state, newPostText: action.newText}
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
+        case 'SET-STATUS':
+            return {...state, status: action.status}
         default:
             return state
     }
@@ -51,22 +54,49 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
 export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText, id: v1()} as const)
 export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
 export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setStatusAC = (status: string) => ({type: 'SET-STATUS', status} as const)
 
 export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    socialAPI.getProfile(userId)
+    profileAPI.getProfile(userId)
         .then(res => {
             dispatch(setUserProfileAC(res.data))
             dispatch(changeStatusLoadingAC('succeeded'))
+        })
+}
+export const getStatusTC = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    profileAPI.getStatus(userId)
+        .then(res => {
+            dispatch(setStatusAC(res.data))
+            dispatch(changeStatusLoadingAC('succeeded'))
+        })
+        .catch(e => {
+            dispatch(changeStatusLoadingAC('failed'))
+        })
+}
+
+export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    profileAPI.updateStatus(status)
+        .then(res => {
+            if(res.data.resultCode === 0) {
+                dispatch(setStatusAC(status))
+                dispatch(changeStatusLoadingAC('succeeded'))
+            }
+        })
+        .catch(e => {
+            dispatch(changeStatusLoadingAC('failed'))
         })
 }
 
 type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof onChangePostAC>
     | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setStatusAC>
 
 export type ProfileResponseType = {
-    aboutMe:string
+    aboutMe: string
     contacts: {
         facebook: string
         website: null | string
@@ -91,4 +121,5 @@ export type ProfileType = {
     posts: PostType[]
     newPostText: string
     profile: ProfileResponseType
+    status: string
 }

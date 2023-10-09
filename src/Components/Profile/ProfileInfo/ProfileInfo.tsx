@@ -1,19 +1,20 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import {ProfileResponseType} from '../../../redux/profileReducer';
-import {Preloader} from '../../Common/Preloader/Preloader';
 import userAvatar from '../../../image/userAvatar.jpg'
 import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
 
 type ProfilePresentPropsType = {
     profile: ProfileResponseType
+    status: string
+    updateStatus: (status: string) => void
 }
 
 const ProfileInfo = (props: ProfilePresentPropsType) => {
 
     return (
         <div className={s.profileBlock}>
-            {!props.profile ? <Preloader/> : null}
+            {/*{!props.profile ? <Preloader/> : null}*/}
             <div className={s.profile_info}></div>
             <div className={s.description}>
 
@@ -37,7 +38,7 @@ const ProfileInfo = (props: ProfilePresentPropsType) => {
                             <li>{props.profile.contacts.mainLink}</li>
                             <li>{props.profile.contacts.website}</li>
                         </ul>
-                        <ProfileStatus status={'hello'}/>
+                        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                     </div>
                 </div>
             </div>
