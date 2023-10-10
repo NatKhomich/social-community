@@ -12,7 +12,12 @@ import {useFormik} from 'formik';
  type FormikErrorType = {
     email?: string
     password?: string
-    rememberMe?: boolean
+}
+
+export type DataLoginType = {
+    email: string
+    password: string
+    rememberMe: boolean
 }
 
 export const Login = () => {
@@ -43,7 +48,7 @@ export const Login = () => {
             formik.resetForm()
         },
     })
-
+console.log(formik.values)
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
 
@@ -62,10 +67,7 @@ export const Login = () => {
                 <FormGroup>
                     <TextField label="Email"
                                margin="normal"
-                               // onBlur={formik.handleBlur}
-                               // name='email'
-                               // onChange={formik.handleChange}
-                               // value={formik.values.email}
+                               size='small'
                                {...formik.getFieldProps('email')}
 
                     />
@@ -73,6 +75,7 @@ export const Login = () => {
                     <TextField type="password"
                                label="Password"
                                margin="normal"
+                               size='small'
                                {...formik.getFieldProps('password')}
                     />
                     {formik.touched.password && formik.errors.password ? <div style={{color: 'red'}}> {formik.errors.password} </div> : null}

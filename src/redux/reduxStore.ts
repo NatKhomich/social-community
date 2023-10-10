@@ -1,5 +1,5 @@
-import {applyMiddleware, combineReducers, createStore} from 'redux';
-import thunk from 'redux-thunk';
+import {AnyAction, applyMiddleware, combineReducers, createStore} from 'redux';
+import thunk, {ThunkDispatch} from 'redux-thunk';
 import {appReducer} from './appReducer';
 import {authReducer} from './authReducer';
 import {usersReducer} from './usersReducer';
@@ -16,6 +16,8 @@ let rootReducer = combineReducers({
 
 export let store  = createStore(rootReducer, applyMiddleware(thunk))
 export type AppStateType = ReturnType<typeof rootReducer>
+
+export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>
 
 // @ts-ignore
 window.store = store

@@ -1,6 +1,8 @@
 import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
+import {DataLoginType} from '../Components/Login/Login';
+import {AppThunkDispatch} from './reduxStore';
 
 export type authType = {
     id: null | number
@@ -19,7 +21,7 @@ const inintialState = {
 export const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
     switch (action.type) {
         case 'SET-USER-DATA':
-            return {...state, ...action.data, isAuth: true}
+            return {...state, isAuth: true}
         default:
             return state
     }
@@ -27,6 +29,8 @@ export const authReducer = (state: authType = inintialState, action: ActionsType
 
 export const setAuthUserDataAC = (data: authType) => ({type: 'SET-USER-DATA', data} as const)
 
+
+//авторизован или нет
 export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     authAPI.getAuthMe()
@@ -35,11 +39,42 @@ export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
                 dispatch(setAuthUserDataAC(res.data.data))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
-                dispatch(changeStatusLoadingAC('succeeded'))
+                dispatch(changeStatusLoadingAC('failed'))
             }
         }).catch(() => {
-        dispatch(changeStatusLoadingAC('succeeded'))
+        dispatch(changeStatusLoadingAC('failed'))
     })
 }
+//зарегистрироваться в форме (отправить свои данные на сервер - логин пароль)
+export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    authAPI.login(data)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setAuthUserDataTC())
+                dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                dispatch(changeStatusLoadingAC('failed'))
+            }
+        }).catch(() => {
+        dispatch(changeStatusLoadingAC('failed'))
+    })
+}
+
+export const logoutTC = () => (dispatch: AppThunkDispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    authAPI.logout()
+        .then(res => {
+            if (res.data.resultCode === 0) {
+
+                dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                dispatch(changeStatusLoadingAC('failed'))
+            }
+        }).catch(() => {
+        dispatch(changeStatusLoadingAC('failed'))
+    })
+}
+
 
 type ActionsType = ReturnType<typeof setAuthUserDataAC>

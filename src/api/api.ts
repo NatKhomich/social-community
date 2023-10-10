@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {DataLoginType} from '../Components/Login/Login';
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0',
@@ -8,6 +9,12 @@ const instance = axios.create({
 export const authAPI = {
     getAuthMe() {
         return instance.get(`/auth/me`)
+    },
+    login(loginData: DataLoginType) {
+        return instance.post('/auth/login', loginData)
+    },
+    logout() {
+        return instance.delete('/auth/login')
     }
 }
 
