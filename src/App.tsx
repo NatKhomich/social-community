@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import {Redirect, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import {Login} from './Components/Login/Login';
 import {LinearProgress} from '@mui/material';
@@ -41,7 +41,7 @@ function App(props: AppType) {
                         <Route path={'/login'} render={() => <Login />}/>
 
                         <Route path = '/404' render = {() => <img src={imageError} alt="error"/>}/>
-                        <Redirect from = '*' to = '/404'/>
+                        {/*<Redirect from = '*' to = '/404'/>*/}
                     </div>
                 </div>
             </div>
