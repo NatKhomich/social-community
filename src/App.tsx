@@ -5,28 +5,41 @@ import ProfileContainer from './Components/Profile/ProfileContainer';
 import UsersContainer from './Components/Users/UsersContainer';
 import {Route} from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import {Login} from './Components/Login/Login';
-import {LinearProgress} from '@mui/material';
+import Login from './Components/Login/Login';
+import {CircularProgress, LinearProgress} from '@mui/material';
 import {connect} from 'react-redux';
 import {AppStateType} from './redux/reduxStore';
 import {RequestStatusType} from './redux/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
+import {setIsAuthTC} from './redux/authReducer';
 
-type AppType = {
+type AppType = MapStateToPropsType & MapDispatchToPropsType
+
+type MapStateToPropsType = {
     status: RequestStatusType
-}
-type mapStateToPropsType = {
-    status: RequestStatusType
+    isInitialized: boolean
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        status: state.app.status
+        status: state.app.status,
+        isInitialized: state.app.isInitialized
     }
+}
+type MapDispatchToPropsType = {
+    setIsAuth: () => void
 }
 
 function App(props: AppType) {
+
+    // if (!props.isInitialized) {
+    //     return <div
+    //         style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+    //         <CircularProgress/>
+    //     </div>
+    // }
+
     return (
         <div>
             <HeaderContainer />
@@ -49,6 +62,8 @@ function App(props: AppType) {
     );
 }
 
-export const AppContainer = connect(mapStateToProps)(App)
+export const AppContainer = connect(mapStateToProps, {
+    setIsAuth: setIsAuthTC
+})(App)
 
 

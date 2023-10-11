@@ -8,6 +8,10 @@ import FormLabel from '@mui/material/FormLabel';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
+import {connect} from 'react-redux';
+import {loginTC} from '../../redux/authReducer';
+import {Redirect} from 'react-router-dom';
+import {AppStateType} from '../../redux/reduxStore';
 
  type FormikErrorType = {
     email?: string
@@ -20,7 +24,7 @@ export type DataLoginType = {
     rememberMe: boolean
 }
 
-export const Login = () => {
+const Login = (props: LoginType) => {
 
     const formik = useFormik({
         initialValues: {
@@ -44,11 +48,15 @@ export const Login = () => {
             return errors
         },
         onSubmit: values => {
-            alert(JSON.stringify(values))
+            props.login(values)
             formik.resetForm()
         },
     })
-console.log(formik.values)
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
+    }
+
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
 
@@ -94,3 +102,21 @@ console.log(formik.values)
         </Grid>
     </Grid>
 }
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+type MapStateToPropsType = {
+    isAuth: boolean
+}
+type MapDispatchToPropsType = {
+    login: (data: DataLoginType) => void
+}
+type LoginType = MapDispatchToPropsType & MapStateToPropsType
+
+export default connect(mapStateToProps, {
+    login: loginTC
+})(Login)

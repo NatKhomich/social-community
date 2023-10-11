@@ -7,14 +7,14 @@ const instance = axios.create({
 })
 
 export const authAPI = {
-    getAuthMe() {
-        return instance.get(`/auth/me`)
+    authMe() {
+        return instance.get<ResponseType<UserAuthType>>(`/auth/me`)
     },
     login(loginData: DataLoginType) {
-        return instance.post('/auth/login', loginData)
+        return instance.post<ResponseType<{userId: number}>>('/auth/login', loginData)
     },
     logout() {
-        return instance.delete('/auth/login')
+        return instance.delete<ResponseType>('/auth/login')
     }
 }
 
@@ -46,4 +46,17 @@ export const followAPI = {
     unfollow(userId: number) {
         return instance.delete(`/follow/${userId}`)
     }
+}
+
+export type ResponseType<D = {}> = {
+    resultCode: number
+    messages: string[]
+    fieldsErrors: string[]
+    data: D
+}
+
+export type UserAuthType = {
+    id: number
+    email: string
+    login: string
 }

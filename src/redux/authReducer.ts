@@ -1,44 +1,44 @@
 import {Dispatch} from 'redux';
-import {authAPI} from '../api/api';
+import {authAPI, UserAuthType} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 import {DataLoginType} from '../Components/Login/Login';
 import {AppThunkDispatch} from './reduxStore';
 
 export type authType = {
-    id: null | number
-    login: null | string
-    email: null | string
+    // id: null | number
+    // email: null | string
     isAuth: boolean
+    login: null | string //имя польз
 }
 
 const inintialState = {
-    id: null,
-    login: null,
-    email: null,
-    isAuth: false
+    // id: null,
+    // email: null,
+    isAuth: false,
+    login: null
 }
 
 export const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
     switch (action.type) {
-        case 'SET-USER-DATA':
-            return {...state, isAuth: true}
+        case 'SET-IS-AUTH':
+            return {...state, login: action.loginData, isAuth: action.value}
         default:
             return state
     }
 }
 
-export const setAuthUserDataAC = (data: authType) => ({type: 'SET-USER-DATA', data} as const)
-
+export const setIsAuthAC = (loginData: string | null ,value: boolean) => ({type: 'SET-IS-AUTH', loginData, value} as const)
 
 //авторизован или нет
-export const setAuthUserDataTC = () => (dispatch: Dispatch) => {
+export const setIsAuthTC = () => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    authAPI.getAuthMe()
+    authAPI.authMe()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setAuthUserDataAC(res.data.data))
+                dispatch(setIsAuthAC(res.data.data.login,true))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
+                dispatch(setIsAuthAC(res.data.data.login,false))
                 dispatch(changeStatusLoadingAC('failed'))
             }
         }).catch(() => {
@@ -51,7 +51,7 @@ export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => 
     authAPI.login(data)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setAuthUserDataTC())
+                dispatch(setIsAuthTC())
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 dispatch(changeStatusLoadingAC('failed'))
@@ -66,7 +66,7 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-
+                dispatch(setIsAuthAC(null,false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 dispatch(changeStatusLoadingAC('failed'))
@@ -77,4 +77,4 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
 }
 
 
-type ActionsType = ReturnType<typeof setAuthUserDataAC>
+type ActionsType = ReturnType<typeof setIsAuthAC>
