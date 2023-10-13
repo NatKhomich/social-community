@@ -16,9 +16,39 @@ import {setIsAuthTC} from './redux/authReducer';
 
 type AppType = MapStateToPropsType & MapDispatchToPropsType
 
-type MapStateToPropsType = {
-    status: RequestStatusType
-    isInitialized: boolean
+class App extends React.Component<AppType> {
+
+    componentDidMount() {
+        this.props.setIsAuth()
+    }
+
+    render() {
+        if (!this.props.isInitialized) {
+            return <div
+                style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
+                <CircularProgress/>
+            </div>
+        } else {
+            return <div>
+                <HeaderContainer/>
+                {this.props.status === 'loading' ? <LinearProgress color="primary"/> : ''}
+                <div className={'appWrapper'}>
+                    <div className={'container'}>
+                        <Navbar/>
+                        <div className={'content'}>
+                            <Route path={'/profile/:userId?'} render={() => <ProfileContainer/>}/>
+                            <Route path={'/messenger'} render={() => <MessengerContainer/>}/>
+                            <Route path={'/users'} render={() => <UsersContainer/>}/>
+                            <Route path={'/login'} render={() => <Login/>}/>
+
+                            <Route path="/404" render={() => <img src={imageError} alt="error"/>}/>
+                            {/*<Redirect from = '*' to = '/404'/>*/}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -27,43 +57,16 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isInitialized: state.app.isInitialized
     }
 }
+
+type MapStateToPropsType = {
+    status: RequestStatusType
+    isInitialized: boolean
+}
 type MapDispatchToPropsType = {
     setIsAuth: () => void
 }
 
-function App(props: AppType) {
-
-    // if (!props.isInitialized) {
-    //     return <div
-    //         style={{position: 'fixed', top: '30%', textAlign: 'center', width: '100%'}}>
-    //         <CircularProgress/>
-    //     </div>
-    // }
-
-    return (
-        <div>
-            <HeaderContainer />
-            {props.status === 'loading' ? <LinearProgress color="primary"/> : ''}
-            <div className={'appWrapper'}>
-                <div className={'container'}>
-                    <Navbar/>
-                    <div className={'content'}>
-                        <Route path={'/profile/:userId?'} render={() => <ProfileContainer />}/>
-                        <Route path={'/messenger'} render={() => <MessengerContainer />}/>
-                        <Route path={'/users'} render={() => <UsersContainer />}/>
-                        <Route path={'/login'} render={() => <Login />}/>
-
-                        <Route path = '/404' render = {() => <img src={imageError} alt="error"/>}/>
-                        {/*<Redirect from = '*' to = '/404'/>*/}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
 
 export const AppContainer = connect(mapStateToProps, {
     setIsAuth: setIsAuthTC
 })(App)
-
-

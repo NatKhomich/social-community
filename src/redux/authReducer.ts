@@ -1,6 +1,6 @@
 import {Dispatch} from 'redux';
-import {authAPI, UserAuthType} from '../api/api';
-import {changeStatusLoadingAC} from './appReducer';
+import {authAPI} from '../api/api';
+import {changeStatusLoadingAC, setInitializedAC} from './appReducer';
 import {DataLoginType} from '../Components/Login/Login';
 import {AppThunkDispatch} from './reduxStore';
 
@@ -27,7 +27,11 @@ export const authReducer = (state: authType = inintialState, action: ActionsType
     }
 }
 
-export const setIsAuthAC = (loginData: string | null ,value: boolean) => ({type: 'SET-IS-AUTH', loginData, value} as const)
+export const setIsAuthAC = (loginData: string | null, value: boolean) => ({
+    type: 'SET-IS-AUTH',
+    loginData,
+    value
+} as const)
 
 //авторизован или нет
 export const setIsAuthTC = () => (dispatch: Dispatch) => {
@@ -35,15 +39,20 @@ export const setIsAuthTC = () => (dispatch: Dispatch) => {
     authAPI.authMe()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsAuthAC(res.data.data.login,true))
+                dispatch(setIsAuthAC(res.data.data.login, true))
+                // dispatch(setInitializedAC(true))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
-                dispatch(setIsAuthAC(res.data.data.login,false))
+                dispatch(setIsAuthAC(res.data.data.login, false))
                 dispatch(changeStatusLoadingAC('failed'))
             }
-        }).catch(() => {
-        dispatch(changeStatusLoadingAC('failed'))
-    })
+        })
+        .catch(() => {
+            dispatch(changeStatusLoadingAC('failed'))
+        })
+        .finally(() => {
+            dispatch(setInitializedAC(true)) //убрать крутилку в любом случае как только отпр me запрос
+        })
 }
 //зарегистрироваться в форме (отправить свои данные на сервер - логин пароль)
 export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => {
@@ -56,9 +65,10 @@ export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => 
             } else {
                 dispatch(changeStatusLoadingAC('failed'))
             }
-        }).catch(() => {
-        dispatch(changeStatusLoadingAC('failed'))
-    })
+        })
+        .catch(() => {
+            dispatch(changeStatusLoadingAC('failed'))
+        })
 }
 
 export const logoutTC = () => (dispatch: AppThunkDispatch) => {
@@ -66,14 +76,15 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsAuthAC(null,false))
+                dispatch(setIsAuthAC(null, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 dispatch(changeStatusLoadingAC('failed'))
             }
-        }).catch(() => {
-        dispatch(changeStatusLoadingAC('failed'))
-    })
+        })
+        .catch(() => {
+            dispatch(changeStatusLoadingAC('failed'))
+        })
 }
 
 
