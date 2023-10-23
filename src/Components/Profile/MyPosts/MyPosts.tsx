@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {MyPostsContainerType} from './MyPostsContainer';
+import {TextForm} from '../../Common/TextForm/TextForm';
 
 
 const MyPosts = (props: MyPostsContainerType) => {
@@ -14,7 +15,10 @@ const MyPosts = (props: MyPostsContainerType) => {
         if (props.newPostText !== '')
             props.addPost(props.newPostText)
     }
-    const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => props.onChangePost(e.currentTarget.value)
+    const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(e.currentTarget.value)
+        props.onChangePost(e.currentTarget.value)
+    }
     const onKeyDownHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter')
             props.addPost(e.currentTarget.value)
@@ -24,12 +28,16 @@ const MyPosts = (props: MyPostsContainerType) => {
         <div className={s.myPosts}>
             <div className={s.titlePosts}> My posts</div>
             <div className={s.textareaAndButton}>
-                <textarea
-                    className={s.textarea}
-                    onKeyDown={onKeyDownHandler}
-                    onChange={onChangePostHandler}
-                    value={props.newPostText}/>
-                <button className={s.button} onClick={addPostHandler}> Add post</button>
+
+                {/*<textarea*/}
+                {/*    className={s.textarea}*/}
+                {/*    onKeyDown={onKeyDownHandler}*/}
+                {/*    onChange={onChangePostHandler}*/}
+                {/*    value={props.newPostText}/>*/}
+                {/*<button className={s.button} onClick={addPostHandler}> Add post</button>*/}
+
+                <TextForm />
+
             </div>
             <div className={s.posts}>
                 {postElement}
