@@ -77,7 +77,6 @@ const Login = (props: LoginType) => {
                                margin="normal"
                                size='small'
                                {...formik.getFieldProps('email')}
-
                     />
                     {formik.touched.email && formik.errors.email ? <div style={{color: 'red'}}> {formik.errors.email} </div> : null}
                     <TextField type="password"
