@@ -9,7 +9,6 @@ const profileInintialState: ProfileType = {
         {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
         {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
     ],
-    newPostText: '',
     profile: {
         aboutMe: '',
         contacts: {
@@ -38,10 +37,7 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostType = {id: action.id, message: action.newPostText, likesCount: 0}
-            state.newPostText = ''
             return {...state, posts: [newPost, ...state.posts]}
-        case 'UPDATE-NEW-POST-TEXT':
-            return {...state, newPostText: action.newText}
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile}
         case 'SET-STATUS':
@@ -52,7 +48,6 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
 };
 
 export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText, id: v1()} as const)
-export const onChangePostAC = (newText: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText} as const)
 export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const setStatusAC = (status: string) => ({type: 'SET-STATUS', status} as const)
 
@@ -91,7 +86,6 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
 }
 
 type ActionsType = ReturnType<typeof addPostAC>
-    | ReturnType<typeof onChangePostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
 
@@ -119,7 +113,6 @@ export type ProfileResponseType = {
 
 export type ProfileType = {
     posts: PostType[]
-    newPostText: string
     profile: ProfileResponseType
     status: string
 }

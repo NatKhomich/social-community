@@ -1,5 +1,5 @@
 import React from 'react';
-import {sendMessageAC, updateNewMessageAC} from '../../redux/messengerReducer';
+import {sendMessageAC} from '../../redux/messengerReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
@@ -12,28 +12,22 @@ export type MessengerContainerType = MapStateToPropsType & MapDispatchToPropsTyp
 type MapStateToPropsType = {
     dialogs: DialogType[]
     messages: MessageType[]
-    newMessage: string
 }
 type MapDispatchToPropsType = {
-    onClickSendMessage: () => void
-    onChangeNewMessage: (newMessage: string) => void
-    onKeyDownEnter: () => void
+    sendMessage: (newMessage: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        newMessage: state.dialogsPage.newMessage,
     }
 }
 
 export const MessengerContainer = compose<React.ComponentType>(
     connect(mapStateToProps,
         {
-            onClickSendMessage: sendMessageAC,
-            onChangeNewMessage: updateNewMessageAC,
-            onKeyDownEnter: sendMessageAC
+            sendMessage: sendMessageAC,
         }),
     withAuthRedirect
 )(Messenger)

@@ -14,31 +14,24 @@ const messengerInintialState: MessengerType = {
         {id: v1(), message: 'I love you'},
         {id: v1(), message: 'How are you?'},
         {id: v1(), message: 'Hi, my girl'}
-    ],
-    newMessage: ''
+    ]
 }
 
 export const messengerReducer = (state = messengerInintialState, action: ActionsType): MessengerType => {
     switch (action.type) {
-        case 'UPDATE-NEW-MESSAGE':
-            return {...state, newMessage: action.newMessage}
         case 'SEND-MESSAGE':
-            const newMessage: MessageType = {id: action.id, message: state.newMessage}
-            state.newMessage = ''
+            const newMessage: MessageType = {id: action.id, message: action.newMessage}
             return {...state, messages: [...state.messages, newMessage]}
         default:
             return state
     }
 };
 
-export const updateNewMessageAC = (newMessage: string) => ({type: 'UPDATE-NEW-MESSAGE', newMessage} as const)
-export const sendMessageAC = () => ({type: 'SEND-MESSAGE', id: v1()} as const)
+export const sendMessageAC = (newMessage: string) => ({type: 'SEND-MESSAGE', id: v1(), newMessage} as const)
 
-
-type ActionsType = ReturnType<typeof updateNewMessageAC> | ReturnType<typeof sendMessageAC>
+type ActionsType =  ReturnType<typeof sendMessageAC>
 export type MessengerType = {
     dialogs: DialogType[]
     messages: MessageType[]
-    newMessage: string
 }
 
