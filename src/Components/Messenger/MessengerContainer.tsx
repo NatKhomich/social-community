@@ -1,12 +1,13 @@
 import React from 'react';
-import {sendMessageAC} from '../../redux/messengerReducer';
+import {sendMessageAC} from '../../state/messengerReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/reduxStore';
+import {AppStateType} from '../../state/store';
 import {DialogType} from './DialogItem/DialogItem';
 import {MessageType} from './MessageItem/MessageItem';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {selectMessengerDialogs, selectMessengerMessages} from '../../state/selectors/messengerSelectors';
 
 export type MessengerContainerType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType = {
@@ -19,8 +20,8 @@ type MapDispatchToPropsType = {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        dialogs: state.dialogsPage.dialogs,
-        messages: state.dialogsPage.messages,
+        dialogs: selectMessengerDialogs(state),
+        messages: selectMessengerMessages(state),
     }
 }
 

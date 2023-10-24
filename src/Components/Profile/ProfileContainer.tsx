@@ -1,18 +1,19 @@
 import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/reduxStore';
-import {getStatusTC, ProfileResponseType, setUserProfileTC, updateStatusTC} from '../../redux/profileReducer';
+import {AppStateType} from '../../state/store';
+import {getStatusTC, ProfileResponseType, setUserProfileTC, updateStatusTC} from '../../state/profileReducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 import {compose} from 'redux';
+import {selectAuthLoginDataId} from '../../state/selectors/authSelectors';
+import {selectProfile, selectProfileStatus} from '../../state/selectors/profileSelectors';
 
 
 class ProfileContainer extends React.Component<ProfileContainerType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            // userId = '29362'
             //@ts-ignore
             userId = this.props.userId
         }
@@ -30,9 +31,9 @@ class ProfileContainer extends React.Component<ProfileContainerType> {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        profile: state.profilePage.profile,
-        status: state.profilePage.status,
-        userId: state.auth.loginData.id
+        profile: selectProfile(state),
+        status: selectProfileStatus(state),
+        userId: selectAuthLoginDataId(state)
     }
 }
 

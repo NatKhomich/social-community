@@ -1,7 +1,7 @@
 import React, {ComponentType} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AppStateType} from '../redux/reduxStore';
+import {AppStateType} from '../state/store';
 
 type MapStateToPropsType = {
     isLoggedIn: boolean

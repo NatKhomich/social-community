@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import {ProfileResponseType} from '../../../redux/profileReducer';
+import {ProfileResponseType} from '../../../state/profileReducer';
 import userAvatar from '../../../image/userAvatar.jpg'
 import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
 

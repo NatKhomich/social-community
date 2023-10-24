@@ -9,9 +9,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {useFormik} from 'formik';
 import {connect} from 'react-redux';
-import {loginTC} from '../../redux/authReducer';
+import {loginTC} from '../../state/authReducer';
 import {Redirect} from 'react-router-dom';
-import {AppStateType} from '../../redux/reduxStore';
+import {AppStateType} from '../../state/store';
+import {selectAuthIsLoggedIn} from '../../state/selectors/authSelectors';
 
  type FormikErrorType = {
     email?: string
@@ -104,7 +105,7 @@ const Login = (props: LoginType) => {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        isLoggedIn: state.auth.isLoggedIn
+        isLoggedIn: selectAuthIsLoggedIn(state)
     }
 }
 

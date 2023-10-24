@@ -1,13 +1,14 @@
-import {addPostAC} from '../../../redux/profileReducer';
+import {addPostAC} from '../../../state/profileReducer';
 import MyPosts from './MyPosts';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../../redux/reduxStore';
+import {AppStateType} from '../../../state/store';
 import {PostType} from './Post/Post';
+import {selectProfilePosts} from '../../../state/selectors/profileSelectors';
 
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        posts: state.profilePage.posts,
+        posts: selectProfilePosts(state),
     }
 }
 

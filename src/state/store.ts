@@ -7,9 +7,9 @@ import {profileReducer} from './profileReducer';
 import {messengerReducer} from './messengerReducer';
 
 let rootReducer = combineReducers({
-    profilePage: profileReducer,
-    dialogsPage: messengerReducer,
-    usersPage: usersReducer,
+    profile: profileReducer,
+    dialogs: messengerReducer,
+    users: usersReducer,
     auth: authReducer,
     app: appReducer
 })

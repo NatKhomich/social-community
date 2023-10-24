@@ -8,10 +8,11 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import {CircularProgress, LinearProgress} from '@mui/material';
 import {connect} from 'react-redux';
-import {AppStateType} from './redux/reduxStore';
-import {initializeAppTC, RequestStatusType} from './redux/appReducer';
+import {AppStateType} from './state/store';
+import {initializeAppTC, RequestStatusType} from './state/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
+import {selectAppIsInitialized, selectAppStatus} from './state/selectors/appSelectors';
 
 type AppType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -52,8 +53,8 @@ class App extends React.Component<AppType> {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        status: state.app.status,
-        isInitialized: state.app.isInitialized
+        status: selectAppStatus(state),
+        isInitialized: selectAppIsInitialized(state)
     }
 }
 

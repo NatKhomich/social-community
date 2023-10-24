@@ -2,31 +2,13 @@ import {Dispatch} from 'redux';
 import {followAPI, usersAPI} from '../api/api';
 import {changeStatusLoadingAC} from './appReducer';
 
-export type UsersResponseType = {
-    name: string
-    id: number
-    uniqueUrlName: null | string
-    photos: {
-        small: string | undefined
-        large: string | undefined
-    }
-    status: null | string
-    followed: boolean
-}
-export type UsersType = {
-    items: UsersResponseType[]
-    pageSize: number
-    totalCountUser: number
-    currentPage: number
-    followingProgress: number[]
-}
+
 const usersInintialState: UsersType = {
     items: [],
     pageSize: 10,
     totalCountUser: 0,
-    currentPage: 1,
+    page: 1,
     followingProgress: []
-    /* isFetching: false,*/
 }
 
 export const usersReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
@@ -38,7 +20,7 @@ export const usersReducer = (state: UsersType = usersInintialState, action: Acti
         case 'SET-USERS':
             return {...state, items: action.users}
         case 'SET-CURRENT-PAGE':
-            return {...state, currentPage: action.currentPage}
+            return {...state, page: action.page}
         case 'SET-USERS-TOTAL-COUNT':
             return {...state, totalCountUser: action.totalCount}
         case 'TOGGLE-IS-FOLLOWING-PROGRESS': {
@@ -54,7 +36,7 @@ export const usersReducer = (state: UsersType = usersInintialState, action: Acti
 export const followAC = (userID: number) => ({type: 'FOLLOW', userID} as const)
 export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID} as const)
 export const setUsersAC = (users: UsersResponseType[]) => ({type: 'SET-USERS', users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const)
+export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', page} as const)
 export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount} as const)
 export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
     {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
@@ -103,6 +85,25 @@ export const unfollowTC = (userId: number) => (dispatch: Dispatch) => {
         })
 }
 
+//types
+export type UsersResponseType = {
+    name: string
+    id: number
+    uniqueUrlName: null | string
+    photos: {
+        small: string | undefined
+        large: string | undefined
+    }
+    status: null | string
+    followed: boolean
+}
+export type UsersType = {
+    items: UsersResponseType[]
+    pageSize: number
+    totalCountUser: number
+    page: number
+    followingProgress: number[]
+}
 
 type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>
     | ReturnType<typeof setUsersAC> | ReturnType<typeof setCurrentPageAC>

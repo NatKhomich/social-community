@@ -1,17 +1,17 @@
 import React from 'react';
 import s from './Users.module.css';
 import userAvatar from '../../image/userAvatar.jpg';
-import {UsersType} from '../../redux/usersReducer';
+import {UsersType} from '../../state/usersReducer';
 import {NavLink} from 'react-router-dom';
 
 type UsersPresentPropsType = {
     onClickUnfollow: (userID: number) => void
     onClickFollow: (userID: number) => void
-    setCurrentPage: (pageNumber: number) => void
+    setCurrentPage: (page: number) => void
     totalCountUser: number
     pageSize: number
-    currentPage: number
-    usersPage: UsersType
+    page: number
+    users: UsersType
     followingProgress: number[]
 }
 
@@ -30,7 +30,7 @@ const Users = (props: UsersPresentPropsType) => {
         <div className={s.users}>
             <div> {pages.map((el) => {
                 return (
-                    <button className={props.currentPage === el ? s.selectedPage : ''}
+                    <button className={props.page === el ? s.selectedPage : ''}
                             onClick={setCurrentPageHandler(el)}
                             key={el}>
                         {el}
@@ -38,7 +38,7 @@ const Users = (props: UsersPresentPropsType) => {
                 )
             })}
             </div>
-            {props.usersPage.items.map(el =>
+            {props.users.items.map(el =>
                 <div className={s.user} key={el.id}>
                     <div className={s.imgAndButton}>
                         <div>

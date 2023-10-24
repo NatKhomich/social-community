@@ -19,8 +19,8 @@ export const authAPI = {
 }
 
 export const usersAPI = {
-    getUsers(currentPage: number, pageSize: number) {
-        return instance.get(`/users?page=${currentPage}&count=${pageSize}`)
+    getUsers(page: number, pageSize: number) {
+        return instance.get(`/users?page=${page}&count=${pageSize}`)
     },
     getUsersCurrentPage(pageNumber: number, pageSize: number) {
         return instance.get(`/users?page=${pageNumber}&count=${pageSize}`)

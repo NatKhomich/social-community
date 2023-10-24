@@ -1,27 +1,29 @@
 import {connect} from 'react-redux';
-import {AppStateType} from '../../redux/reduxStore';
-import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../redux/usersReducer';
+import {AppStateType} from '../../state/store';
+import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from '../../state/usersReducer';
 import React from 'react';
 import Users from './Users';
 import {compose} from 'redux';
+import {
+    selectUsers,
+    selectUsersFollowingProgress, selectUsersPage,
+    selectUsersPageSize,
+    selectUsersTotalCount
+} from '../../state/selectors/usersSelectors';
 
 class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.page, this.props.pageSize)
     }
 
     setCurrentPage = (pageNumber: number) => {
        this.props.setCurrentPage(pageNumber, this.props.pageSize)
     }
 
-    follow = (userId: number) => {
-        this.props.follow(userId)
-    }
+    follow = (userId: number) => this.props.follow(userId)
 
-    unfollow = (userId: number) => {
-        this.props.unfollow(userId)
-    }
+    unfollow = (userId: number) => this.props.unfollow(userId)
 
     render() {
         return <>
@@ -30,38 +32,21 @@ class UsersContainer extends React.Component<UsersContainerType> {
                    setCurrentPage={this.setCurrentPage}
                    totalCountUser={this.props.totalCountUser}
                    pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   usersPage={this.props.usersPage}
+                   page={this.props.page}
+                   users={this.props.users}
                    followingProgress={this.props.followingProgress}
             />
         </>
     }
 }
 
-export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
-
-type MapStateToPropsType = {
-    usersPage: UsersType
-    pageSize: number
-    totalCountUser: number
-    currentPage: number
-    followingProgress: number[]
-
-}
-type MapDispatchToPropsType = {
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
-    setCurrentPage: (pageNumber: number, pageSize: number) => void
-}
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        usersPage: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalCountUser: state.usersPage.totalCountUser,
-        currentPage: state.usersPage.currentPage,
-        followingProgress: state.usersPage.followingProgress
+        users: selectUsers(state),
+        pageSize: selectUsersPageSize(state),
+        totalCountUser: selectUsersTotalCount(state),
+        page: selectUsersPage(state),
+        followingProgress: selectUsersFollowingProgress(state)
     }
 }
 
@@ -73,6 +58,23 @@ export default compose<React.ComponentType>(connect(mapStateToProps,
         setCurrentPage: setCurrentPageTC
     }))(UsersContainer)
 
+//types
+export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
+
+type MapStateToPropsType = {
+    users: UsersType
+    pageSize: number
+    totalCountUser: number
+    page: number
+    followingProgress: number[]
+
+}
+type MapDispatchToPropsType = {
+    follow: (userID: number) => void
+    unfollow: (userID: number) => void
+    getUsers: (page: number, pageSize: number) => void
+    setCurrentPage: (pageNumber: number, pageSize: number) => void
+}
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
 //{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку
 // () => store.dispatch(AC)и передаёт в props компонента

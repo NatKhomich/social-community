@@ -1,7 +1,7 @@
 import {authAPI, UserAuthType} from '../api/api';
 import {changeStatusLoadingAC, initializeAppTC} from './appReducer';
 import {DataLoginType} from '../Components/Login/Login';
-import {AppThunkDispatch} from './reduxStore';
+import {AppThunkDispatch} from './store';
 
 export type authType = {
     isLoggedIn: boolean
