@@ -53,7 +53,7 @@ const Login = (props: LoginType) => {
         },
     })
 
-    if (props.isAuth) {
+    if (props.isLoggedIn) {
         return <Redirect to={'/profile'} />
     }
 
@@ -104,12 +104,12 @@ const Login = (props: LoginType) => {
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        isAuth: state.auth.isAuth
+        isLoggedIn: state.auth.isLoggedIn
     }
 }
 
 type MapStateToPropsType = {
-    isAuth: boolean
+    isLoggedIn: boolean
 }
 type MapDispatchToPropsType = {
     login: (data: DataLoginType) => void

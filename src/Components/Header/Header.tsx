@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 type HeaderType = {
-    isAuth: boolean
+    isLoggedIn: boolean
     login: string | null
     logout: () => void
 }
@@ -14,7 +14,7 @@ const Header = (props: HeaderType) => {
     return (
         <header className={s.header}>
             <img alt={'logo'} src={logo}/>
-            {props.isAuth
+            {props.isLoggedIn
                 ? <div className={s.loginText}> {props.login}
                     <Button color="secondary" onClick={() => props.logout()}>Log Out</Button>
             </div>

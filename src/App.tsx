@@ -9,17 +9,16 @@ import Login from './Components/Login/Login';
 import {CircularProgress, LinearProgress} from '@mui/material';
 import {connect} from 'react-redux';
 import {AppStateType} from './redux/reduxStore';
-import {RequestStatusType} from './redux/appReducer';
+import {initializeAppTC, RequestStatusType} from './redux/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
-import {setIsAuthTC} from './redux/authReducer';
 
 type AppType = MapStateToPropsType & MapDispatchToPropsType
 
 class App extends React.Component<AppType> {
 
     componentDidMount() {
-        this.props.setIsAuth()
+        this.props.initializeApp()
     }
 
     render() {
@@ -63,10 +62,10 @@ type MapStateToPropsType = {
     isInitialized: boolean
 }
 type MapDispatchToPropsType = {
-    setIsAuth: () => void
+    initializeApp: () => void
 }
 
 
 export const AppContainer =  connect(mapStateToProps, {
-    setIsAuth: setIsAuthTC
+    initializeApp: initializeAppTC
 })(App)
