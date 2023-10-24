@@ -67,6 +67,6 @@ type MapDispatchToPropsType = {
 }
 
 
-export const AppContainer = connect(mapStateToProps, {
+export const AppContainer =  connect(mapStateToProps, {
     setIsAuth: setIsAuthTC
 })(App)

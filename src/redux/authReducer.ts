@@ -1,33 +1,29 @@
 import {Dispatch} from 'redux';
-import {authAPI} from '../api/api';
+import {authAPI, UserAuthType} from '../api/api';
 import {changeStatusLoadingAC, setInitializedAC} from './appReducer';
 import {DataLoginType} from '../Components/Login/Login';
 import {AppThunkDispatch} from './reduxStore';
 
 export type authType = {
-    // id: null | number
-    // email: null | string
     isAuth: boolean
-    login: null | string //имя польз
+    loginData: UserAuthType
 }
 
 const inintialState = {
-    // id: null,
-    // email: null,
     isAuth: false,
-    login: null
+    loginData: {} as UserAuthType
 }
 
 export const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
     switch (action.type) {
         case 'SET-IS-AUTH':
-            return {...state, login: action.loginData, isAuth: action.value}
+            return {...state, loginData: action.loginData, isAuth: action.value}
         default:
             return state
     }
 }
 
-export const setIsAuthAC = (loginData: string | null, value: boolean) => ({
+export const setIsAuthAC = (loginData: UserAuthType, value: boolean) => ({
     type: 'SET-IS-AUTH',
     loginData,
     value
@@ -39,11 +35,11 @@ export const setIsAuthTC = () => (dispatch: Dispatch) => {
     authAPI.authMe()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsAuthAC(res.data.data.login, true))
+                dispatch(setIsAuthAC(res.data.data, true))
                 // dispatch(setInitializedAC(true))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
-                dispatch(setIsAuthAC(res.data.data.login, false))
+                dispatch(setIsAuthAC(res.data.data, false))
                 dispatch(changeStatusLoadingAC('failed'))
             }
         })
@@ -76,7 +72,7 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsAuthAC(null, false))
+                dispatch(setIsAuthAC({id: null, login: null, email: null}, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 dispatch(changeStatusLoadingAC('failed'))

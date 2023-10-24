@@ -6,9 +6,6 @@ import {logoutTC, setIsAuthTC} from '../../redux/authReducer';
 import {compose} from 'redux';
 
 class HeaderContainer extends React.Component<HeaderContainerType> {
-    componentDidMount() {
-        this.props.setIsAuth()
-    }
 
     render() {
         return <Header isAuth={this.props.isAuth} login={this.props.login} logout={this.props.logout}/>
@@ -28,7 +25,7 @@ type MapDispatchToPropsType = {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.login
+        login: state.auth.loginData.login
     }
 }
 

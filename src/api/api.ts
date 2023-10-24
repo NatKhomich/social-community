@@ -56,7 +56,7 @@ export type ResponseType<D = {}> = {
 }
 
 export type UserAuthType = {
-    id: number
-    email: string
-    login: string
+    id: number | null | string
+    email: string | null
+    login: string | null
 }
