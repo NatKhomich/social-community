@@ -1,3 +1,10 @@
+.root {
+    margin: 0 auto;
+    font-family:Inter, sans-serif;
+    font-size: 15px;
+    height: 100vh;
+}
+
 .container {
     display: flex;
     max-width: 90%;
@@ -12,10 +19,11 @@
 }
 
 .content {
-    background-color: #eff9fd;
     border-radius: 10px;
     width: 100%;
     cursor: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(229, 231, 235, 1);
 }
 
 .content img {
@@ -26,30 +34,5 @@
 #root {
     cursor: auto;
 }
-
-
-/*.appWrapper {
-    font-family: Arial, serif;
-    !*max-width: 1400px;*!
-    margin: 0 auto;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 3fr 9fr;
-    grid-template-areas:
-
-   !* "header header"*!
-    "navbar content_profile";
-    !*grid-gap: ;*!
-    width: 80%;
-}
-
-.appWrapperContent {
-    grid-area: content_profile;
-    background-color: #eff9fd;
-    border-radius: 10px;
-    height: 100vh;
-}*/
-
-
 
 

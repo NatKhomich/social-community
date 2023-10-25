@@ -13,6 +13,7 @@ import {loginTC} from '../../state/authReducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../../state/store';
 import {selectAuthIsLoggedIn} from '../../state/selectors/authSelectors';
+import s from './Login.module.css'
 
  type FormikErrorType = {
     email?: string
@@ -58,7 +59,7 @@ const Login = (props: LoginType) => {
         return <Redirect to={'/profile'} />
     }
 
-    return <Grid container justifyContent={'center'}>
+    return <Grid container justifyContent={'center'} className={s.loginForm}>
         <Grid item justifyContent={'center'}>
 
             <form onSubmit={formik.handleSubmit}>

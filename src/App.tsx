@@ -29,7 +29,7 @@ class App extends React.Component<AppType> {
                 <CircularProgress/>
             </div>
         } else {
-            return <div>
+            return <div className={'root'}>
                 <HeaderContainer/>
                 {this.props.status === 'loading' ? <LinearProgress color="primary"/> : ''}
                 <div className={'appWrapper'}>
