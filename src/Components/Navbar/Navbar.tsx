@@ -24,7 +24,6 @@ const Navbar = () => {
                 </NavLink>
             </li>
 
-
             <li className={styles.item}>
                 <NavLink to="/users" className={styles.link} activeClassName={styles.linkActive}>
                     <div className={styles.image}>

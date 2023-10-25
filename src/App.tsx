@@ -3,7 +3,7 @@ import './App.css';
 import Navbar from './Components/Navbar/Navbar';
 import ProfileContainer from './Components/Profile/ProfileContainer';
 import UsersContainer from './Components/Users/UsersContainer';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import {CircularProgress, LinearProgress} from '@mui/material';
@@ -13,6 +13,7 @@ import {initializeAppTC, RequestStatusType} from './state/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
 import {selectAppIsInitialized, selectAppStatus} from './state/selectors/appSelectors';
+import {compose} from 'redux';
 
 type AppType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -66,7 +67,9 @@ type MapDispatchToPropsType = {
     initializeApp: () => void
 }
 
-
-export const AppContainer =  connect(mapStateToProps, {
-    initializeApp: initializeAppTC
-})(App)
+export const AppContainer = compose<React.ComponentType>(
+    withRouter,
+    connect(mapStateToProps, {
+        initializeApp: initializeAppTC
+    })
+)(App);

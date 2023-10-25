@@ -64,16 +64,6 @@ const Login = (props: LoginType) => {
 
             <form onSubmit={formik.handleSubmit}>
             <FormControl>
-                <FormLabel>
-                    <p>To log in get registered
-                        <a href={'https://social-network.samuraijs.com/'}
-                           target={'_blank'}> here
-                        </a>
-                    </p>
-                    <p>or use common test account credentials:</p>
-                    <p>Email: free@samuraijs.com</p>
-                    <p>Password: free</p>
-                </FormLabel>
                 <FormGroup>
                     <TextField label="Email"
                                margin="normal"
@@ -94,9 +84,20 @@ const Login = (props: LoginType) => {
                                       onChange={formik.handleChange}
                                       value={formik.values.rememberMe}
                     />
-                    <Button type={'submit'} variant={'contained'} color={'primary'}>
+                    <Button type={'submit'} variant={'outlined'} color={'secondary'}>
                         Login
                     </Button>
+
+                    <FormLabel>
+                        <p>To log in get registered
+                            <a href={'https://social-network.samuraijs.com/'}
+                               target={'_blank'}> here
+                            </a>
+                        </p>
+                        <p>or use common test account credentials:</p>
+                        <p>Email: free@samuraijs.com</p>
+                        <p>Password: free</p>
+                    </FormLabel>
                 </FormGroup>
             </FormControl>
             </form>

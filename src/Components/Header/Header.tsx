@@ -15,11 +15,14 @@ const Header = (props: HeaderType) => {
         <header className={styles.header}>
             <img alt={'logo'} src={logo}/>
             {props.isLoggedIn
-                ? <div className={styles.loginText}> {props.login}
-                    <Button color="secondary" onClick={() => props.logout()}>Log Out</Button>
-            </div>
+                ? <div className={styles.loginText}>
+                    <div className={styles.login}>
+                        {props.login}
+                    </div>
+                    <Button color="secondary" variant={'outlined'} onClick={() => props.logout()}>Log Out</Button>
+                </div>
                 : <NavLink className={styles.loginBlock} to={'/login'}>
-                    <Button color="secondary" >Login</Button>
+                    <Button color="secondary" variant={'outlined'}>Login</Button>
                 </NavLink>
             }
         </header>

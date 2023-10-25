@@ -17,27 +17,18 @@ header img {
 }
 
 .loginBlock {
-margin: 10px 20px 0 0 ;
+    margin: 10px 20px 0 0;
+
+}
+
+.loginText {
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .login {
-    background-color: #555555;
-    font-size: 15px;
-    border: none;
-    color: white;
-    padding: 12px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-}
-
-
-.loginText {
-    margin: 10px 20px 0 0;
-    font-size: 17px;
-    font-weight: 600;
+    margin-right: 10px;
 }
