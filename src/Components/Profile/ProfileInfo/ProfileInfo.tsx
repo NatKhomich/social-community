@@ -1,8 +1,9 @@
 import React from 'react';
-import s from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.css';
 import {ProfileResponseType} from '../../../state/profileReducer';
 import userAvatar from '../../../image/userAvatar.jpg'
 import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
+import profilePhoto from '../../../image/profile/profile-photo.jpg'
 
 type ProfilePresentPropsType = {
     profile: ProfileResponseType
@@ -13,21 +14,25 @@ type ProfilePresentPropsType = {
 const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
 
     return (
-        <div className={s.profileBlock}>
-            <div className={s.profile_info}></div>
-            <div className={s.description}>
+        <div className={styles.root}>
+            <div>
+                <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
+            </div>
+
+            <div className={styles.profileContent}>
 
                 {props.profile.photos.large
                     ? <img src={props.profile?.photos.large} alt=""/>
                     : <img src={userAvatar} alt=""/>}
 
-                <div className={s.descriptionInfo}>
-                    <div className={s.name}> {props.profile.fullName} </div>
+
+                <div className={styles.descriptionInfo}>
+                    <div className={styles.name}> {props.profile.fullName} </div>
                     <div> {props.profile.aboutMe} </div>
                     <div> Looking for a job: {props.profile.lookingForAJobDescription} </div>
                     <div>
                         Contacts:
-                        <ul className={s.list}>
+                        <ul className={styles.list}>
                             <li>{props.profile.contacts.vk}</li>
                             <li>{props.profile.contacts.youtube}</li>
                             <li>{props.profile.contacts.github}</li>
