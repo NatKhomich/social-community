@@ -17,8 +17,9 @@ const Profile = React.memo((props: ProfilePropsType) => {
 
                 <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 
-
                 <MyPosts profile={props.profile} />
+
+
             </div>
         </div>
     );

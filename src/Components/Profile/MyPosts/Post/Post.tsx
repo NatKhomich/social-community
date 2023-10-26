@@ -1,13 +1,13 @@
 import React from 'react';
-import s from './Post.module.css';
+import styles from './Post.module.css';
 import avatarMessages from '../../../../image/avatar_messages.jpg'
 
 
 const Post = React.memo((props: PostType) => {
     return (
-        <div className={s.item}>
-                <img alt={''} src={avatarMessages}/>
-            <div className={s.messageLikes}>
+        <div className={styles.item}>
+            <img alt={''} src={avatarMessages}/>
+            <div className={styles.messageLikes}>
                 <span> {props.message} </span>
                 <div> Like {props.likesCount} </div>
             </div>
