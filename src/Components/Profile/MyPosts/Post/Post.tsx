@@ -3,13 +3,7 @@ import s from './Post.module.css';
 import avatarMessages from '../../../../image/avatar_messages.jpg'
 
 
-export type PostType = {
-    id: string
-    message: string
-    likesCount: number
-}
-
-const Post = (props: PostType) => {
+const Post = React.memo((props: PostType) => {
     return (
         <div className={s.item}>
                 <img alt={''} src={avatarMessages}/>
@@ -19,6 +13,12 @@ const Post = (props: PostType) => {
             </div>
         </div>
     );
-};
+});
 
 export default Post;
+
+export type PostType = {
+    id: string
+    message: string
+    likesCount: number
+}

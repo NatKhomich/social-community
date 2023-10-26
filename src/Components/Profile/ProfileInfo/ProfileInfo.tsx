@@ -10,7 +10,7 @@ type ProfilePresentPropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: ProfilePresentPropsType) => {
+const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
 
     return (
         <div className={s.profileBlock}>
@@ -44,6 +44,6 @@ const ProfileInfo = (props: ProfilePresentPropsType) => {
             </div>
         </div>
     );
-};
+});
 
 export default ProfileInfo;

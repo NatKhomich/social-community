@@ -5,7 +5,7 @@ import {MyPostsContainerType} from './MyPostsContainer';
 import {DataTextFormType, TextForm} from '../../Common/TextForm/TextForm';
 
 
-const MyPosts = (props: MyPostsContainerType) => {
+const MyPosts = React.memo((props: MyPostsContainerType) => {
 
     let postElement = props.posts.map(el => {
         return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
@@ -20,9 +20,7 @@ const MyPosts = (props: MyPostsContainerType) => {
         <div className={s.myPosts}>
             <div className={s.titlePosts}> My posts</div>
             <div className={s.textareaAndButton}>
-
                 <TextForm callback={addPostHandler}/>
-
             </div>
             <div className={s.posts}>
                 {postElement}
@@ -30,6 +28,6 @@ const MyPosts = (props: MyPostsContainerType) => {
         </div>
 
     );
-};
+});
 
 export default MyPosts;

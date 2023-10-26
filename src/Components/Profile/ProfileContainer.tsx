@@ -10,7 +10,7 @@ import {selectAuthLoginDataId} from '../../state/selectors/authSelectors';
 import {selectProfile, selectProfileStatus} from '../../state/selectors/profileSelectors';
 
 
-class ProfileContainer extends React.Component<ProfileContainerType> {
+class ProfileContainer extends React.PureComponent<ProfileContainerType> {
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
