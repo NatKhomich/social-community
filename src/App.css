@@ -7,7 +7,6 @@
 
 .container {
     display: flex;
-    max-width: 90%;
     margin: 0 auto;
     cursor: auto;
 }
@@ -26,10 +25,10 @@
     border: 1px solid rgba(229, 231, 235, 1);
 }
 
-.content img {
-    max-width: 90%;
-    max-height: 80vh;
-}
+/*.content img {*/
+/*     max-width: 90%;*/
+/*     max-height: 80vh;*/
+/* }*/
 
 #root {
     cursor: auto;

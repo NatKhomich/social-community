@@ -1,3 +1,16 @@
+.root {
+    max-width: 270px;
+    font-size: 16px;
+    font-weight: 600;
+    border-right: 1px solid rgba(229,231,235, 1);
+    border-bottom: 1px solid rgba(229,231,235, 1);
+    height: 100vh;
+    /*background-color: #c07fd2;*/
+}
+
+.wrapper {
+    margin: 15px 5px;
+}
 
 .items {
     margin-bottom: 10px;

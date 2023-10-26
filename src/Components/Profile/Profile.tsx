@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
-import s from './Profile.module.css'
+import styles from './Profile.module.css'
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 import {ProfileResponseType} from '../../state/profileReducer';
 
@@ -12,9 +12,11 @@ type ProfilePropsType = {
 
 const Profile = React.memo((props: ProfilePropsType) => {
     return (
-        <div className={s.profile}>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
-            <MyPostsContainer />
+        <div className={styles.root}>
+            <div className={styles.content}>
+                    <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+                    <MyPostsContainer/>
+            </div>
         </div>
     );
 });

@@ -14,7 +14,6 @@ const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
 
     return (
         <div className={s.profileBlock}>
-            {/*{!props.profile ? <Preloader/> : null}*/}
             <div className={s.profile_info}></div>
             <div className={s.description}>
 
