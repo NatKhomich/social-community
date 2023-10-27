@@ -30,11 +30,7 @@ const MyPosts = React.memo((props: MyPostsType) => {
                 </div>
             </div>
 
-            <div className={styles.postForm}>
-                <div className={styles.timeline}>
-                    <div className={styles.posts}>{postElement}</div>
-                </div>
-            </div>
+            <div className={styles.posts}>{postElement}</div>
 
         </div>
     );

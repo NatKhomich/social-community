@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-
 }
 
 .postForm {
@@ -13,6 +12,7 @@
     overflow: hidden;
     border: 1px solid #ebe9e6;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    max-width: 100%;
 }
 
 .textareaAndButton {
