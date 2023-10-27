@@ -19,7 +19,6 @@ const Profile = React.memo((props: ProfilePropsType) => {
 
                 <MyPosts profile={props.profile} />
 
-
             </div>
         </div>
     );

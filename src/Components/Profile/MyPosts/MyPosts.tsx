@@ -12,7 +12,7 @@ import styles from './MyPosts.module.css'
 const MyPosts = React.memo((props: MyPostsType) => {
 
     let postElement = props.posts.map(el => {
-        return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id}/>
+        return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id} profile={props.profile}/>
     })
 
     const addPostHandler = (text: DataTextFormType) => {
@@ -22,19 +22,20 @@ const MyPosts = React.memo((props: MyPostsType) => {
 
     return (
         <div className={styles.items}>
-            <div className={styles.timeline}>
-                <div className={styles.postForm}>
-                    <div className={styles.imgAndTextarea}>
-                        <PostHeader profile={props.profile}/>
-                        <TextForm callback={addPostHandler}/>
-                    </div>
-                </div>
 
+            <div className={styles.postForm}>
+                <div className={styles.textareaAndButton}>
+                    <PostHeader profile={props.profile}/>
+                    <TextForm callback={addPostHandler} name={'Add post'}/>
+                </div>
+            </div>
+
+            <div className={styles.postForm}>
                 <div className={styles.timeline}>
                     <div className={styles.posts}>{postElement}</div>
                 </div>
-
             </div>
+
         </div>
     );
 });

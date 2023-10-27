@@ -24,7 +24,7 @@ export const Messenger = (props: MessengerContainerType) => {
                 <div className={s.messages}> {messageElement} </div>
             </div>
             <div className={s.messageField}>
-                <TextForm callback={sendMassageHandler} />
+                <TextForm callback={sendMassageHandler} name={'Send'}/>
             </div>
         </div>
     );

@@ -1,15 +1,16 @@
 import React from 'react';
 import styles from './Post.module.css';
-import avatarMessages from '../../../../image/avatar_messages.jpg'
+import {PostHeader} from "./PostHeader/PostHeader";
+import {ProfileResponseType} from "../../../../state/profileReducer";
 
 
-const Post = React.memo((props: PostType) => {
+const Post = React.memo((props: PropsType) => {
     return (
-        <div className={styles.item}>
-            <img alt={''} src={avatarMessages}/>
-            <div className={styles.messageLikes}>
-                <span> {props.message} </span>
-                <div> Like {props.likesCount} </div>
+        <div className={styles.root}>
+            <PostHeader profile={props.profile}/>
+            <div className={styles.text}>{props.message}</div>
+            <div className={styles.likes}>
+                <span className={styles.likesCount}>{props.likesCount}</span>
             </div>
         </div>
     );
@@ -21,4 +22,7 @@ export type PostType = {
     id: string
     message: string
     likesCount: number
+}
+type PropsType = PostType & {
+    profile: ProfileResponseType
 }

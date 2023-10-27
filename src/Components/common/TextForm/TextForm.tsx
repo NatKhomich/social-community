@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import React from 'react';
-import s from '../../Profile/MyPosts/MyPosts.module.css';
+import styles from './TextForm.module.css'
 
 export const TextForm = (props: TextFormType) => {
 
@@ -14,18 +14,21 @@ export const TextForm = (props: TextFormType) => {
         },
     })
 
-    return <form onSubmit={formik.handleSubmit}>
-                <textarea
-                    className={s.textarea}
-                    {...formik.getFieldProps('text')}
+    return <form className={styles.form} onSubmit={formik.handleSubmit}>
+                <textarea className={styles.textarea}
+                          {...formik.getFieldProps('text')}
                 />
-        <button type={'submit'} className={s.button}> Send </button>
+
+        <div className={styles.buttonBlock}>
+            <button className={styles.button}>{props.name}</button>
+        </div>
     </form>
 }
 
 //types
 export type TextFormType = {
     callback: (text: DataTextFormType) => void
+    name: string
 }
 
 export type DataTextFormType = {
