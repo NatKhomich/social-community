@@ -1,4 +1,4 @@
-import {addPostAC, profileReducer, ProfileType} from "./profileReducer";
+import {addPostAC, profileReducer, ProfileType, setStatusAC} from "./profileReducer";
 import {v1} from "uuid";
 
 
@@ -36,12 +36,24 @@ beforeEach(() => {
     }
 })
 
-
 test('correct post should be added', () => {
 
     const endState = profileReducer(startState, addPostAC('New Post'))
 
-
     expect(endState.posts.length).toBe(3)
     expect(endState.posts[0].message).toBe('New Post')
 })
+
+test('correct status profile should be get', () => {
+
+    const endState = profileReducer(startState, setStatusAC('New status'))
+
+    expect(endState.status).toBe('New status')
+})
+test('correct status profile should be update', () => {
+
+    const endState = profileReducer(startState, setStatusAC( 'New status'))
+
+    expect(endState.status).toBe('New status')
+})
+
