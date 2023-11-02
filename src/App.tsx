@@ -14,6 +14,7 @@ import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
 import {selectAppIsInitialized, selectAppStatus} from './state/selectors/appSelectors';
 import {compose} from 'redux';
+import ErrorSnackbar from "./Components/Common/ErrorSnackbar/ErrorSnackbar";
 
 type AppType = MapStateToPropsType & MapDispatchToPropsType
 
@@ -47,6 +48,8 @@ class App extends React.Component<AppType> {
                         </div>
                     </div>
                 </div>
+
+                <ErrorSnackbar />
             </div>
         }
     }

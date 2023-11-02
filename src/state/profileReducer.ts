@@ -2,7 +2,11 @@ import {v1} from 'uuid';
 import {PostType} from '../Components/Profile/MyPosts/Post/Post';
 import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
-import {changeStatusLoadingAC} from './appReducer';
+import {changeStatusLoadingAC, ErrorType} from './appReducer';
+import {handleServerAppError} from "../utils/handleServerAppError";
+import {setIsLoggedInAC} from "./authReducer";
+import {AxiosError} from "axios";
+import {handleServerNetworkError} from "../utils/handleServerNetworkError";
 
 const profileInintialState: ProfileType = {
     posts: [
@@ -78,10 +82,13 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
             if(res.data.resultCode === 0) {
                 dispatch(setStatusAC(status))
                 dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
+                dispatch(setIsLoggedInAC(res.data.data, false))
             }
         })
-        .catch(e => {
-            dispatch(changeStatusLoadingAC('failed'))
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
         })
 }
 

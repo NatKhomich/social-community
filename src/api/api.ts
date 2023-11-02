@@ -41,10 +41,10 @@ export const profileAPI = {
 
 export const followAPI = {
     follow(userId: number) {
-        return instance.post(`/follow/${userId}`, {})
+        return instance.post<ResponseType>(`/follow/${userId}`, {})
     },
     unfollow(userId: number) {
-        return instance.delete(`/follow/${userId}`)
+        return instance.delete<ResponseType>(`/follow/${userId}`)
     }
 }
 
