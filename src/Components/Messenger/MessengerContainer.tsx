@@ -2,7 +2,7 @@ import React from 'react';
 import {sendMessageAC} from '../../state/messengerReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../state/store';
+import {AppRootStateType} from '../../state/store';
 import {DialogType} from './DialogItem/DialogItem';
 import {MessageType} from './MessageItem/MessageItem';
 import {withAuthRedirect} from '../../hoc/withAuthRedirect';
@@ -18,7 +18,7 @@ type MapDispatchToPropsType = {
     sendMessage: (newMessage: string) => void
 }
 
-let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+let mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         dialogs: selectMessengerDialogs(state),
         messages: selectMessengerMessages(state),

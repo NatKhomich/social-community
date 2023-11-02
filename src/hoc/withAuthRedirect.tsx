@@ -1,13 +1,13 @@
 import React, {ComponentType} from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {AppStateType} from '../state/store';
+import {AppRootStateType} from '../state/store';
 
 type MapStateToPropsType = {
     isLoggedIn: boolean
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         isLoggedIn: state.auth.isLoggedIn
     }

@@ -3,7 +3,7 @@ import {changeStatusLoadingAC, initializeAppTC} from './appReducer';
 import {DataLoginType} from '../Components/Login/Login';
 import {AppThunkDispatch} from './store';
 
-export type authType = {
+export type AuthType = {
     isLoggedIn: boolean
     loginData: UserAuthType
 }
@@ -13,7 +13,7 @@ const inintialState = {
     loginData: {} as UserAuthType
 }
 
-export const authReducer = (state: authType = inintialState, action: ActionsType): authType => {
+export const authReducer = (state: AuthType = inintialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case 'SET-IS-LOGGED-IN':
             return {...state, loginData: action.loginData, isLoggedIn: action.value}

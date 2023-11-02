@@ -1,4 +1,4 @@
-import {AppStateType} from '../store';
+import {AppRootStateType} from '../store';
 
-export const selectAppStatus = (state: AppStateType) => state.app.status
-export const selectAppIsInitialized = (state: AppStateType) => state.app.isInitialized
+export const selectAppStatus = (state: AppRootStateType) => state.app.status
+export const selectAppIsInitialized = (state: AppRootStateType) => state.app.isInitialized

@@ -1,4 +1,4 @@
-import {AppStateType} from '../store';
+import {AppRootStateType} from '../store';
 
-export const selectMessengerDialogs = (state: AppStateType) => state.dialogs.dialogs
-export const selectMessengerMessages = (state: AppStateType) => state.dialogs.messages
+export const selectMessengerDialogs = (state: AppRootStateType) => state.dialogs.dialogs
+export const selectMessengerMessages = (state: AppRootStateType) => state.dialogs.messages

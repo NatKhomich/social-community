@@ -2,7 +2,7 @@ import React from 'react';
 import Post, {PostType} from './Post/Post';
 import {DataTextFormType, TextForm} from '../../Common/TextForm/TextForm';
 import {PostHeader} from "./Post/PostHeader/PostHeader";
-import {AppStateType} from "../../../state/store";
+import {AppRootStateType} from "../../../state/store";
 import {selectProfilePosts} from "../../../state/selectors/profileSelectors";
 import {connect} from "react-redux";
 import {addPostAC, ProfileResponseType} from "../../../state/profileReducer";
@@ -36,7 +36,7 @@ const MyPosts = React.memo((props: MyPostsType) => {
     );
 });
 
-let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+let mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         posts: selectProfilePosts(state),
     }

@@ -8,7 +8,7 @@ import HeaderContainer from './Components/Header/HeaderContainer';
 import Login from './Components/Login/Login';
 import {CircularProgress, LinearProgress} from '@mui/material';
 import {connect} from 'react-redux';
-import {AppStateType} from './state/store';
+import {AppRootStateType} from './state/store';
 import {initializeAppTC, RequestStatusType} from './state/appReducer';
 import {MessengerContainer} from './Components/Messenger/MessengerContainer';
 import imageError from './image/404.jpg'
@@ -52,7 +52,7 @@ class App extends React.Component<AppType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         status: selectAppStatus(state),
         isInitialized: selectAppIsInitialized(state)

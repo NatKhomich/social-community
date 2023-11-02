@@ -15,9 +15,9 @@ let rootReducer = combineReducers({
 })
 
 export let store  = createStore(rootReducer, applyMiddleware(thunk))
-export type AppStateType = ReturnType<typeof rootReducer>
+export type AppRootStateType = ReturnType<typeof rootReducer>
 
-export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>
+export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
 
 // @ts-ignore
 window.store = store

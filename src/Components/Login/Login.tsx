@@ -11,7 +11,7 @@ import {useFormik} from 'formik';
 import {connect} from 'react-redux';
 import {loginTC} from '../../state/authReducer';
 import {Redirect} from 'react-router-dom';
-import {AppStateType} from '../../state/store';
+import {AppRootStateType} from '../../state/store';
 import {selectAuthIsLoggedIn} from '../../state/selectors/authSelectors';
 import s from './Login.module.css'
 
@@ -105,7 +105,7 @@ const Login = (props: LoginType) => {
     </Grid>
 }
 
-let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+let mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         isLoggedIn: selectAuthIsLoggedIn(state)
     }

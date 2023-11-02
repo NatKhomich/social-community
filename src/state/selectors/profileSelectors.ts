@@ -1,5 +1,5 @@
-import {AppStateType} from '../store';
+import {AppRootStateType} from '../store';
 
-export const selectProfile = (state: AppStateType) => state.profile.profile
-export const selectProfileStatus = (state: AppStateType) => state.profile.status
-export const selectProfilePosts = (state: AppStateType) => state.profile.posts
+export const selectProfile = (state: AppRootStateType) => state.profile.profile
+export const selectProfileStatus = (state: AppRootStateType) => state.profile.status
+export const selectProfilePosts = (state: AppRootStateType) => state.profile.posts

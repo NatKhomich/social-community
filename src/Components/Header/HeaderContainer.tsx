@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {AppStateType} from '../../state/store';
 import {logoutTC} from '../../state/authReducer';
 import {compose} from 'redux';
 import {initializeAppTC} from '../../state/appReducer';
 import {selectAuthIsLoggedIn, selectAuthLoginData} from '../../state/selectors/authSelectors';
+import {AppRootStateType} from "../../state/store";
 
 class HeaderContainer extends React.Component<HeaderContainerType> {
 
@@ -24,7 +24,7 @@ type MapDispatchToPropsType = {
     logout: () => void
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         isLoggedIn: selectAuthIsLoggedIn(state),
         login: selectAuthLoginData(state)

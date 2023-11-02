@@ -3,20 +3,20 @@ import {authAPI} from '../api/api';
 import {setIsLoggedInAC} from './authReducer';
 
 export type RequestStatusType = 'idle' | 'loading' | 'succeeded' | 'failed'
-type appStateType = {
+export type AppStateType = {
     status: RequestStatusType
     isInitialized: boolean
     // error: string | null
 }
 
-const initialState: appStateType = {
+const initialState: AppStateType = {
     status: 'idle',
     // проиниуциализировано ли приложение. будет крутилка пока приложение не поймет что показать профайл или логин
     isInitialized: false
     // error: null,
 }
 
-export const appReducer = (state= initialState, action: AppReducerActionsType): appStateType => {
+export const appReducer = (state= initialState, action: AppReducerActionsType): AppStateType => {
     switch (action.type) {
         case 'SET-STATUS-LOADING' : {
             return {...state, status: action.status}
