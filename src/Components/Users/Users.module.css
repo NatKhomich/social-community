@@ -1,28 +1,6 @@
-
 .users {
     display: flex;
     flex-direction: column;
     margin-left: 30px;
 }
 
-.user {
-    /*width: 70%;*/
-    display: flex;
-   align-items: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-
-.image {
-    width: 60px;
-}
-
-.dataText {
-    font-size: 18px;
-    color: #123869;
-    margin: 10px 10px 0 10px;
-}
-
-.selectedPage {
-    font-weight: 600;
-}

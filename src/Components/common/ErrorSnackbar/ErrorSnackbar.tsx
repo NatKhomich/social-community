@@ -11,7 +11,6 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(
 })
 
 const ErrorSnackbar = (props: ErrorSnackbarType) => {
-
     const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return

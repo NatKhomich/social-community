@@ -38,21 +38,21 @@ const profileInintialState: ProfileType = {
 
 export const profileReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
     switch (action.type) {
-        case 'ADD-POST':
+        case 'profile/ADD-POST':
             const newPost: PostType = {id: action.id, message: action.newPostText, likesCount: 0}
             return {...state, posts: [newPost, ...state.posts]}
-        case 'SET-USER-PROFILE':
+        case 'profile/SET-USER-PROFILE':
             return {...state, profile: action.profile}
-        case 'SET-STATUS':
+        case 'profile/SET-STATUS':
             return {...state, status: action.status}
         default:
             return state
     }
 };
 
-export const addPostAC = (newPostText: string) => ({type: 'ADD-POST', newPostText, id: v1()} as const)
-export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'SET-USER-PROFILE', profile} as const)
-export const setStatusAC = (status: string) => ({type: 'SET-STATUS', status} as const)
+export const addPostAC = (newPostText: string) => ({type: 'profile/ADD-POST', newPostText, id: v1()} as const)
+export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'profile/SET-USER-PROFILE', profile} as const)
+export const setStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
 
 export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))

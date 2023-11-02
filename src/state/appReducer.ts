@@ -21,12 +21,12 @@ const initialState: AppStateType = {
 
 export const appReducer = (state= initialState, action: AppReducerActionsType): AppStateType => {
     switch (action.type) {
-        case 'SET-STATUS-LOADING' : {
+        case 'app/SET-STATUS-LOADING' : {
             return {...state, status: action.status}
         }
-        case 'SET-INITIALIZED':
+        case 'app/SET-INITIALIZED':
             return {...state, isInitialized: action.initialized}
-        case 'SET-ERROR' : {
+        case 'app/SET-ERROR' : {
             return {...state, error: action.error}
         }
         default: return state
@@ -38,9 +38,9 @@ export type ChangeStatusLoadingActionType = ReturnType<typeof changeStatusLoadin
 export type SetInitializedACActionType = ReturnType<typeof setInitializedAC>
 
 export type SetErrorActionType = ReturnType<typeof setErrorAC>
-export const changeStatusLoadingAC = (status: RequestStatusType) => ({type: 'SET-STATUS-LOADING', status} as const)
-export const setInitializedAC = (initialized: boolean) => ({type: 'SET-INITIALIZED', initialized} as const)
-export const setErrorAC = (error: string | null) => ({type: 'SET-ERROR', error} as const)
+export const changeStatusLoadingAC = (status: RequestStatusType) => ({type: 'app/SET-STATUS-LOADING', status} as const)
+export const setInitializedAC = (initialized: boolean) => ({type: 'app/SET-INITIALIZED', initialized} as const)
+export const setErrorAC = (error: string | null) => ({type: 'app/SET-ERROR', error} as const)
 
 export const initializeAppTC = () => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))

@@ -18,7 +18,7 @@ const inintialState = {
 
 export const authReducer = (state: AuthType = inintialState, action: ActionsType): AuthType => {
     switch (action.type) {
-        case 'SET-IS-LOGGED-IN':
+        case 'auth/SET-IS-LOGGED-IN':
             return {...state, loginData: action.loginData, isLoggedIn: action.value}
         default:
             return state
@@ -26,7 +26,7 @@ export const authReducer = (state: AuthType = inintialState, action: ActionsType
 }
 
 export const setIsLoggedInAC = (loginData: UserAuthType, value: boolean) => ({
-    type: 'SET-IS-LOGGED-IN', loginData, value} as const)
+    type: 'auth/SET-IS-LOGGED-IN', loginData, value} as const)
 
 //зарегистрироваться в форме (отправить свои данные на сервер - логин пароль)
 export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => {

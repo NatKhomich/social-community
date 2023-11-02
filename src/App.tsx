@@ -48,7 +48,6 @@ class App extends React.Component<AppType> {
                         </div>
                     </div>
                 </div>
-
                 <ErrorSnackbar />
             </div>
         }

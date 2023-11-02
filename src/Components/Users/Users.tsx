@@ -1,8 +1,8 @@
 import React from 'react';
 import s from './Users.module.css';
-import userAvatar from '../../image/userAvatar.jpg';
 import {UsersType} from '../../state/usersReducer';
-import {NavLink} from 'react-router-dom';
+import {Pagination} from "./Pagination";
+import {User} from "./User/User";
 
 type UsersPresentPropsType = {
     onClickUnfollow: (userID: number) => void
@@ -17,51 +17,19 @@ type UsersPresentPropsType = {
 
 const Users = (props: UsersPresentPropsType) => {
 
-    const pagesCount = Math.ceil(props.totalCountUser / props.pageSize)
-    const pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
-    const setCurrentPageHandler = (numPage: number) => () => props.setCurrentPage(numPage)
-    const onClickFollowHandler = (userId: number) => props.onClickFollow(userId)
-    const onClickUnfollowHandler = (userId: number) => props.onClickUnfollow(userId)
-
     return (
         <div className={s.users}>
-            <div> {pages.map((el) => {
-                return (
-                    <button className={props.page === el ? s.selectedPage : ''}
-                            onClick={setCurrentPageHandler(el)}
-                            key={el}>
-                        {el}
-                    </button>
-                )
-            })}
-            </div>
-            {props.users.items.map(el =>
-                <div className={s.user} key={el.id}>
-                    <div className={s.imgAndButton}>
-                        <div>
-                            <NavLink to={'/profile/' + el.id}>
-                                <img alt="" className={s.image} src={el.photos.small ? el.photos.small : userAvatar}/>
-                            </NavLink>
-                        </div>
-                        {el.followed
-                            ? <button onClick={() => onClickUnfollowHandler(el.id)}
-                                      disabled={props.followingProgress.some(id => id === el.id)}
-                            > Unfollow </button>
-                            : <button onClick={() => onClickFollowHandler(el.id)}
-                                      disabled={props.followingProgress.some(id => id === el.id)}
-                            > Follow </button>
-                        }
-                    </div>
-                    <div className={s.dataBlock}>
-                        <div className={s.nameAndStatus}>
-                            <div className={s.dataText}>{el.name}</div>
-                            <div className={s.dataText}>{el.status}</div>
-                        </div>
-                    </div>
-                </div>
+
+            <Pagination setCurrentPage={props.setCurrentPage}
+                        totalCountUser={props.totalCountUser}
+                        pageSize={props.pageSize} page={props.page} />
+
+            {props.users.items.map(el => <User key={el.id}
+                                               user={el}
+                                               followingProgress={props.followingProgress}
+                                               onClickFollow={props.onClickFollow}
+                                               onClickUnfollow={props.onClickUnfollow}
+                />
             )}
         </div>
     );

@@ -16,17 +16,17 @@ const usersInintialState: UsersType = {
 
 export const usersReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
     switch (action.type) {
-        case 'FOLLOW':
+        case 'users/FOLLOW':
             return {...state, items: state.items.map(el => el.id === action.userID ? {...el, followed: true} : el)}
-        case 'UNFOLLOW':
+        case 'users/UNFOLLOW':
             return {...state, items: state.items.map(el => el.id === action.userID ? {...el, followed: false} : el)}
-        case 'SET-USERS':
+        case 'users/SET-USERS':
             return {...state, items: action.users}
-        case 'SET-CURRENT-PAGE':
+        case 'users/SET-CURRENT-PAGE':
             return {...state, page: action.page}
-        case 'SET-USERS-TOTAL-COUNT':
+        case 'users/SET-USERS-TOTAL-COUNT':
             return {...state, totalCountUser: action.totalCount}
-        case 'TOGGLE-IS-FOLLOWING-PROGRESS': {
+        case 'users/TOGGLE-IS-FOLLOWING-PROGRESS': {
             return {...state,
                 followingProgress: action.followingProgress ? [...state.followingProgress, action.userId]
                     : state.followingProgress.filter(id => id !== action.userId)}
@@ -36,13 +36,13 @@ export const usersReducer = (state: UsersType = usersInintialState, action: Acti
     }
 }
 
-export const followAC = (userID: number) => ({type: 'FOLLOW', userID} as const)
-export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID} as const)
-export const setUsersAC = (users: UsersResponseType[]) => ({type: 'SET-USERS', users} as const)
-export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', page} as const)
-export const setUsersTotalCountAC = (totalCount: number) => ({type: 'SET-USERS-TOTAL-COUNT', totalCount} as const)
+export const followAC = (userID: number) => ({type: 'users/FOLLOW', userID} as const)
+export const unfollowAC = (userID: number) => ({type: 'users/UNFOLLOW', userID} as const)
+export const setUsersAC = (users: UsersResponseType[]) => ({type: 'users/SET-USERS', users} as const)
+export const setCurrentPageAC = (page: number) => ({type: 'users/SET-CURRENT-PAGE', page} as const)
+export const setUsersTotalCountAC = (totalCount: number) => ({type: 'users/SET-USERS-TOTAL-COUNT', totalCount} as const)
 export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
-    {type: 'TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
+    {type: 'users/TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
 
 
 export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
