@@ -4,7 +4,6 @@ import {Dispatch} from 'redux';
 import {profileAPI} from '../api/api';
 import {changeStatusLoadingAC, ErrorType} from './appReducer';
 import {handleServerAppError} from "../utils/handleServerAppError";
-import {setIsLoggedInAC} from "./authReducer";
 import {AxiosError} from "axios";
 import {handleServerNetworkError} from "../utils/handleServerNetworkError";
 
@@ -62,6 +61,9 @@ export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
             dispatch(setUserProfileAC(res.data))
             dispatch(changeStatusLoadingAC('succeeded'))
         })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
+        })
 }
 export const getStatusTC = (userId: number) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
@@ -70,8 +72,8 @@ export const getStatusTC = (userId: number) => (dispatch: Dispatch) => {
             dispatch(setStatusAC(res.data))
             dispatch(changeStatusLoadingAC('succeeded'))
         })
-        .catch(e => {
-            dispatch(changeStatusLoadingAC('failed'))
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
         })
 }
 
@@ -79,12 +81,11 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     profileAPI.updateStatus(status)
         .then(res => {
-            if(res.data.resultCode === 0) {
+            if (res.data.resultCode === 0) {
                 dispatch(setStatusAC(status))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 handleServerAppError(res.data, dispatch)
-                dispatch(setIsLoggedInAC(res.data.data, false))
             }
         })
         .catch((error: AxiosError<ErrorType>) => {

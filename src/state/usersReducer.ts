@@ -1,6 +1,9 @@
 import {Dispatch} from 'redux';
 import {followAPI, usersAPI} from '../api/api';
-import {changeStatusLoadingAC} from './appReducer';
+import {changeStatusLoadingAC, ErrorType} from './appReducer';
+import {AxiosError} from "axios";
+import {handleServerNetworkError} from "../utils/handleServerNetworkError";
+import {handleServerAppError} from "../utils/handleServerAppError";
 
 
 const usersInintialState: UsersType = {
@@ -50,6 +53,9 @@ export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: 
             dispatch(setUsersTotalCountAC(res.data.totalCount))
             dispatch(changeStatusLoadingAC('succeeded'))
         })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
+        })
 }
 export const setCurrentPageTC = (pageNumber: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
@@ -58,6 +64,9 @@ export const setCurrentPageTC = (pageNumber: number, pageSize: number) => (dispa
         .then(res => {
             dispatch(setUsersAC(res.data.items))
             dispatch(changeStatusLoadingAC('succeeded'))
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
         })
 }
 export const followTC = (userId: number) => (dispatch: Dispatch) => {
@@ -69,7 +78,12 @@ export const followTC = (userId: number) => (dispatch: Dispatch) => {
                 dispatch(followAC(userId))
                 dispatch(toggleIsFollowingProgressAC(userId, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
             }
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
         })
 }
 export const unfollowTC = (userId: number) => (dispatch: Dispatch) => {
@@ -81,7 +95,12 @@ export const unfollowTC = (userId: number) => (dispatch: Dispatch) => {
                 dispatch(unfollowAC(userId))
                 dispatch(toggleIsFollowingProgressAC(userId, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
             }
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
         })
 }
 

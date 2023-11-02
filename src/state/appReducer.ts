@@ -55,12 +55,10 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
             }
         })
         .catch((error: AxiosError<ErrorType>) => {
-            dispatch(changeStatusLoadingAC('failed'))
             handleServerNetworkError(error.message, dispatch)
         })
         .finally(() => {
-            //убрать крутилку в любом случае как только пришел ответ на me запрос
-            dispatch(setInitializedAC(true))
+            dispatch(setInitializedAC(true)) //убрать крутилку в любом случае как только пришел ответ на me запрос
         })
 }
 
