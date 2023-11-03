@@ -10,7 +10,8 @@ beforeEach(() => {
             pageSize: 10,
             totalCountUser: 0,
             page: 1,
-            followingProgress: []
+            followingProgress: [],
+            portionSize: 10
         }
     }
 )

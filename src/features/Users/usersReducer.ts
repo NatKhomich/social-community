@@ -12,7 +12,8 @@ const usersInintialState: UsersType = {
     pageSize: 10,
     totalCountUser: 0,
     page: 1,
-    followingProgress: []
+    followingProgress: [],
+    portionSize: 10
 }
 
 export const usersReducer = (state: UsersType = usersInintialState, action: ActionsType): UsersType => {
@@ -122,7 +123,8 @@ export type UsersType = {
     pageSize: number
     totalCountUser: number
     page: number
-    followingProgress: number[]
+    followingProgress: number[],
+    portionSize: number
 }
 
 type ActionsType = ReturnType<typeof followAC> | ReturnType<typeof unfollowAC>

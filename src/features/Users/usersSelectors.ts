@@ -6,4 +6,5 @@ export const selectUsersPageSize = (state: AppRootStateType) => state.users.page
 
 export const selectUsersTotalCount = (state: AppRootStateType) => state.users.totalCountUser
 export const selectUsersFollowingProgress = (state: AppRootStateType) => state.users.followingProgress
+export const selectPortionSize = (state: AppRootStateType) => state.users.portionSize
 //export const selectUsersItems = (state: AppStateType) => state.users.items

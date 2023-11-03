@@ -1,0 +1,90 @@
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.pageNumber {
+    padding: 0 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #666666;
+}
+
+
+.selectedPage {
+    font-weight: bold;
+    background-color: #9099ad;
+    border: none;
+    height: 36px;
+    width: 15px;
+    padding: 0 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666666;
+}
+
+.selectedPage:hover {
+    opacity: 0.9;
+}
+
+.pageNumber:hover {
+    opacity: 0.9;
+    background-color: #9099ad;
+}
+
+
+
+
+
+.button {
+    padding: 0 15px;
+    background-color: #e5e7eb;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #666666;
+    height: 36px;
+    font-weight: 600;
+}
+
+.button:hover {
+    background-color: #8a8c93;
+    color: #FFFFFF;
+}
+
+
+@media (max-width: 960px) {
+    .pagination {
+        gap: 5px;
+    }
+
+    .button {
+        padding: 2px;
+    }
+
+    .pageNumber {
+        padding: 2px;
+    }
+}
+
+@media (max-width: 850px) {
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 690px) {
+    .pagination {
+        gap: 5px;
+    }
+}

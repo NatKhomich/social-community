@@ -5,6 +5,7 @@ import React from 'react';
 import Users from './Users';
 import {compose} from 'redux';
 import {
+    selectPortionSize,
     selectUsers,
     selectUsersFollowingProgress, selectUsersPage,
     selectUsersPageSize,
@@ -14,7 +15,7 @@ import {
 class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.page, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     setCurrentPage = (pageNumber: number) => {
@@ -32,9 +33,10 @@ class UsersContainer extends React.Component<UsersContainerType> {
                    setCurrentPage={this.setCurrentPage}
                    totalCountUser={this.props.totalCountUser}
                    pageSize={this.props.pageSize}
-                   page={this.props.page}
+                   currentPage={this.props.currentPage}
                    users={this.props.users}
                    followingProgress={this.props.followingProgress}
+                   portionSize={this.props.portionSize}
             />
         </>
     }
@@ -45,8 +47,9 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         users: selectUsers(state),
         pageSize: selectUsersPageSize(state),
         totalCountUser: selectUsersTotalCount(state),
-        page: selectUsersPage(state),
-        followingProgress: selectUsersFollowingProgress(state)
+        currentPage: selectUsersPage(state),
+        followingProgress: selectUsersFollowingProgress(state),
+        portionSize: selectPortionSize(state)
     }
 }
 
@@ -65,9 +68,9 @@ type MapStateToPropsType = {
     users: UsersType
     pageSize: number
     totalCountUser: number
-    page: number
+    currentPage: number
     followingProgress: number[]
-
+    portionSize: number
 }
 type MapDispatchToPropsType = {
     follow: (userID: number) => void
