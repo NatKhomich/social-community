@@ -1,0 +1,29 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.img {
+    max-width: 550px;
+    width: 100%;
+}
+
+.title {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+.text {
+    font-size: 22px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    line-height: 28px;
+    font-weight: 300;
+    text-align: center;
+}

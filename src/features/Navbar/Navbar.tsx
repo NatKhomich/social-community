@@ -22,8 +22,10 @@ const Navbar = () => {
                         <NavLink to="/messenger" className={styles.link} activeClassName={styles.linkActive}>
                             <div className={styles.image}>
                                 {/*<img src={iconProfile} alt="icon-profile"/>*/}
+
+                                <span className={styles.span}>Messenger</span>
                             </div>
-                            <span className={styles.span}>Messenger</span>
+
                         </NavLink>
                     </li>
 
