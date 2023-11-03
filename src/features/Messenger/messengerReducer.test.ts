@@ -8,10 +8,8 @@ beforeEach(() => {
 
     startState = {
         dialogs: [
-            {id: v1(), name: 'Natalia'},
-            {id: v1(), name: 'Alex'},
-            {id: v1(), name: 'Ekaterina'},
-            {id: v1(), name: 'Uliana'}
+            {id: v1(), name: 'Natalia', avatar: ''},
+            {id: v1(), name: 'Alex', avatar: ''}
         ],
         messages: [
             {id: v1(), message: 'Hi'},

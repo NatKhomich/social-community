@@ -1,13 +1,25 @@
 import {v1} from 'uuid';
 import {DialogType} from './DialogItem/DialogItem';
 import {MessageType} from './MessageItem/MessageItem';
+import messageImg from '../../common/image/image_message.webp'
 
 const messengerInintialState: MessengerType = {
     dialogs: [
-        {id: v1(), name: 'Natalia'},
-        {id: v1(), name: 'Alex'},
-        {id: v1(), name: 'Ekaterina'},
-        {id: v1(), name: 'Uliana'}
+        {
+            id: v1(),
+            avatar: messageImg,
+            name: 'Erica',
+        },
+        {
+            id: v1(),
+            avatar: messageImg,
+            name: 'Alex',
+        },
+        {
+            id: v1(),
+            avatar: messageImg,
+            name: 'Dennis',
+        },
     ],
     messages: [
         {id: v1(), message: 'Hi'},

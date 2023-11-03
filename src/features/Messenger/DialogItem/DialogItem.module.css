@@ -1,16 +1,71 @@
-
-.dialog {
-    font-size: 18px;
-    margin-top: 10px;
-
+.root {
+    width: 295px;
+    padding: 12px 22px;
+    color: #333333;
+    border-right: 1px solid rgba(229,231,235, 1);
 }
 
-.dialog img {
-    width: 30px;
+.title {
+    padding: 12px 12px 0;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height:50px;
+    border-radius: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.item__image {
+    display: flex;
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+
+.item__avatar {
     border-radius: 50%;
 }
 
-.dialogNick {
-    text-decoration: none;
-    color: #2f3e46;
+.userAndMessage {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
+.item__userName {
+    font-size: 15px;
+    line-height: 23px;
+    font-weight: 600;
+}
+
+.userMessage {
+    font-size: 14px;
+    line-height: 26px;
+    color: #888;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item__link {
+    display: flex;
+    align-items: center;
+    color: #585757;
+}
+
+.item__link_active {
+    display: flex;
+    height:45px;
+    width: 100%;
+    align-items: center;
+    background-color:  #2a41e812;
+    color: #2a41e8;
+    border-radius: 10px;
+    transition: 0.3s;
 }

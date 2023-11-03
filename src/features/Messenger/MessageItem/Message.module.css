@@ -1,13 +1,22 @@
+.root {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.root:nth-child(2n) {
+    justify-content: flex-end;
+}
+
 .message {
-}
-
-.mes {
-    text-decoration: none;
-    color: #2f3e46;
-    font-size: 18px;
-    margin-top: 23px;
-}
-
-.imageMessage {
-    width: 50px;
+    background-color: #2a41e8;
+    padding: 12px 18px;
+    margin: 0;
+    border-radius: 8px;
+    max-width: 400px;
+    color: #FFFFFF;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
