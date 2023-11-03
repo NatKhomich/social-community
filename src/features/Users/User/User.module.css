@@ -1,17 +1,74 @@
-.user {
-    /*width: 70%;*/
+.container {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ebe9e6;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.root {
     display: flex;
-    align-items: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.image {
-    width: 60px;
+.userPhoto {
+    width: 180px;
+    height: 170px;
+    object-fit:  cover;
+    border-radius: 8px;
 }
 
-.dataText {
-    font-size: 18px;
-    color: #123869;
-    margin: 10px 10px 0 10px;
+.name {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #666666;
+    max-width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
+
+.status {
+    font-size: 14px;
+    line-height: 2;
+    color: #4B5563;
+    font-weight: 500;
+    max-width: 170px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.buttonFollow {
+    background-color: #d8dfe8;
+    padding: 0 20px;
+    cursor: pointer;
+    color: #4d5059;
+    font-weight: 600;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.buttonUnfollow {
+    background-color: #e5e7eb;
+    padding: 0 20px;
+    cursor: pointer;
+    color: #666666;
+    font-weight: 600;
+    height: 36px;
+    border: none;
+    border-radius: 6px;
+    width: 100%;
+}
+
+.buttonFollow:hover {
+    opacity: 0.9;
+}
+
+.buttonUnfollow:hover {
+    opacity: 0.9;
+}
+

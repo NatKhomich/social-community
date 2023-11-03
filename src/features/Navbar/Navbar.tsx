@@ -19,6 +19,15 @@ const Navbar = () => {
                     </li>
 
                     <li className={styles.item}>
+                        <NavLink to="/users" className={styles.link} activeClassName={styles.linkActive}>
+                            <div className={styles.image}>
+                                {/*<img src={iconProfile} alt="icon-profile"/>*/}
+                            </div>
+                            <span className={styles.span}>Users</span>
+                        </NavLink>
+                    </li>
+
+                    <li className={styles.item}>
                         <NavLink to="/messenger" className={styles.link} activeClassName={styles.linkActive}>
                             <div className={styles.image}>
                                 {/*<img src={iconProfile} alt="icon-profile"/>*/}
@@ -26,15 +35,6 @@ const Navbar = () => {
                                 <span className={styles.span}>Messenger</span>
                             </div>
 
-                        </NavLink>
-                    </li>
-
-                    <li className={styles.item}>
-                        <NavLink to="/users" className={styles.link} activeClassName={styles.linkActive}>
-                            <div className={styles.image}>
-                                {/*<img src={iconProfile} alt="icon-profile"/>*/}
-                            </div>
-                            <span className={styles.span}>Users</span>
                         </NavLink>
                     </li>
 

@@ -18,7 +18,7 @@
 
 .selectedPage {
     font-weight: bold;
-    background-color: #9099ad;
+    background-color: #d8dfe8;
     border: none;
     height: 36px;
     width: 15px;
@@ -37,12 +37,8 @@
 
 .pageNumber:hover {
     opacity: 0.9;
-    background-color: #9099ad;
+    background-color: #d8dfe8;
 }
-
-
-
-
 
 .button {
     padding: 0 15px;

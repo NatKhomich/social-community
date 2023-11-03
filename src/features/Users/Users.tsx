@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Users.module.css';
+import styles from './Users.module.css';
 import {UsersType} from './usersReducer';
 import {Pagination} from "./Pagination/Pagination";
 import {User} from "./User/User";
@@ -17,25 +17,49 @@ type UsersPresentPropsType = {
 }
 
 const Users = (props: UsersPresentPropsType) => {
+    const {
+        onClickUnfollow,
+        onClickFollow,
+        followingProgress,
+        users,
+        totalCountUser,
+        setCurrentPage,
+        pageSize,
+        portionSize,
+        currentPage
+    } = props
 
     return (
-        <div className={s.users}>
-
-            <Pagination setCurrentPage={props.setCurrentPage}
-                        totalItemsCount={props.totalCountUser}
-                        pageSize={props.pageSize}
-                        portionSize={props.portionSize}
-                        currentPage={props.currentPage}
-            />
-
-            {props.users.items.map(el => <User key={el.id}
-                                               user={el}
-                                               followingProgress={props.followingProgress}
-                                               onClickFollow={props.onClickFollow}
-                                               onClickUnfollow={props.onClickUnfollow}
-                />
-            )}
+        <div className={styles.wrapper}>
+            <div className={styles.root}>
+                <div className={styles.usersHeader}>
+                    <h2 className={styles.title}>Users</h2>
+                    {/*<UsersFilteredButtons filter={filter} onFilterChanged={onFilterChanged}/>*/}
+                </div>
+                <div className={styles.container}>
+                    <div className={styles.users}>
+                        {
+                            users.items.map(u =>
+                                <User key={u.id}
+                                      user={u}
+                                      followingProgress={followingProgress}
+                                      onClickFollow={onClickFollow}
+                                      onClickUnfollow={onClickUnfollow}
+                                />
+                            )
+                        }
+                    </div>
+                    <Pagination currentPage={currentPage}
+                                pageSize={pageSize}
+                                totalItemsCount={totalCountUser}
+                                setCurrentPage={setCurrentPage}
+                                portionSize={portionSize}
+                    />
+                </div>
+            </div>
         </div>
+
+
     );
 };
 

@@ -12,36 +12,32 @@ type UserType = {
 }
 
 export const User = (props: UserType) => {
+    const {user, followingProgress, onClickFollow, onClickUnfollow} = props
 
-    const onClickFollowHandler = (userId: number) => props.onClickFollow(userId)
-    const onClickUnfollowHandler = (userId: number) => props.onClickUnfollow(userId)
+    let isDisabled = followingProgress.some(id => id === user.id)
+    const onClickFollowHandler = (userId: number) => onClickFollow(userId)
+    const onClickUnfollowHandler = (userId: number) => onClickUnfollow(userId)
 
     return (
-        <div className={styles.users}>
-            
-                <div className={styles.user} key={props.user.id}>
-                    <div className={styles.imgAndButton}>
-                        <div>
-                            <NavLink to={'/profile/' + props.user.id}>
-                                <img alt="" className={styles.image} src={props.user.photos.small ? props.user.photos.small : userAvatar}/>
-                            </NavLink>
-                        </div>
-                        {props.user.followed
-                            ? <button onClick={() => onClickUnfollowHandler(props.user.id)}
-                                      disabled={props.followingProgress.some(id => id === props.user.id)}
-                            > Unfollow </button>
-                            : <button onClick={() => onClickFollowHandler(props.user.id)}
-                                      disabled={props.followingProgress.some(id => id === props.user.id)}
-                            > Follow </button>
-                        }
-                    </div>
-                    <div className={styles.dataBlock}>
-                        <div className={styles.nameAndStatus}>
-                            <div className={styles.dataText}>{props.user.name}</div>
-                            <div className={styles.dataText}>{props.user.status}</div>
-                        </div>
-                    </div>
-                </div>
+        <div className={styles.container}>
+            <div className={styles.root}>
+                <NavLink to={`/profile/${user.id}`}>
+                    <img className={styles.userPhoto}
+                         src={user.photos.small ? user.photos.small : userAvatar}
+                         alt="user-image"/>
+                </NavLink>
+                <div className={styles.name}>{user.name}</div>
+                <div className={styles.status}>{user.status ? user.status : 'No status'}</div>
+                {
+                    user.followed
+                        ? <button className={styles.buttonUnfollow} disabled={isDisabled} onClick={() => {
+                            onClickUnfollowHandler(user.id)
+                        }}>Unfollowing</button>
+                        : <button className={styles.buttonFollow} disabled={isDisabled} onClick={() => {
+                            onClickFollowHandler(user.id)
+                        }}>Following</button>
+                }
+            </div>
         </div>
     );
 };
