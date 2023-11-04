@@ -1,5 +1,5 @@
 import {v1} from 'uuid';
-import {PostType} from './MyPosts/Post/Post';
+import {PostType} from './Posts/Post/Post';
 import {Dispatch} from 'redux';
 import {changeStatusLoadingAC, ErrorType} from '../../app/appReducer';
 import {handleServerAppError} from "../../common/utils/handleServerAppError";
@@ -33,7 +33,29 @@ const profileInintialState: ProfileType = {
             large: '',
         }
     },
-    status: ''
+    status: '',
+    sidebar: {
+        about: [
+    {
+        id: 1,
+        icon: '',
+        info: 'Live In',
+        description: ''
+    },
+    {
+        id: 2,
+        icon: '',
+        info: 'From',
+        description: 'Aden, Yemen'
+    },
+    {
+        id: 3,
+        icon: '',
+        info: 'From',
+        description: 'Relationship'
+    }
+],
+}
 }
 
 export const profileReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
@@ -123,4 +145,16 @@ export type ProfileType = {
     posts: PostType[]
     profile: ProfileResponseType
     status: string
+    sidebar: SidebarType
+}
+
+export type SidebarType = {
+    about: AboutType[]
+}
+
+export type AboutType = {
+    id: number
+    icon: string
+    info: string
+    description: string
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
-import {getStatusTC, ProfileResponseType, setUserProfileTC, updateStatusTC} from './profileReducer';
+import {getStatusTC, ProfileResponseType, setUserProfileTC, SidebarType, updateStatusTC} from './profileReducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from '../../common/hoc/withAuthRedirect';
 import {compose} from 'redux';
 import {selectAuthLoginDataId} from '../Auth/authSelectors';
-import {selectProfile, selectProfileStatus} from './profileSelectors';
+import {selectProfile, selectProfileSidebar, selectProfileStatus} from './profileSelectors';
 
 
 class ProfileContainer extends React.PureComponent<ProfileContainerType> {
@@ -25,6 +25,7 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
         return <Profile profile={this.props.profile}
                         status={this.props.status}
                         updateStatus={this.props.updateStatus}
+                        sidebar={this.props.sidebar}
         />
     }
 }
@@ -33,7 +34,8 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
     return {
         profile: selectProfile(state),
         status: selectProfileStatus(state),
-        userId: selectAuthLoginDataId(state)
+        userId: selectAuthLoginDataId(state),
+        sidebar: selectProfileSidebar(state)
     }
 }
 
@@ -57,6 +59,7 @@ type MapStateToPropsType = {
     profile: ProfileResponseType
     status: string,
     userId: number | null | string
+    sidebar: SidebarType
 }
 type MapDispatchToPropsType = {
     setUserProfile: (userId: string) => void

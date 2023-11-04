@@ -32,7 +32,17 @@ beforeEach(() => {
                 large: '',
             }
         },
-        status: ''
+        status: '',
+        sidebar: {
+            about: [
+                {
+                    id: 1,
+                    icon: '',
+                    info: 'Live In',
+                    description: ''
+                }
+            ]
+        }
     }
 })
 
@@ -52,7 +62,7 @@ test('correct status profile should be get', () => {
 })
 test('correct status profile should be update', () => {
 
-    const endState = profileReducer(startState, setStatusAC( 'New status'))
+    const endState = profileReducer(startState, setStatusAC('New status'))
 
     expect(endState.status).toBe('New status')
 })

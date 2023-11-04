@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {connect} from 'react-redux';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import {compose} from 'redux';
 import {CircularProgress, LinearProgress} from '@mui/material';
 import {AppRootStateType} from './store';
@@ -47,6 +47,8 @@ class App extends React.Component<AppType> {
                         <div className={'content'}>
 
                             <Switch>
+                                <Route exact path="/" render={() => <Redirect to={'/profile'}/>}/>
+
                                 <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
                                 <Route path={'/messenger'} render={withSuspense(MessengerContainer)}/>
                                 <Route path={'/users'} render={withSuspense(UsersContainer)}/>

@@ -1,13 +1,15 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css'
-import {ProfileResponseType} from './profileReducer';
-import MyPosts from "./MyPosts/MyPosts";
+import {ProfileResponseType, SidebarType} from './profileReducer';
+import Posts from "./Posts/MyPosts";
+import {Sidebar} from "./Sidebar/Sidebar";
 
 type ProfilePropsType = {
     profile: ProfileResponseType
     status: string
     updateStatus: (status: string) => void
+    sidebar: SidebarType
 }
 
 const Profile = React.memo((props: ProfilePropsType) => {
@@ -17,8 +19,9 @@ const Profile = React.memo((props: ProfilePropsType) => {
 
                 <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
 
-                <MyPosts profile={props.profile} />
+                <Posts profile={props.profile}/>
 
+                <Sidebar profile={props.profile} sidebar={props.sidebar} />
             </div>
         </div>
     );

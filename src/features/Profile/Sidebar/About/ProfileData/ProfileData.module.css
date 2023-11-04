@@ -1,0 +1,82 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: #4B5563;
+    margin-top: 12px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+}
+
+.iconBlock {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.iconImage {
+    background-color: rgba(229, 231, 235, 1);
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.info {
+    margin-left: 8px;
+    font-weight: bolder;
+}
+
+.buttonContainer {
+    width: 100%;
+}
+
+.editButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #f0f2f5;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    color: #666666;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.editButton:hover {
+    opacity: 0.9;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+
+@media (max-width: 480px) {
+    .root {
+        font-size: 14px;
+    }
+
+    .iconBlock {
+        display: none;
+    }
+
+    .contact {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+    }
+}

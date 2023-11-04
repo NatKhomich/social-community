@@ -1,0 +1,30 @@
+.root {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.iconBlock {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px
+}
+
+.iconBlock:hover {
+    scale: 1.1;
+}
+
+.iconImage {
+    padding: 4px;
+}
+
+.link:hover {
+    color: #2563EB;
+}
+
+@media (max-width: 480px) {
+    .link {
+        display: none;
+    }
+}

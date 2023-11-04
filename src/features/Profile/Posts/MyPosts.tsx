@@ -9,7 +9,7 @@ import {addPostAC, ProfileResponseType} from "../profileReducer";
 import styles from './MyPosts.module.css'
 
 
-const MyPosts = React.memo((props: MyPostsType) => {
+const Posts = React.memo((props: MyPostsType) => {
 
     let postElement = props.posts.map(el => {
         return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id} profile={props.profile}/>
@@ -46,7 +46,7 @@ export default connect(
     mapStateToProps,
     {
         addPost: addPostAC,
-    })(MyPosts)
+    })(Posts)
 
 //types
 type PropsType = {
