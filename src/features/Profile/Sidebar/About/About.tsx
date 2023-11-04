@@ -3,6 +3,7 @@ import {ProfileData} from "./ProfileData/ProfileData";
 import styles from './About.module.css'
 import {AboutType, ProfileResponseType} from "../../profileReducer";
 import {UpdateProfileType} from "../../../../api/profileApi";
+import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 
 type PropsType = {
     about: AboutType[]
@@ -22,7 +23,15 @@ const About = (props: PropsType) => {
         <div className={styles.root}>
             <h4 className={styles.sidebar__title}>About</h4>
 
-            <ProfileData profile={props.profile} activateEditMode={activateEditMode} />
+            {
+                editMode
+                ? <ProfileDataForm callback={() => {}} profile={props.profile} />
+                    :   <ProfileData profile={props.profile} activateEditMode={activateEditMode} />
+            }
+
+
+
+
         </div>
     );
 };

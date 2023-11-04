@@ -14,7 +14,6 @@ const profileInintialState: ProfileType = {
         {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
     ],
     profile: {
-        aboutMe: '',
         contacts: {
             facebook: '',
             website: '',
@@ -142,7 +141,6 @@ type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setStatusAC>
 
 export type ProfileResponseType = {
-    aboutMe: string
     contacts: ContactsType,
     lookingForAJob: boolean
     lookingForAJobDescription: string

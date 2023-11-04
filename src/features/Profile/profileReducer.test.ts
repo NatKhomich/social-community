@@ -12,7 +12,6 @@ beforeEach(() => {
             {id: v1(), message: 'Message2', likesCount: 2},
         ],
         profile: {
-            aboutMe: '',
             contacts: {
                 facebook: '',
                 website: '',

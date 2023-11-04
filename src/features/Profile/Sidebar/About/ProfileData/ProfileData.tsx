@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../ProfileData/ProfileData.module.css';
+import styles from './ProfileData.module.css';
 import ProfileContact from "../../../ProfileContact/ProfileContact";
 import {ProfileResponseType} from "../../../profileReducer";
 import iconAboutMe from '../../../../../common/image/about/icon-heart.svg'
@@ -54,7 +54,7 @@ export const ProfileData = (props: PropsType) => {
                         <img className={styles.iconImage} src={profileInfoIcons.aboutMe} alt="aboutMe-icon"/>
                     </div>
                     <div>About me:</div>
-                    <div className={styles.info}>{profile?.aboutMe}</div>
+                    {/*<div className={styles.info}>{profile?.aboutMe}</div>*/}
                 </li>
                 <li className={styles.item}>
                     <div className={styles.iconBlock}>

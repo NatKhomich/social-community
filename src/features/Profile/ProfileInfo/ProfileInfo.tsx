@@ -28,7 +28,7 @@ const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
 
                 <div className={styles.descriptionInfo}>
                     <div className={styles.name}> {props.profile.fullName} </div>
-                    <div> {props.profile.aboutMe} </div>
+                    {/*<div> {props.profile.aboutMe} </div>*/}
                     <div> Looking for a job: {props.profile.lookingForAJobDescription} </div>
                     <div>
                         Contacts:

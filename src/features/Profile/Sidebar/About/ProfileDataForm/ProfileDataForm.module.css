@@ -1,0 +1,64 @@
+.root {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.formContainer {
+    margin-top: 12px;
+}
+
+.formItems {
+    display: flex;
+    flex-direction: column;
+    color: #4B5563;
+    gap: 15px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.iconBlock {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}
+
+.iconImage {
+    background-color: rgba(229,231,235, 1);
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.info {
+    margin-left: 8px;
+    font-weight: bolder;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.saveButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #2563EB;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.saveButton:hover {
+    opacity: 0.9;
+}
