@@ -1,10 +1,10 @@
 import {changeStatusLoadingAC, ErrorType, initializeAppTC} from '../../app/appReducer';
 import {DataLoginType} from './Login';
-import {AppThunkDispatch} from '../../app/store';
 import {handleServerAppError} from "../../common/utils/handleServerAppError";
 import {handleServerNetworkError} from "../../common/utils/handleServerNetworkError";
 import {AxiosError} from "axios";
 import {authAPI, UserAuthType} from "../../api/authApi";
+import {AppThunkDispatch} from "../../app/store";
 
 export type AuthType = {
     isLoggedIn: boolean
@@ -50,7 +50,7 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedInAC({id: null, login: null, email: null}, false))
+                dispatch(setIsLoggedInAC({id: '', login: null, email: null}, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 handleServerAppError(res.data, dispatch)

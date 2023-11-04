@@ -5,7 +5,8 @@ import {changeStatusLoadingAC, ErrorType} from '../../app/appReducer';
 import {handleServerAppError} from "../../common/utils/handleServerAppError";
 import {AxiosError} from "axios";
 import {handleServerNetworkError} from "../../common/utils/handleServerNetworkError";
-import {profileAPI} from "../../api/profileApi";
+import {profileAPI, UpdateProfileType} from "../../api/profileApi";
+import {AppRootStateType, AppThunkType} from "../../app/store";
 
 const profileInintialState: ProfileType = {
     posts: [
@@ -27,7 +28,7 @@ const profileInintialState: ProfileType = {
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
-        userId: 0,
+        userId: '',
         photos: {
             small: '',
             large: '',
@@ -115,30 +116,52 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
         })
 }
 
+export const updateProfileTC = (profile: UpdateProfileType): AppThunkType => (dispatch, getState: () => AppRootStateType) =>  {
+   let userId: string | null | number
+    userId = getState().auth.loginData.id
+    dispatch(changeStatusLoadingAC('loading'))
+    profileAPI.updateProfile(profile)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                //@ts-ignore
+                dispatch(setUserProfileTC(userId))
+                dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
+            }
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
+        })
+}
+
+
+
 type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
 
 export type ProfileResponseType = {
     aboutMe: string
-    contacts: {
-        facebook: string
-        website: null | string
-        vk: string
-        twitter: string
-        instagram: string
-        youtube: null | string
-        github: string
-        mainLink: null | string
-    },
+    contacts: ContactsType,
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    userId: number
+    userId: string
     photos: {
         small: string
         large: string
     }
+}
+export type ContactsType = {
+    facebook: string
+    website: null | string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: null | string
+    github: string
+    mainLink: null | string
 }
 
 export type ProfileType = {
