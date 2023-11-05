@@ -54,7 +54,7 @@ export const ProfileData = (props: PropsType) => {
                         <img className={styles.iconImage} src={profileInfoIcons.aboutMe} alt="aboutMe-icon"/>
                     </div>
                     <div>About me:</div>
-                    {/*<div className={styles.info}>{profile?.aboutMe}</div>*/}
+                    <div className={styles.info}>{profile?.aboutMe}</div>
                 </li>
                 <li className={styles.item}>
                     <div className={styles.iconBlock}>

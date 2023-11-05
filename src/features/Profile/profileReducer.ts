@@ -8,12 +8,13 @@ import {handleServerNetworkError} from "../../common/utils/handleServerNetworkEr
 import {profileAPI, UpdateProfileType} from "../../api/profileApi";
 import {AppRootStateType, AppThunkType} from "../../app/store";
 
-const profileInintialState: ProfileType = {
+const profileInintialState = {
     posts: [
         {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
         {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
-    ],
+    ] as PostType[],
     profile: {
+        aboutMe: '',
         contacts: {
             facebook: '',
             website: '',
@@ -23,7 +24,7 @@ const profileInintialState: ProfileType = {
             youtube: '',
             github: '',
             mainLink: '',
-        },
+        } ,
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
@@ -32,33 +33,35 @@ const profileInintialState: ProfileType = {
             small: '',
             large: '',
         }
-    },
-    status: '',
+    } as ProfileResponseType | null,
+    status: '' as string,
     sidebar: {
         about: [
-    {
-        id: 1,
-        icon: '',
-        info: 'Live In',
-        description: ''
-    },
-    {
-        id: 2,
-        icon: '',
-        info: 'From',
-        description: 'Aden, Yemen'
-    },
-    {
-        id: 3,
-        icon: '',
-        info: 'From',
-        description: 'Relationship'
-    }
-],
-}
+            {
+                id: 1,
+                icon: '',
+                info: 'Live In',
+                description: ''
+            },
+            {
+                id: 2,
+                icon: '',
+                info: 'From',
+                description: 'Aden, Yemen'
+            },
+            {
+                id: 3,
+                icon: '',
+                info: 'From',
+                description: 'Relationship'
+            }
+        ],
+    } as SidebarType
 }
 
-export const profileReducer = (state: ProfileType = profileInintialState, action: ActionsType): ProfileType => {
+export type ProfileInitialStateType = typeof profileInintialState
+
+export const profileReducer = (state: ProfileInitialStateType = profileInintialState, action: ActionsType): ProfileInitialStateType => {
     switch (action.type) {
         case 'profile/ADD-POST':
             const newPost: PostType = {id: action.id, message: action.newPostText, likesCount: 0}
@@ -67,6 +70,8 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
             return {...state, profile: action.profile}
         case 'profile/SET-STATUS':
             return {...state, status: action.status}
+        case 'profile/SAVE-PHOTO':
+            return   {...state, profile: state.profile ? {...state.profile, photos: action.photo} : null}
         default:
             return state
     }
@@ -75,6 +80,7 @@ export const profileReducer = (state: ProfileType = profileInintialState, action
 export const addPostAC = (newPostText: string) => ({type: 'profile/ADD-POST', newPostText, id: v1()} as const)
 export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'profile/SET-USER-PROFILE', profile} as const)
 export const setStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
+export const savePhotoAC = (photo: PhotosType) => ({type: 'profile/SAVE-PHOTO', photo} as const)
 
 export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
@@ -115,8 +121,24 @@ export const updateStatusTC = (status: string) => (dispatch: Dispatch) => {
         })
 }
 
-export const updateProfileTC = (profile: UpdateProfileType): AppThunkType => (dispatch, getState: () => AppRootStateType) =>  {
-   let userId: string | null | number
+export const savePhotoTC = (file: string) => (dispatch: Dispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    profileAPI.savePhoto(file)
+        .then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(savePhotoAC(res.data.data.photos))
+                dispatch(changeStatusLoadingAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
+            }
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
+        })
+}
+
+export const updateProfileTC = (profile: UpdateProfileType): AppThunkType => (dispatch, getState: () => AppRootStateType) => {
+    let userId: string | null | number
     userId = getState().auth.loginData.id
     dispatch(changeStatusLoadingAC('loading'))
     profileAPI.updateProfile(profile)
@@ -135,21 +157,19 @@ export const updateProfileTC = (profile: UpdateProfileType): AppThunkType => (di
 }
 
 
-
 type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof setUserProfileAC>
     | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof savePhotoAC>
 
 export type ProfileResponseType = {
+    aboutMe: string
     contacts: ContactsType,
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
     userId: string
-    photos: {
-        small: string
-        large: string
-    }
+    photos: PhotosType
 }
 export type ContactsType = {
     facebook: string
@@ -162,11 +182,9 @@ export type ContactsType = {
     mainLink: null | string
 }
 
-export type ProfileType = {
-    posts: PostType[]
-    profile: ProfileResponseType
-    status: string
-    sidebar: SidebarType
+export type PhotosType = {
+    small: string
+    large: string
 }
 
 export type SidebarType = {

@@ -50,7 +50,7 @@ export default connect(
 
 //types
 type PropsType = {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
 }
 export type MyPostsType = MapStateToPropsType & MapDispatchToPropsType & PropsType
 

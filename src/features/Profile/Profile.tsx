@@ -7,23 +7,31 @@ import {Sidebar} from "./Sidebar/Sidebar";
 import {UpdateProfileType} from "../../api/profileApi";
 
 type ProfilePropsType = {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
     status: string
     updateStatus: (status: string) => void
     sidebar: SidebarType
     updateProfile: (profile: UpdateProfileType) => void
+    isOwner: boolean
+    savePhoto: (file: File) => void
 }
 
 const Profile = React.memo((props: ProfilePropsType) => {
+    const {profile, updateProfile, updateStatus, status, isOwner, sidebar} = props
+
     return (
         <div className={styles.root}>
             <div className={styles.content}>
 
-                <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileInfo profile={profile}
+                             savePhoto={props.savePhoto}
+                             isOwner={isOwner}
+                             status={status}
+                             updateStatus={updateStatus}/>
 
-                <Posts profile={props.profile}/>
+                <Posts profile={profile}/>
 
-                <Sidebar profile={props.profile} sidebar={props.sidebar} updateProfile={props.updateProfile} />
+                <Sidebar profile={profile} sidebar={sidebar} updateProfile={updateProfile} />
             </div>
         </div>
     );

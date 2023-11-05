@@ -4,7 +4,7 @@ import {AvatarAndFullName} from "../../../../../common/components/AvatarAndFullN
 import {ProfileResponseType} from "../../../profileReducer";
 
 type PostHeader = {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
 }
 
 

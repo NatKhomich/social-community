@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
 import {
     getStatusTC,
-    ProfileResponseType,
+    ProfileResponseType, savePhotoTC,
     setUserProfileTC,
     SidebarType,
     updateProfileTC,
@@ -19,7 +19,8 @@ import {UpdateProfileType} from "../../api/profileApi";
 
 
 class ProfileContainer extends React.PureComponent<ProfileContainerType> {
-    componentDidMount() {
+
+    refreshProfile () {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.userId
@@ -28,12 +29,24 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
         this.props.getStatus(userId)
     }
 
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId) {
+            this.refreshProfile()
+        }
+    }
+
     render() {
         return <Profile profile={this.props.profile}
+                        isOwner={!this.props.match.params.userId}
                         status={this.props.status}
                         updateStatus={this.props.updateStatus}
                         sidebar={this.props.sidebar}
                         updateProfile={this.props.updateProfile}
+                        savePhoto={this.props.savePhoto}
         />
     }
 }
@@ -53,7 +66,8 @@ export default compose<React.ComponentType>(
             setUserProfile: setUserProfileTC,
             getStatus: getStatusTC,
             updateStatus: updateStatusTC,
-            updateProfile: updateProfileTC
+            updateProfile: updateProfileTC,
+            savePhoto: savePhotoTC
         }),
     withRouter,
     withAuthRedirect,
@@ -65,7 +79,7 @@ type PathParamsType = { userId: string }
 type ProfileContainerType = RouteComponentProps<PathParamsType> & PropsType
 
 type MapStateToPropsType = {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
     status: string,
     userId: string
     sidebar: SidebarType
@@ -75,4 +89,5 @@ type MapDispatchToPropsType = {
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
     updateProfile: (profile: UpdateProfileType) => void
+    savePhoto: (file: File) => void
 }

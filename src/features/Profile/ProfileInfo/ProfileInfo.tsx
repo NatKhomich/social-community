@@ -1,52 +1,83 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import styles from './ProfileInfo.module.css';
 import {ProfileResponseType} from '../profileReducer';
 import userAvatar from '../../../common/image/userAvatar.jpg'
 import {ProfileStatus} from '../ProfileStatus/ProfileStatus';
 import profilePhoto from '../../../common/image/profile/profile-photo.jpg'
+import editIcon from '../../../common/image/profile/icon-edit.svg'
 
 type ProfilePresentPropsType = {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
+    savePhoto: (file: File) => void
 }
 
 const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
+    const {profile, updateStatus, status, isOwner, savePhoto} = props
+
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        e.target.files && savePhoto(e.target.files[0])
+    }
 
     return (
         <div className={styles.root}>
-            <div>
-                <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
-            </div>
 
-            <div className={styles.profileContent}>
+            {/*<div className={styles.profileContent}>*/}
 
-                {props.profile.photos.large
-                    ? <img src={props.profile?.photos.large} alt=""/>
-                    : <img src={userAvatar} alt=""/>}
+            {/*    {profile?.photos.large*/}
+            {/*        ? <img src={profile?.photos.large} alt="user-avatar"/>*/}
+            {/*        : <img src={userAvatar} alt="user-avatar"/>}*/}
 
+            {/*    /!*{isOwner && <input type="file" onChange={onMainPhotoSelected}/>}*!/*/}
 
-                <div className={styles.descriptionInfo}>
-                    <div className={styles.name}> {props.profile.fullName} </div>
-                    {/*<div> {props.profile.aboutMe} </div>*/}
-                    <div> Looking for a job: {props.profile.lookingForAJobDescription} </div>
-                    <div>
-                        Contacts:
-                        <ul className={styles.list}>
-                            <li>{props.profile.contacts.vk}</li>
-                            <li>{props.profile.contacts.youtube}</li>
-                            <li>{props.profile.contacts.github}</li>
-                            <li>{props.profile.contacts.facebook}</li>
-                            <li>{props.profile.contacts.twitter}</li>
-                            <li>{props.profile.contacts.instagram}</li>
-                            <li>{props.profile.contacts.mainLink}</li>
-                            <li>{props.profile.contacts.website}</li>
-                        </ul>
-                        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+            {/*    {isOwner &&*/}
+            {/*        <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>*/}
+            {/*            <input*/}
+            {/*                id="mainPhotoInput"*/}
+            {/*                type="file"*/}
+            {/*                onChange={onMainPhotoSelected}*/}
+            {/*                className={styles.fileInput}*/}
+            {/*            />*/}
+            {/*            <img className={styles.fileInputIcon} src={editIcon} alt='edit-icon'/>*/}
+            {/*        </label>*/}
+            {/*    }*/}
+
+            {/*    <div className={styles.name}> {profile?.fullName} </div>*/}
+
+            {/*    <div className={styles.descriptionInfo}>*/}
+            {/*        <ProfileStatus status={status} updateStatus={updateStatus}/>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
+
+                <div >
+                    <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
+                </div>
+                <div className={styles.profileContent}>
+                    <div className={styles.profileAvatar}>
+                        <img className={styles.userAvatar} src={profile?.photos.large || userAvatar} alt="profile-avatar-8"/>
+                        {isOwner &&
+                            <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>
+                                <input
+                                    id="mainPhotoInput"
+                                    type="file"
+                                    onChange={onMainPhotoSelected}
+                                    className={styles.fileInput}
+                                />
+                                <img className={styles.fileInputIcon} src={editIcon} alt='edit-icon'/>
+                            </label>
+                        }
+
+                        <div className={styles.userStatus}></div>
+                    </div>
+                    <div className={styles.profileInfo}>
+                        <h1 className={styles.fullName}>{profile?.fullName}</h1>
+                        <p className={styles.aboutMe}>{profile?.aboutMe}</p>
+                        <ProfileStatus status={status} updateStatus={updateStatus}/>
                     </div>
                 </div>
             </div>
-        </div>
     );
 });
 

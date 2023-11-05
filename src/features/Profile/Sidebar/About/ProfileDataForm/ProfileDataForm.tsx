@@ -3,15 +3,17 @@ import React from 'react';
 import styles from './ProfileDataForm.module.css'
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import {ContactsType, ProfileResponseType} from "../../../profileReducer";
+import {ContactsType} from "../../../profileReducer";
 import TextField from "@mui/material/TextField";
+import {UpdateProfileType} from "../../../../../api/profileApi";
 
 type ProfileDataFormType = {
-    callback: () => void
-    profile: ProfileResponseType | null
+    callback: (profile: UpdateProfileType) => void
+    profile: UpdateProfileType | null
 }
 
 type FormikErrorType = {
+    aboutMe: string
     fullName?: string
     lookingForAJob?: string
     lookingForAJobDescription?: string
@@ -32,6 +34,7 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
 
     const formik = useFormik({
         initialValues: {
+            aboutMe: '',
             fullName: '',
             lookingForAJob: false,
             lookingForAJobDescription: '',
@@ -51,6 +54,8 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
 
             if (!values.fullName) errors.fullName = 'Full name is required';
             if (!values.lookingForAJobDescription) errors.lookingForAJobDescription = 'Professional skills are required';
+            if (!values.lookingForAJob) errors.lookingForAJob = 'Professional skills are required';
+            if (!values) errors.aboutMe = 'About me are required';
 
             const contactsErrors: ContactsType = {} as ContactsType;
             const contacts = values.contacts || {};
@@ -68,9 +73,8 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
         },
 
         onSubmit: values => {
-            // props.callback(values)
-
-            formik.resetForm()
+            callback( values)
+            // formik.resetForm()
         },
     })
 
@@ -89,6 +93,12 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
                     <FormControlLabel label={'Yes / No'} style={{width: '100%'}} control={<Checkbox/>}
                                       {...formik.getFieldProps('lookingForAJob')}/>
                     {formik.touched.lookingForAJob && formik.errors.lookingForAJob ? <div style={{color: 'red'}}> {formik.errors.lookingForAJob} </div> : null}
+                </div>
+
+                <div>
+                    <b>About me</b>: {profile?.aboutMe}
+                    <TextField size='small' style={{width: '100%'}} {...formik.getFieldProps('fullName')} />
+                    {formik.touched.aboutMe && formik.errors.aboutMe ? <div style={{color: 'red'}}> {formik.errors.aboutMe} </div> : null}
                 </div>
 
                 <div>

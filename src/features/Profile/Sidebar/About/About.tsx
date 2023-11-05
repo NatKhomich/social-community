@@ -15,6 +15,10 @@ const About = (props: PropsType) => {
 
     const [editMode, setEditMode] = useState(false)
 
+    const onSubmit = (profileData: UpdateProfileType) => {
+        props.updateProfile(profileData)
+    }
+
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -25,7 +29,7 @@ const About = (props: PropsType) => {
 
             {
                 editMode
-                ? <ProfileDataForm callback={() => {}} profile={props.profile} />
+                ? <ProfileDataForm callback={onSubmit} profile={props.profile} />
                     :   <ProfileData profile={props.profile} activateEditMode={activateEditMode} />
             }
 

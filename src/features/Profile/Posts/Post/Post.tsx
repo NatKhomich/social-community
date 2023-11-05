@@ -26,5 +26,5 @@ export type PostType = {
     likesCount: number
 }
 type PropsType = PostType & {
-    profile: ProfileResponseType
+    profile: ProfileResponseType | null
 }
