@@ -11,7 +11,7 @@ type ProfilePropsType = {
     status: string
     updateStatus: (status: string) => void
     sidebar: SidebarType
-    updateProfile: (profile: UpdateProfileType) => void
+    updateProfile: (profile: UpdateProfileType) => Promise<any>
     isOwner: boolean
     savePhoto: (file: File) => void
 }

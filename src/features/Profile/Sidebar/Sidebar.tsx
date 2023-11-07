@@ -6,7 +6,7 @@ import {UpdateProfileType} from "../../../api/profileApi";
 type PropsType = {
     sidebar: SidebarType
     profile: ProfileResponseType | null
-    updateProfile: (profile: UpdateProfileType) => void
+    updateProfile: (profile: UpdateProfileType) => Promise<any>
     isOwner: boolean
 }
 

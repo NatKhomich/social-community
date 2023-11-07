@@ -88,6 +88,6 @@ type MapDispatchToPropsType = {
     setUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
-    updateProfile: (profile: UpdateProfileType) => void
+    updateProfile: (profile: UpdateProfileType) => Promise<any>
     savePhoto: (file: File) => void
 }

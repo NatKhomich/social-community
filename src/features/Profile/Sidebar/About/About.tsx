@@ -8,18 +8,21 @@ import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 type PropsType = {
     about: AboutType[]
     profile: ProfileResponseType | null
-    updateProfile: (profile: UpdateProfileType) => void
+    updateProfile: (profile: UpdateProfileType) => Promise<any>
     isOwner: boolean
 }
 
 const About = (props: PropsType) => {
-const {profile, updateProfile, isOwner, about} = props
+    const {profile, updateProfile, isOwner, about} = props
 
     const [editMode, setEditMode] = useState(false)
 
     const onSubmit = (profileData: UpdateProfileType) => {
         updateProfile(profileData)
-    }
+            .then(() => {
+                setEditMode(false);
+            })
+    };
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -31,8 +34,8 @@ const {profile, updateProfile, isOwner, about} = props
 
             {
                 editMode
-                ? <ProfileDataForm callback={onSubmit} profile={profile} />
-                    :   <ProfileData profile={profile} activateEditMode={activateEditMode} isOwner={isOwner} />
+                    ? <ProfileDataForm callback={onSubmit} profile={profile}/>
+                    : <ProfileData profile={profile} activateEditMode={activateEditMode} isOwner={isOwner}/>
             }
 
         </div>

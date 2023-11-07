@@ -43,7 +43,7 @@ export const ProfileData = (props: PropsType) => {
 
     const {profile, activateEditMode, isOwner} = props;
 
-    const onActivateEditModeHandler = () => {
+    const activateEditModeHandler = () => {
         activateEditMode();
     };
 
@@ -101,7 +101,7 @@ export const ProfileData = (props: PropsType) => {
                     </li>
                 )}
             </ul>
-            {isOwner && <button className={styles.editButton} onClick={onActivateEditModeHandler}> Edit </button> }
+            {isOwner && <button className={styles.editButton} onClick={activateEditModeHandler}> Edit </button> }
         </div>
     );
 };

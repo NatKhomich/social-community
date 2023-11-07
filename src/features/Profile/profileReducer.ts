@@ -24,7 +24,7 @@ const profileInintialState = {
             youtube: '',
             github: '',
             mainLink: '',
-        } ,
+        },
         lookingForAJob: false,
         lookingForAJobDescription: '',
         fullName: '',
@@ -71,7 +71,7 @@ export const profileReducer = (state: ProfileInitialStateType = profileInintialS
         case 'profile/SET-STATUS':
             return {...state, status: action.status}
         case 'profile/SAVE-PHOTO':
-            return   {...state, profile: state.profile ? {...state.profile, photos: action.photo} : null}
+            return {...state, profile: state.profile ? {...state.profile, photos: action.photo} : null}
         default:
             return state
     }
@@ -137,63 +137,65 @@ export const savePhotoTC = (file: string) => (dispatch: Dispatch) => {
         })
 }
 
-export const updateProfileTC = (profile: UpdateProfileType): AppThunkType => (dispatch, getState: () => AppRootStateType) => {
-    let userId: string | null | number
-    userId = getState().auth.loginData.id
-    dispatch(changeStatusLoadingAC('loading'))
-    profileAPI.updateProfile(profile)
-        .then(res => {
-            if (res.data.resultCode === 0) {
-                //@ts-ignore
-                dispatch(setUserProfileTC(userId))
-                dispatch(changeStatusLoadingAC('succeeded'))
-            } else {
-                handleServerAppError(res.data, dispatch)
-            }
-        })
-        .catch((error: AxiosError<ErrorType>) => {
-            handleServerNetworkError(error.message, dispatch)
-        })
+export const updateProfileTC = (profile: UpdateProfileType): AppThunkType =>
+    async (dispatch, getState: () => AppRootStateType) => {
+
+    const userId = getState().auth.loginData.id
+
+    try {
+        dispatch(changeStatusLoadingAC('loading'))
+        const res = await profileAPI.updateProfile(profile)
+        if (res.data.resultCode === 0) {
+            dispatch(setUserProfileTC(userId))
+        } else {
+            handleServerAppError(res.data, dispatch)
+            return Promise.reject(res.data.messages[0])
+        }
+    }
+    catch (error) {
+        handleServerNetworkError(error, dispatch)
+        return Promise.reject(error);
+    }
 }
 
 
-type ActionsType = ReturnType<typeof addPostAC>
-    | ReturnType<typeof setUserProfileAC>
-    | ReturnType<typeof setStatusAC>
-    | ReturnType<typeof savePhotoAC>
+    type ActionsType = ReturnType<typeof addPostAC>
+        | ReturnType<typeof setUserProfileAC>
+        | ReturnType<typeof setStatusAC>
+        | ReturnType<typeof savePhotoAC>
 
-export type ProfileResponseType = {
-    aboutMe: string
-    contacts: ContactsType,
-    lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
-    userId: string
-    photos: PhotosType
-}
-export type ContactsType = {
-    facebook: string
-    website: string
-    vk: string
-    twitter: string
-    instagram: string
-    youtube: string
-    github: string
-    mainLink: string
-}
+    export type ProfileResponseType = {
+        aboutMe: string
+        contacts: ContactsType,
+        lookingForAJob: boolean
+        lookingForAJobDescription: string
+        fullName: string
+        userId: string
+        photos: PhotosType
+    }
+    export type ContactsType = {
+        facebook: string | undefined
+        website: string | undefined
+        vk: string | undefined
+        twitter: string | undefined
+        instagram: string | undefined
+        youtube: string | undefined
+        github: string | undefined
+        mainLink: string | undefined
+    }
 
-export type PhotosType = {
-    small: string
-    large: string
-}
+    export type PhotosType = {
+        small: string
+        large: string
+    }
 
-export type SidebarType = {
-    about: AboutType[]
-}
+    export type SidebarType = {
+        about: AboutType[]
+    }
 
-export type AboutType = {
-    id: number
-    icon: string
-    info: string
-    description: string
-}
+    export type AboutType = {
+        id: number
+        icon: string
+        info: string
+        description: string
+    }

@@ -27,10 +27,10 @@ export const profileAPI = {
 }
 
 export type UpdateProfileType = {
-    aboutMe: string
+    aboutMe: string | undefined
     lookingForAJob: boolean
-    lookingForAJobDescription: string
-    fullName: string
+    lookingForAJobDescription: string | undefined
+    fullName: string | undefined
     contacts: ContactsType
 }
 
