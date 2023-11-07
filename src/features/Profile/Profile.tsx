@@ -17,14 +17,14 @@ type ProfilePropsType = {
 }
 
 const Profile = React.memo((props: ProfilePropsType) => {
-    const {profile, updateProfile, updateStatus, status, isOwner, sidebar} = props
+    const {profile, updateProfile, updateStatus, status, isOwner, sidebar, savePhoto} = props
 
     return (
         <div className={styles.root}>
             <div className={styles.content}>
 
                 <ProfileInfo profile={profile}
-                             savePhoto={props.savePhoto}
+                             savePhoto={savePhoto}
                              isOwner={isOwner}
                              status={status}
                              updateStatus={updateStatus}/>

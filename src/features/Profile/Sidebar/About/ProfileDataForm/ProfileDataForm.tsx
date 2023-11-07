@@ -84,7 +84,7 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
 
                 <div>
                     <b>Full name</b>: {profile?.fullName}
-                    <TextField size='small' style={{width: '100%'}} {...formik.getFieldProps('fullName')} />
+                    <TextField placeholder={'Full name'} size='small' style={{width: '100%'}} {...formik.getFieldProps('fullName')} />
                     {formik.touched.fullName && formik.errors.fullName ? <div style={{color: 'red'}}> {formik.errors.fullName} </div> : null}
                 </div>
 
@@ -96,15 +96,15 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
                 </div>
 
                 <div>
-                    <b>About me</b>: {profile?.aboutMe}
-                    <TextField size='small' style={{width: '100%'}} {...formik.getFieldProps('fullName')} />
-                    {formik.touched.aboutMe && formik.errors.aboutMe ? <div style={{color: 'red'}}> {formik.errors.aboutMe} </div> : null}
-                </div>
-
-                <div>
                     <b>My professional skills</b>: {profile?.lookingForAJobDescription}
                     <TextField size='small' style={{width: '100%'}} {...formik.getFieldProps('lookingForAJobDescription')} />
                     {formik.touched.lookingForAJobDescription && formik.errors.lookingForAJobDescription ? <div style={{color: 'red'}}> {formik.errors.lookingForAJobDescription} </div> : null}
+                </div>
+
+                <div>
+                    <b>About me</b>: {profile?.aboutMe}
+                    <TextField size='small' style={{width: '100%'}} {...formik.getFieldProps('aboutMe')} />
+                    {formik.touched.aboutMe && formik.errors.aboutMe ? <div style={{color: 'red'}}> {formik.errors.aboutMe} </div> : null}
                 </div>
 
                 {profile?.contacts && (
