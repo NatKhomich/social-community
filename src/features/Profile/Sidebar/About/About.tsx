@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
 import {ProfileData} from "./ProfileData/ProfileData";
 import styles from './About.module.css'
-import {AboutType, ProfileResponseType} from "../../profileReducer";
+import {ProfileResponseType} from "../../profileReducer";
 import {UpdateProfileType} from "../../../../api/profileApi";
 import {ProfileDataForm} from "./ProfileDataForm/ProfileDataForm";
 
 type PropsType = {
-    about: AboutType[]
     profile: ProfileResponseType | null
     updateProfile: (profile: UpdateProfileType) => Promise<any>
     isOwner: boolean
 }
 
 const About = (props: PropsType) => {
-    const {profile, updateProfile, isOwner, about} = props
+    const {profile, updateProfile, isOwner} = props
 
     const [editMode, setEditMode] = useState(false)
 

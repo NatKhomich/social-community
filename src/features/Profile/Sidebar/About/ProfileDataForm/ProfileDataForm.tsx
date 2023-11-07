@@ -1,7 +1,6 @@
 import {useFormik} from 'formik';
 import React from 'react';
 import styles from './ProfileDataForm.module.css'
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import {ContactsType} from "../../../profileReducer";
 import TextField from "@mui/material/TextField";
@@ -54,7 +53,6 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
 
             if (!values.fullName) errors.fullName = 'Full name is required';
             if (!values.lookingForAJobDescription) errors.lookingForAJobDescription = 'Professional skills are required';
-            if (!values.lookingForAJob) errors.lookingForAJob = 'Professional skills are required';
             if (!values) errors.aboutMe = 'About me are required';
 
             const contactsErrors: ContactsType = {} as ContactsType;
@@ -79,7 +77,6 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
             if (Object.keys(errors).length === 0) {
                 callback(values);
             }
-
             setSubmitting(false);
         },
     })
@@ -99,10 +96,7 @@ export const ProfileDataForm = (props: ProfileDataFormType) => {
 
                 <div className={styles.checkboxContainer}>
                     <div><b>Looking for a job</b></div>
-                    <FormControlLabel label={'Yes / No'} style={{width: '100%'}} control={<Checkbox/>}
-                                      {...formik.getFieldProps('lookingForAJob')}/>
-                    {formik.touched.lookingForAJob && formik.errors.lookingForAJob ?
-                        <div style={{color: 'red'}}> {formik.errors.lookingForAJob} </div> : null}
+                    <Checkbox  {...formik.getFieldProps('lookingForAJob')}/>
                 </div>
 
                 <div>

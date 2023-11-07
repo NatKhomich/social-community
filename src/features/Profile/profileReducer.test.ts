@@ -33,16 +33,16 @@ beforeEach(() => {
             }
         },
         status: '',
-        sidebar: {
-            about: [
-                {
-                    id: 1,
-                    icon: '',
-                    info: 'Live In',
-                    description: ''
-                }
-            ]
-        }
+        // sidebar: {
+        //     about: [
+        //         {
+        //             id: 1,
+        //             icon: '',
+        //             info: 'Live In',
+        //             description: ''
+        //         }
+        //     ]
+        // }
     }
 })
 

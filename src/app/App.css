@@ -8,7 +8,6 @@
 .container {
     display: flex;
     margin: 0 auto;
-    cursor: auto;
 }
 
 .appWrapper {

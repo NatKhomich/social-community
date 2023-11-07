@@ -1,23 +1,33 @@
 import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css'
-import {ProfileResponseType, SidebarType} from './profileReducer';
-import Posts from "./Posts/MyPosts";
+import {ProfileResponseType} from './profileReducer';
 import {Sidebar} from "./Sidebar/Sidebar";
 import {UpdateProfileType} from "../../api/profileApi";
+import {PostHeader} from "./Posts/Post/PostHeader/PostHeader";
+import {DataTextFormType, TextForm} from "../../common/components/TextForm/TextForm";
+import {Posts} from "./Posts/Posts";
+import {PostType} from "./Posts/Post/Post";
 
 type ProfilePropsType = {
     profile: ProfileResponseType | null
     status: string
     updateStatus: (status: string) => void
-    sidebar: SidebarType
     updateProfile: (profile: UpdateProfileType) => Promise<any>
     isOwner: boolean
     savePhoto: (file: File) => void
+    addPost: (newMyPostText: string) => void
+    posts: PostType[]
 }
 
 const Profile = React.memo((props: ProfilePropsType) => {
-    const {profile, updateProfile, updateStatus, status, isOwner, sidebar, savePhoto} = props
+    const {profile, updateProfile, updateStatus, status, isOwner, savePhoto} = props
+
+    const addPostHandler = (text: DataTextFormType) => {
+        if (text.text !== '')
+            props.addPost(text.text)
+    }
+
 
     return (
         <div className={styles.root}>
@@ -29,9 +39,23 @@ const Profile = React.memo((props: ProfilePropsType) => {
                              status={status}
                              updateStatus={updateStatus}/>
 
-                <Posts profile={profile}/>
 
-                <Sidebar profile={profile} sidebar={sidebar} updateProfile={updateProfile} isOwner={isOwner} />
+                <div className={styles.items}>
+                    <div className={styles.posts}>
+                        <div className={styles.postForm}>
+                            <div className={styles.textareaAndButton}>
+                                <PostHeader profile={props.profile}/>
+                                <TextForm callback={addPostHandler} name={'Add post'}/>
+                            </div>
+                        </div>
+                        <Posts profile={profile} posts={props.posts} />
+                    </div>
+                        <Sidebar profile={profile}
+                                 updateProfile={updateProfile}
+                                 isOwner={isOwner}
+                        />
+                </div>
+
             </div>
         </div>
     );

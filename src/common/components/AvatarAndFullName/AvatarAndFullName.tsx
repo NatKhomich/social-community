@@ -14,8 +14,8 @@ export const AvatarAndFullName = (props: PropsType) => {
             <div className={styles.image}>
 
                 {props.profile?.photos.large
-                    ? <img src={props.profile?.photos.large} alt=""/>
-                    : <img src={userAvatar} alt=""/>}
+                    ? <img className={styles.img} src={props.profile?.photos.large} alt=""/>
+                    : <img className={styles.img} src={userAvatar} alt=""/>}
 
             </div>
             <span className={styles.fullName}>{props.profile?.fullName}</span>

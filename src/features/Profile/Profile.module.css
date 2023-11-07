@@ -5,5 +5,49 @@
 .content {
     max-width: 1000px;
     margin: 0 auto;
-    overflow-x:hidden;
+}
+
+.posts {
+    min-width: 48%;
+}
+
+.items {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+}
+
+.imgAndTextarea {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.postForm {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ebe9e6;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.avatar {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+@media (max-width: 992px) {
+    .items {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .posts {
+        min-width: 100%;
+    }
 }

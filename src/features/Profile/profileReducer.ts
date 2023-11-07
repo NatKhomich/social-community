@@ -35,28 +35,28 @@ const profileInintialState = {
         }
     } as ProfileResponseType | null,
     status: '' as string,
-    sidebar: {
-        about: [
-            {
-                id: 1,
-                icon: '',
-                info: 'Live In',
-                description: ''
-            },
-            {
-                id: 2,
-                icon: '',
-                info: 'From',
-                description: 'Aden, Yemen'
-            },
-            {
-                id: 3,
-                icon: '',
-                info: 'From',
-                description: 'Relationship'
-            }
-        ],
-    } as SidebarType
+    // sidebar: {
+    //     about: [
+    //         {
+    //             id: 1,
+    //             icon: '',
+    //             info: 'Live In',
+    //             description: ''
+    //         },
+    //         {
+    //             id: 2,
+    //             icon: '',
+    //             info: 'From',
+    //             description: 'Aden, Yemen'
+    //         },
+    //         {
+    //             id: 3,
+    //             icon: '',
+    //             info: 'From',
+    //             description: 'Relationship'
+    //         }
+    //     ],
+    // } as SidebarType
 }
 
 export type ProfileInitialStateType = typeof profileInintialState
@@ -189,13 +189,13 @@ export const updateProfileTC = (profile: UpdateProfileType): AppThunkType =>
         large: string
     }
 
-    export type SidebarType = {
-        about: AboutType[]
-    }
+    // export type SidebarType = {
+    //     about: AboutType[]
+    // }
 
-    export type AboutType = {
-        id: number
-        icon: string
-        info: string
-        description: string
-    }
+    // export type AboutType = {
+    //     id: number
+    //     icon: string
+    //     info: string
+    //     description: string
+    // }

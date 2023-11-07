@@ -15,7 +15,7 @@ const Header = (props: HeaderType) => {
     return (
         <header className={styles.header}>
 
-            <NavLink to="/profile"> <img alt={'logo'} src={logo}/> </NavLink>
+            <NavLink className={styles.img} to="/profile"> <img alt={'logo'} src={logo}/> </NavLink>
 
             {props.isLoggedIn
                 ? <div className={styles.loginText}>

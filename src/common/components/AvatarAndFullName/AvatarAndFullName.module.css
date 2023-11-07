@@ -5,15 +5,15 @@
     height: 45px;
     border-radius: 10px;
     transition: 0.3s;
-    cursor: pointer;
+    cursor: auto;
     font-weight: 600;
 }
 
 .image {
     display: flex;
     margin-right: 10px;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
 }
 
 .avatar {
@@ -22,4 +22,8 @@
 
 .fullName {
     margin-left: 5px;
+}
+
+.img {
+    border-radius: 50%;
 }
