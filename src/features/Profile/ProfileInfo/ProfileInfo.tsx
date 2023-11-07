@@ -24,33 +24,6 @@ const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
     return (
         <div className={styles.root}>
 
-            {/*<div className={styles.profileContent}>*/}
-
-            {/*    {profile?.photos.large*/}
-            {/*        ? <img src={profile?.photos.large} alt="user-avatar"/>*/}
-            {/*        : <img src={userAvatar} alt="user-avatar"/>}*/}
-
-            {/*    /!*{isOwner && <input type="file" onChange={onMainPhotoSelected}/>}*!/*/}
-
-            {/*    {isOwner &&*/}
-            {/*        <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>*/}
-            {/*            <input*/}
-            {/*                id="mainPhotoInput"*/}
-            {/*                type="file"*/}
-            {/*                onChange={onMainPhotoSelected}*/}
-            {/*                className={styles.fileInput}*/}
-            {/*            />*/}
-            {/*            <img className={styles.fileInputIcon} src={editIcon} alt='edit-icon'/>*/}
-            {/*        </label>*/}
-            {/*    }*/}
-
-            {/*    <div className={styles.name}> {profile?.fullName} </div>*/}
-
-            {/*    <div className={styles.descriptionInfo}>*/}
-            {/*        <ProfileStatus status={status} updateStatus={updateStatus}/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-
                 <div >
                     <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
                 </div>
@@ -69,12 +42,12 @@ const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
                             </label>
                         }
 
-                        <div className={styles.userStatus}></div>
+                        {isOwner &&  <div className={styles.userStatus}></div>}
                     </div>
                     <div className={styles.profileInfo}>
                         <h1 className={styles.fullName}>{profile?.fullName}</h1>
                         <p className={styles.aboutMe}>{profile?.aboutMe}</p>
-                        <ProfileStatus status={status} updateStatus={updateStatus}/>
+                        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={props.isOwner}/>
                     </div>
                 </div>
             </div>

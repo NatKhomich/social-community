@@ -19,6 +19,11 @@
     padding: 4px;
 }
 
+.link {
+    text-decoration: none;
+    color: #333333;
+}
+
 .link:hover {
     color: #2563EB;
 }

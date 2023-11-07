@@ -16,12 +16,13 @@ import iconVK from '../../../../../common/image/about/icon-vk.svg'
 import iconMainLink from '../../../../../common/image/about/icon-mainLink.svg'
 
 type ProfileInfoIcons = {
-    [key: string]: string | undefined;
+    [key: string]: string | undefined
 };
 
 type PropsType = {
-    profile: ProfileResponseType | null;
-    activateEditMode: () => void;
+    profile: ProfileResponseType | null
+    activateEditMode: () => void
+    isOwner: boolean
 };
 
 export const ProfileData = (props: PropsType) => {
@@ -40,7 +41,7 @@ export const ProfileData = (props: PropsType) => {
         mainLink: iconMainLink,
     };
 
-    const {profile, activateEditMode} = props;
+    const {profile, activateEditMode, isOwner} = props;
 
     const onActivateEditModeHandler = () => {
         activateEditMode();
@@ -49,6 +50,7 @@ export const ProfileData = (props: PropsType) => {
     return (
         <div className={styles.root}>
             <ul className={styles.items}>
+
                 <li className={styles.item}>
                     <div className={styles.iconBlock}>
                         <img className={styles.iconImage} src={profileInfoIcons.aboutMe} alt="aboutMe-icon"/>
@@ -56,6 +58,7 @@ export const ProfileData = (props: PropsType) => {
                     <div>About me:</div>
                     <div className={styles.info}>{profile?.aboutMe}</div>
                 </li>
+
                 <li className={styles.item}>
                     <div className={styles.iconBlock}>
                         <img className={styles.iconImage} src={profileInfoIcons.lookingForAJob}
@@ -64,6 +67,7 @@ export const ProfileData = (props: PropsType) => {
                     <div>Looking for a job:</div>
                     <div className={styles.info}>{profile?.lookingForAJob ? 'Yes': 'No'}</div>
                 </li>
+
                 {profile?.lookingForAJobDescription && (
                     <li className={styles.item}>
                         <div className={styles.iconBlock}>
@@ -77,6 +81,7 @@ export const ProfileData = (props: PropsType) => {
                         <div className={styles.info}>{profile?.lookingForAJobDescription}</div>
                     </li>
                 )}
+
                 {profile?.contacts && (
                     <li className={styles.contacts}>
                         <div className={styles.item}>
@@ -90,14 +95,13 @@ export const ProfileData = (props: PropsType) => {
                             <ul className={styles.contact}>
                                 {Object.entries(profile.contacts).map(([key, value]) =>
                                     value &&
-                                    <ProfileContact key={key} title={key} value={value} icon={profileInfoIcons[key]}/>)}
-
+                                    <ProfileContact key={key} title={key} contactValue={value} icon={profileInfoIcons[key]}/>)}
                             </ul>
                         </div>
                     </li>
                 )}
             </ul>
-            <button className={styles.editButton} onClick={onActivateEditModeHandler}>Edit</button>
+            {isOwner && <button className={styles.editButton} onClick={onActivateEditModeHandler}> Edit </button> }
         </div>
     );
 };

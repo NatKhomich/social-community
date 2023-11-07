@@ -31,7 +31,7 @@ const Profile = React.memo((props: ProfilePropsType) => {
 
                 <Posts profile={profile}/>
 
-                <Sidebar profile={profile} sidebar={sidebar} updateProfile={updateProfile} />
+                <Sidebar profile={profile} sidebar={sidebar} updateProfile={updateProfile} isOwner={isOwner} />
             </div>
         </div>
     );

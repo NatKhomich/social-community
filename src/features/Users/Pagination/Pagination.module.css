@@ -20,9 +20,7 @@
     font-weight: bold;
     background-color: #d8dfe8;
     border: none;
-    height: 36px;
-    width: 15px;
-    padding: 0 15px;
+    padding: 0 10px;
     border-radius: 6px;
     cursor: pointer;
     display: flex;

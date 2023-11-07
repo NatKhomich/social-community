@@ -9,14 +9,16 @@ type PropsType = {
     about: AboutType[]
     profile: ProfileResponseType | null
     updateProfile: (profile: UpdateProfileType) => void
+    isOwner: boolean
 }
 
 const About = (props: PropsType) => {
+const {profile, updateProfile, isOwner, about} = props
 
     const [editMode, setEditMode] = useState(false)
 
     const onSubmit = (profileData: UpdateProfileType) => {
-        props.updateProfile(profileData)
+        updateProfile(profileData)
     }
 
     const activateEditMode = () => {
@@ -25,16 +27,13 @@ const About = (props: PropsType) => {
 
     return (
         <div className={styles.root}>
-            <h4 className={styles.sidebar__title}>About</h4>
+            <h4 className={styles.sidebar__title}> About </h4>
 
             {
                 editMode
-                ? <ProfileDataForm callback={onSubmit} profile={props.profile} />
-                    :   <ProfileData profile={props.profile} activateEditMode={activateEditMode} />
+                ? <ProfileDataForm callback={onSubmit} profile={profile} />
+                    :   <ProfileData profile={profile} activateEditMode={activateEditMode} isOwner={isOwner} />
             }
-
-
-
 
         </div>
     );

@@ -173,13 +173,13 @@ export type ProfileResponseType = {
 }
 export type ContactsType = {
     facebook: string
-    website: null | string
+    website: string
     vk: string
     twitter: string
     instagram: string
-    youtube: null | string
+    youtube: string
     github: string
-    mainLink: null | string
+    mainLink: string
 }
 
 export type PhotosType = {

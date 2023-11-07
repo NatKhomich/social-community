@@ -7,13 +7,18 @@ type PropsType = {
     sidebar: SidebarType
     profile: ProfileResponseType | null
     updateProfile: (profile: UpdateProfileType) => void
-    // users: UsersResponseType[]
+    isOwner: boolean
 }
 
 export const Sidebar = (props: PropsType) => {
+    const {sidebar, isOwner, updateProfile, profile} = props
     return (
         <div>
-            <About about={props.sidebar.about} profile={props.profile} updateProfile={props.updateProfile} />
+            <About about={sidebar.about}
+                   profile={profile}
+                   updateProfile={updateProfile}
+                   isOwner={isOwner}
+            />
         </div>
     );
 };

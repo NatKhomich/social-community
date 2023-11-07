@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 type ProfileStatusType = {
     status: string
     updateStatus: (status: string) => void
+    isOwner: boolean
 }
 
 export const ProfileStatus = (props: ProfileStatusType) => {
@@ -15,8 +16,10 @@ export const ProfileStatus = (props: ProfileStatusType) => {
         setNewStatus(e.currentTarget.value)
     }
     const activateEditMode = () => {
-        setEditMode(true)
-        setNewStatus(props.status)
+        if(props.isOwner) {
+            setEditMode(true)
+            setNewStatus(props.status)
+        }
     }
     const diActivateMode = () => {
         setEditMode(false)

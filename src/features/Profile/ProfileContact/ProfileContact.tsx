@@ -2,24 +2,26 @@ import React from 'react';
 import styles from './ProfileContact.module.css'
 
 type ProfileContactProps = {
-    title: string;
-    value: string | null;
-    icon: string | undefined;
+    title: string
+    contactValue: string | null
+    icon: string | undefined
 };
 
 
-    export const ProfileContact: React.FC<ProfileContactProps> = ({title, value, icon}) => {
+    export const ProfileContact: React.FC<ProfileContactProps> = (props) => {
+        const {contactValue, icon, title} = props
+
         return (
             <li className={styles.root}>
                 {icon && (
                     <div className={styles.iconBlock}>
-                        <a href={value ? value : '#'} target={'_blank'}>
+                        <a href={contactValue ? contactValue : '#'} target={'_blank'}>
                             <img className={styles.iconImage} src={icon} alt={`${title}-icon`}/>
                         </a>
                     </div>
                 )}
                 <p>
-                    <a className={styles.link} href={value ? value : '#'} target={'_blank'}>{value}</a>
+                    <a className={styles.link} href={contactValue ? contactValue : '#'} target={'_blank'}>{contactValue}</a>
                 </p>
             </li>
         );
