@@ -3,7 +3,7 @@ import {ResponseType} from "../common/types/types";
 import {ContactsType, PhotosType} from "../features/Profile/profileReducer";
 
 export const profileAPI = {
-    getProfile(userId: string) {
+    getProfile(userId: string | null) {
         return instance.get(`/profile/${userId}`)
     },
     getStatus(userId: number) {

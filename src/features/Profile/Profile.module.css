@@ -18,6 +18,12 @@
     gap: 20px;
 }
 
+.items ul {
+   margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
 .imgAndTextarea {
     display: flex;
     flex-direction: column;

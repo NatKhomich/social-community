@@ -82,7 +82,7 @@ export const setUserProfileAC = (profile: ProfileResponseType) => ({type: 'profi
 export const setStatusAC = (status: string) => ({type: 'profile/SET-STATUS', status} as const)
 export const savePhotoAC = (photo: PhotosType) => ({type: 'profile/SAVE-PHOTO', photo} as const)
 
-export const setUserProfileTC = (userId: string) => (dispatch: Dispatch) => {
+export const setUserProfileTC = (userId: string | null) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     profileAPI.getProfile(userId)
         .then(res => {
@@ -140,7 +140,7 @@ export const savePhotoTC = (file: string) => (dispatch: Dispatch) => {
 export const updateProfileTC = (profile: UpdateProfileType): AppThunkType =>
     async (dispatch, getState: () => AppRootStateType) => {
 
-    const userId = getState().auth.loginData.id
+    const userId = getState().auth.userId
 
     try {
         dispatch(changeStatusLoadingAC('loading'))

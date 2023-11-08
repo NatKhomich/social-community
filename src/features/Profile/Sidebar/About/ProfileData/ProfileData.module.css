@@ -15,6 +15,10 @@
     padding: 0;
 }
 
+.items li {
+    padding: 0;
+}
+
 .item {
     display: flex;
     align-items: center;
@@ -65,10 +69,12 @@
 .contacts {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 0;
 }
 
+.contact {
+    padding: 0;
+    margin: 0;
+}
 
 
 @media (max-width: 480px) {

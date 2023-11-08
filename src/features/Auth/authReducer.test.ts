@@ -8,16 +8,20 @@ beforeEach(() => {
 
     startState = {
         isLoggedIn: false, //залогинены или нет (логин пароль)
-        loginData: {} as UserAuthType
+        userId: null,
+        email: null,
+        login: null,
+        captchaUrl: null
     }
 })
 
 test('correct login should be changed', () => {
 
-    const endState = authReducer(startState, setIsLoggedInAC({id: '1', login: 'test-login', email: 'test-email'}, true))
+    const endState = authReducer(startState, setIsLoggedInAC(
+        '1', 'test-email', 'test-login', false))
 
     expect(endState.isLoggedIn).toBe(true)
-    expect(endState.loginData.login).toBe('test-login')
-    expect(endState.loginData.email).toBe('test-email')
+    expect(endState.login).toBe('test-login')
+    expect(endState.email).toBe('test-email')
 })
 

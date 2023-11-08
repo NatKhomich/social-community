@@ -47,11 +47,12 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
     authAPI.authMe()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedInAC(res.data.data, true))
+                const data = res.data.data
+                dispatch(setIsLoggedInAC(data.id, data.email, data.login, true))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 handleServerAppError(res.data, dispatch)
-                dispatch(setIsLoggedInAC(res.data.data, false))
+              //  dispatch(setIsLoggedInAC(res.data.data))
             }
         })
         .catch((error: AxiosError<ErrorType>) => {

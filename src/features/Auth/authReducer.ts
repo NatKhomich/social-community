@@ -3,40 +3,62 @@ import {DataLoginType} from './Login';
 import {handleServerAppError} from "../../common/utils/handleServerAppError";
 import {handleServerNetworkError} from "../../common/utils/handleServerNetworkError";
 import {AxiosError} from "axios";
-import {authAPI, UserAuthType} from "../../api/authApi";
+import {authAPI} from "../../api/authApi";
 import {AppThunkDispatch} from "../../app/store";
+import {securityAPI} from "../../api/securityApi";
 
 export type AuthType = {
     isLoggedIn: boolean
-    loginData: UserAuthType
+    userId: string | null
+    email: string | null
+    login: string | null
+    captchaUrl: null | string
 }
 
 const inintialState = {
     isLoggedIn: false, //залогинены или нет (логин пароль)
-    loginData: {} as UserAuthType
+    userId: null,
+    email: null,
+    login: null,
+    captchaUrl: null
 }
 
 export const authReducer = (state: AuthType = inintialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case 'auth/SET-IS-LOGGED-IN':
-            return {...state, loginData: action.loginData, isLoggedIn: action.value}
+            return {...state, ...action.payload}
+        case 'auth/GET-CAPTCHA-URL':
+            return {...state, captchaUrl: action.captchaUrl}
         default:
             return state
     }
 }
 
-export const setIsLoggedInAC = (loginData: UserAuthType, value: boolean) => ({
-    type: 'auth/SET-IS-LOGGED-IN', loginData, value} as const)
+export const setIsLoggedInAC = (userId: string | null, email: string | null, login: string | null, isLoggedIn: boolean) => ({
+    type: 'auth/SET-IS-LOGGED-IN',
+    payload: {
+        userId,
+        email,
+        login,
+        isLoggedIn
+    }} as const)
+
+export const getCaptchaUrlAC = (captchaUrl: string) => ({
+    type: 'auth/GET-CAPTCHA-URL', captchaUrl} as const)
 
 //зарегистрироваться в форме (отправить свои данные на сервер - логин пароль)
-export const loginTC = (data: DataLoginType) => (dispatch: AppThunkDispatch) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null) => (dispatch: AppThunkDispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    authAPI.login(data)
+    authAPI.login(email, password, rememberMe, captcha)
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(initializeAppTC())
                 dispatch(changeStatusLoadingAC('succeeded'))
-            } else {
+            }
+            else {
+                if (res.data.resultCode === 10 ) {
+                    dispatch(getCaptchaUrlTC())
+                }
                 handleServerAppError(res.data, dispatch)
             }
         })
@@ -50,7 +72,7 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedInAC({id: '', login: null, email: null}, false))
+                dispatch(setIsLoggedInAC(null, null, null, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 handleServerAppError(res.data, dispatch)
@@ -61,5 +83,17 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
         })
 }
 
+export const getCaptchaUrlTC = () => (dispatch: AppThunkDispatch) => {
+    dispatch(changeStatusLoadingAC('loading'))
+    securityAPI.getCaptchaUrl()
+        .then(res => {
+            dispatch(getCaptchaUrlAC(res.data.url))
+
+        })
+        .catch((error: AxiosError<ErrorType>) => {
+            handleServerNetworkError(error.message, dispatch)
+        })
+}
 
 type ActionsType = ReturnType<typeof setIsLoggedInAC>
+    | ReturnType<typeof getCaptchaUrlAC>
