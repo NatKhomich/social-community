@@ -62,21 +62,6 @@ const Login = (props: LoginType) => {
         return <Redirect to={'/profile'}/>
     }
 
-    // if (props.captchaUrl) {
-    //     return (
-    //         <form className={style.captcha} onSubmit={formik.handleSubmit}>
-    //             <img className={style.captchaImg} src={props.captchaUrl} alt={'captcha'}/>
-    //             <TextField label="captchaUrl"
-    //                        margin="normal"
-    //                        size='small'
-    //                 {...formik.getFieldProps('captchaUrl')} />
-    //             <Button type={'submit'} variant={'outlined'} color={'secondary'}>
-    //                 Send
-    //             </Button>
-    //         </form>
-    //     )
-    // }
-
 
     return <Grid container justifyContent={'center'} className={style.loginForm}>
         <Grid item justifyContent={'center'}>

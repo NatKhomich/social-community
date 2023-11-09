@@ -1,5 +1,4 @@
 import {changeStatusLoadingAC, ErrorType, initializeAppTC} from '../../app/appReducer';
-import {DataLoginType} from './Login';
 import {handleServerAppError} from "../../common/utils/handleServerAppError";
 import {handleServerNetworkError} from "../../common/utils/handleServerNetworkError";
 import {AxiosError} from "axios";

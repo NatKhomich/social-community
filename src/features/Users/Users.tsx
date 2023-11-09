@@ -34,7 +34,6 @@ const Users = (props: UsersPresentPropsType) => {
             <div className={styles.root}>
                 <div className={styles.usersHeader}>
                     <h2 className={styles.title}>Users</h2>
-                    {/*<UsersFilteredButtons filter={filter} onFilterChanged={onFilterChanged}/>*/}
                 </div>
                 <div className={styles.container}>
                     <div className={styles.users}>
