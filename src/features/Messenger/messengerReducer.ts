@@ -1,6 +1,4 @@
 import {v1} from 'uuid';
-import {DialogType} from './DialogItem/DialogItem';
-import {MessageType} from './MessageItem/MessageItem';
 import messageImg from '../../common/image/image_message.webp'
 
 const messengerInintialState: MessengerType = {
@@ -8,7 +6,7 @@ const messengerInintialState: MessengerType = {
         {
             id: v1(),
             avatar: messageImg,
-            name: 'Erica',
+            name: 'Uliana',
         },
         {
             id: v1(),
@@ -18,14 +16,14 @@ const messengerInintialState: MessengerType = {
         {
             id: v1(),
             avatar: messageImg,
-            name: 'Dennis',
+            name: 'Kate',
         },
     ],
     messages: [
         {id: v1(), message: 'Hi'},
-        {id: v1(), message: 'I love you'},
+        {id: v1(), message: 'Hi, my girl'},
         {id: v1(), message: 'How are you?'},
-        {id: v1(), message: 'Hi, my girl'}
+        {id: v1(), message: 'Good!'}
     ]
 }
 
@@ -47,3 +45,12 @@ export type MessengerType = {
     messages: MessageType[]
 }
 
+export type DialogType = {
+    name: string
+    id: string
+    avatar: string
+}
+export type MessageType = {
+    message: string
+    id: string
+}

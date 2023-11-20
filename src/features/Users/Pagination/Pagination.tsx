@@ -10,7 +10,6 @@ type PaginationType = {
 }
 
 export const Pagination: FC<PaginationType> = (props) => {
-
     const {setCurrentPage, totalItemsCount, pageSize, portionSize, currentPage} = props
 
     const [portionNumber, setPortionNumber] = useState(Math.ceil(currentPage / (portionSize || 10)))
@@ -23,21 +22,12 @@ export const Pagination: FC<PaginationType> = (props) => {
 
     const portionCount = Math.ceil(pagesCount / portionSize)
 
-    //определяем левую и правую границу порции
     const leftBorderPortionPage = (portionNumber - 1) * portionSize + 1
     const rightBorderPortionPage = portionNumber * portionSize
 
-    const onClickPrevHandler = () => {
-        setPortionNumber(portionNumber - 1)
-    }
-    const onClickNextHandler = () => {
-        setPortionNumber(portionNumber + 1)
-    }
-
-    const setCurrentPageHandler = (pageNumber: number) => {
-        setCurrentPage(pageNumber)
-    }
-
+    const onClickPrevHandler = () => setPortionNumber(portionNumber - 1)
+    const onClickNextHandler = () => setPortionNumber(portionNumber + 1)
+    const setCurrentPageHandler = (pageNumber: number) => setCurrentPage(pageNumber)
 
     return (
         <div className={styles.pagination}>
@@ -62,7 +52,6 @@ export const Pagination: FC<PaginationType> = (props) => {
             {portionCount > portionNumber &&
                 <button className={styles.button} onClick={onClickNextHandler}>NEXT</button>
             }
-
         </div>
     )
 };

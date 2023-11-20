@@ -8,15 +8,15 @@ import {securityAPI} from "../../api/securityApi";
 
 export type AuthType = {
     isLoggedIn: boolean
-    userId: string | null
+    userId: string
     email: string | null
     login: string | null
     captchaUrl: null | string
 }
 
 const inintialState = {
-    isLoggedIn: false, //залогинены или нет (логин пароль)
-    userId: null,
+    isLoggedIn: false,
+    userId: '',
     email: null,
     login: null,
     captchaUrl: null
@@ -33,7 +33,7 @@ export const authReducer = (state: AuthType = inintialState, action: ActionsType
     }
 }
 
-export const setIsLoggedInAC = (userId: string | null, email: string | null, login: string | null, isLoggedIn: boolean) => ({
+export const setIsLoggedInAC = (userId: string, email: string | null, login: string | null, isLoggedIn: boolean) => ({
     type: 'auth/SET-IS-LOGGED-IN',
     payload: {
         userId,
@@ -71,7 +71,7 @@ export const logoutTC = () => (dispatch: AppThunkDispatch) => {
     authAPI.logout()
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedInAC(null, null, null, false))
+                dispatch(setIsLoggedInAC('', null, null, false))
                 dispatch(changeStatusLoadingAC('succeeded'))
             } else {
                 handleServerAppError(res.data, dispatch)

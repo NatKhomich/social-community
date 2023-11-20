@@ -3,12 +3,12 @@ import styles from './PostHeader.module.css'
 import {AvatarAndFullName} from "../../../../../common/components/AvatarAndFullName/AvatarAndFullName";
 import {ProfileResponseType} from "../../../profileReducer";
 
-type PostHeader = {
+type PropsType = {
     profile: ProfileResponseType | null
 }
 
 
-export const PostHeader = (props: PostHeader) => {
+export const PostHeader = (props: PropsType) => {
 
     return (
         <div className={styles.root}>

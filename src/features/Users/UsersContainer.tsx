@@ -2,7 +2,6 @@ import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
 import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from './usersReducer';
 import React from 'react';
-import Users from './Users';
 import {compose} from 'redux';
 import {
     selectPortionSize,
@@ -11,6 +10,7 @@ import {
     selectUsersPageSize,
     selectUsersTotalCount
 } from './usersSelectors';
+import {Users} from "./Users";
 
 class UsersContainer extends React.Component<UsersContainerType> {
 

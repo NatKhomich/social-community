@@ -19,14 +19,14 @@
     cursor: pointer;
 }
 
-.item__image {
+.itemImage {
     display: flex;
     margin-right: 10px;
     width: 40px;
     height: 40px;
 }
 
-.item__avatar {
+.itemAvatar {
     border-radius: 50%;
 }
 
@@ -36,7 +36,7 @@
     margin-left: 5px;
 }
 
-.item__userName {
+.userName {
     font-size: 15px;
     line-height: 23px;
     font-weight: 600;
@@ -51,21 +51,4 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.item__link {
-    display: flex;
-    align-items: center;
-    color: #585757;
-}
-
-.item__link_active {
-    display: flex;
-    height:45px;
-    width: 100%;
-    align-items: center;
-    background-color:  #2a41e812;
-    color: #2a41e8;
-    border-radius: 10px;
-    transition: 0.3s;
 }

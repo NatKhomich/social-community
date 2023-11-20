@@ -1,13 +1,12 @@
 import React from 'react';
-import {sendMessageAC} from './messengerReducer';
+import {DialogType, MessageType, sendMessageAC} from './messengerReducer';
 import {Messenger} from './Messenger';
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
-import {DialogType} from './DialogItem/DialogItem';
-import {MessageType} from './MessageItem/MessageItem';
 import {withAuthRedirect} from '../../common/hoc/withAuthRedirect';
 import {compose} from 'redux';
 import {selectMessengerDialogs, selectMessengerMessages} from './messengerSelectors';
+
 
 const MessengerContainer = (props: MessengerContainerType) => {
     return (

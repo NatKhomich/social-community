@@ -20,13 +20,6 @@ type FormikErrorType = {
     password?: string
 }
 
-export type DataLoginType = {
-    email: string
-    password: string
-    rememberMe: boolean
-    captcha: string | null
-}
-
 const Login = (props: LoginType) => {
 
     const formik = useFormik({
@@ -61,7 +54,6 @@ const Login = (props: LoginType) => {
     if (props.isLoggedIn) {
         return <Redirect to={'/profile'}/>
     }
-
 
     return <Grid container justifyContent={'center'} className={style.loginForm}>
         <Grid item justifyContent={'center'}>
@@ -101,7 +93,6 @@ const Login = (props: LoginType) => {
                                        {...formik.getFieldProps('captcha')} />
                         </div>
                         }
-
 
                         <Button type={'submit'} variant={'outlined'} color={'secondary'}>
                             Login

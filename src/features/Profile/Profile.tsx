@@ -28,7 +28,6 @@ const Profile = React.memo((props: ProfilePropsType) => {
             props.addPost(text.text)
     }
 
-
     return (
         <div className={styles.root}>
             <div className={styles.content}>

@@ -140,62 +140,48 @@ export const savePhotoTC = (file: string) => (dispatch: Dispatch) => {
 export const updateProfileTC = (profile: UpdateProfileType): AppThunkType =>
     async (dispatch, getState: () => AppRootStateType) => {
 
-    const userId = getState().auth.userId
+        const userId = getState().auth.userId
 
-    try {
-        dispatch(changeStatusLoadingAC('loading'))
-        const res = await profileAPI.updateProfile(profile)
-        if (res.data.resultCode === 0) {
-            dispatch(setUserProfileTC(userId))
-        } else {
-            handleServerAppError(res.data, dispatch)
-            return Promise.reject(res.data.messages[0])
+        try {
+            dispatch(changeStatusLoadingAC('loading'))
+            const res = await profileAPI.updateProfile(profile)
+            if (res.data.resultCode === 0) {
+                dispatch(setUserProfileTC(userId))
+            } else {
+                handleServerAppError(res.data, dispatch)
+                return Promise.reject(res.data.messages[0])
+            }
+        } catch (error) {
+            handleServerNetworkError(error, dispatch)
+            return Promise.reject(error);
         }
     }
-    catch (error) {
-        handleServerNetworkError(error, dispatch)
-        return Promise.reject(error);
-    }
+
+type ActionsType = ReturnType<typeof addPostAC>
+    | ReturnType<typeof setUserProfileAC>
+    | ReturnType<typeof setStatusAC>
+    | ReturnType<typeof savePhotoAC>
+
+export type ProfileResponseType = {
+    aboutMe: string
+    contacts: ContactsType,
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: string
+    photos: PhotosType
 }
-
-
-    type ActionsType = ReturnType<typeof addPostAC>
-        | ReturnType<typeof setUserProfileAC>
-        | ReturnType<typeof setStatusAC>
-        | ReturnType<typeof savePhotoAC>
-
-    export type ProfileResponseType = {
-        aboutMe: string
-        contacts: ContactsType,
-        lookingForAJob: boolean
-        lookingForAJobDescription: string
-        fullName: string
-        userId: string
-        photos: PhotosType
-    }
-    export type ContactsType = {
-        facebook: string | undefined
-        website: string | undefined
-        vk: string | undefined
-        twitter: string | undefined
-        instagram: string | undefined
-        youtube: string | undefined
-        github: string | undefined
-        mainLink: string | undefined
-    }
-
-    export type PhotosType = {
-        small: string
-        large: string
-    }
-
-    // export type SidebarType = {
-    //     about: AboutType[]
-    // }
-
-    // export type AboutType = {
-    //     id: number
-    //     icon: string
-    //     info: string
-    //     description: string
-    // }
+export type ContactsType = {
+    facebook: string | undefined
+    website: string | undefined
+    vk: string | undefined
+    twitter: string | undefined
+    instagram: string | undefined
+    youtube: string | undefined
+    github: string | undefined
+    mainLink: string | undefined
+}
+export type PhotosType = {
+    small: string
+    large: string
+}

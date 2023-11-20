@@ -1,15 +1,3 @@
-/*.loginForm {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 100%;*/
-/*    background-color: rgba(0, 0, 0, 0.5); !* Прозрачный фон *!*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-
 .captchaImg {
     max-width: 200px;
     margin: 0 auto;

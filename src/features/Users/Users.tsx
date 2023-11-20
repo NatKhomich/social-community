@@ -16,17 +16,10 @@ type UsersPresentPropsType = {
     portionSize: number
 }
 
-const Users = (props: UsersPresentPropsType) => {
+export const Users = (props: UsersPresentPropsType) => {
     const {
-        onClickUnfollow,
-        onClickFollow,
-        followingProgress,
-        users,
-        totalCountUser,
-        setCurrentPage,
-        pageSize,
-        portionSize,
-        currentPage
+        onClickUnfollow, onClickFollow, followingProgress, users, totalCountUser,
+        setCurrentPage, pageSize, portionSize, currentPage
     } = props
 
     return (
@@ -57,9 +50,5 @@ const Users = (props: UsersPresentPropsType) => {
                 </div>
             </div>
         </div>
-
-
     );
 };
-
-export default Users;

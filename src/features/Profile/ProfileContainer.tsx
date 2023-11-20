@@ -25,7 +25,6 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
     refreshProfile () {
         let userId = this.props.match.params.userId
         if (!userId) {
-            //@ts-ignore
             userId = this.props.userId
         }
         this.props.setUserProfile(userId)
@@ -80,13 +79,13 @@ export default compose<React.ComponentType>(
 
 //types
 export type PropsType = MapStateToPropsType & MapDispatchToPropsType
-type PathParamsType = { userId: string }
+type PathParamsType = { userId: string}
 type ProfileContainerType = RouteComponentProps<PathParamsType> & PropsType
 
 type MapStateToPropsType = {
     profile: ProfileResponseType | null
     status: string
-    userId: string | null
+    userId: string
     posts: PostType[]
 }
 type MapDispatchToPropsType = {

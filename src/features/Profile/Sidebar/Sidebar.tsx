@@ -12,6 +12,7 @@ type PropsType = {
 
 export const Sidebar = (props: PropsType) => {
     const {isOwner, updateProfile, profile} = props
+
     return (
         <div className={styles.root}>
             <About profile={profile}

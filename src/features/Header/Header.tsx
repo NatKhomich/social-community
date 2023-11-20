@@ -11,18 +11,19 @@ type HeaderType = {
 }
 
 const Header = (props: HeaderType) => {
+    const {isLoggedIn, logout, login} = props
 
     return (
         <header className={styles.header}>
 
             <NavLink className={styles.img} to="/profile"> <img alt={'logo'} src={logo}/> </NavLink>
 
-            {props.isLoggedIn
+            {isLoggedIn
                 ? <div className={styles.loginText}>
                     <div className={styles.login}>
-                        {props.login}
+                        {login}
                     </div>
-                    <Button color="secondary" variant={'outlined'} onClick={() => props.logout()}>Log Out</Button>
+                    <Button color="secondary" variant={'outlined'} onClick={() => logout()}>Log Out</Button>
                 </div>
                 : <NavLink className={styles.loginBlock} to={'/login'}>
                     <Button color="secondary" variant={'outlined'}>Login</Button>

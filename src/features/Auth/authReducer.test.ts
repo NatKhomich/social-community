@@ -1,5 +1,4 @@
 import {authReducer, AuthType, setIsLoggedInAC} from "./authReducer";
-import {UserAuthType} from "../../api/authApi";
 
 
 let startState: AuthType
@@ -8,7 +7,7 @@ beforeEach(() => {
 
     startState = {
         isLoggedIn: false, //залогинены или нет (логин пароль)
-        userId: null,
+        userId: '',
         email: null,
         login: null,
         captchaUrl: null

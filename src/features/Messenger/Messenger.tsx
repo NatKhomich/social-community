@@ -7,13 +7,14 @@ import {DataTextFormType, TextForm} from '../../common/components/TextForm/TextF
 
 
 export const Messenger = (props: MessengerContainerType) => {
+    const {dialogs, messages, sendMessage} = props
 
-    const messageElement = props.messages.map(el => <MessageItem key={el.id} message={el.message} id={el.id}/>)
-    const dialogItemElement = props.dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id} avatar={el.avatar}/>)
+    const messageElement = messages.map(el => <MessageItem key={el.id} message={el.message}/>)
+    const dialogItemElement = dialogs.map(el => <DialogItem key={el.id} name={el.name} id={el.id} avatar={el.avatar}/>)
 
     const sendMassageHandler = (newMessage: DataTextFormType) => {
         if (newMessage.text !== '') {
-            props.sendMessage(newMessage.text)
+            sendMessage(newMessage.text)
         }
     }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ProfileData.module.css';
-import ProfileContact from "../../../ProfileContact/ProfileContact";
 import {ProfileResponseType} from "../../../profileReducer";
 import iconAboutMe from '../../../../../common/image/about/icon-heart.svg'
 import iconLooking from '../../../../../common/image/about/icon-looking.svg'
@@ -14,6 +13,7 @@ import iconYoutube from '../../../../../common/image/about/icon-youtube.svg'
 import iconGithub from '../../../../../common/image/about/icon-github.svg'
 import iconVK from '../../../../../common/image/about/icon-vk.svg'
 import iconMainLink from '../../../../../common/image/about/icon-mainLink.svg'
+import {ProfileContact} from "../../../ProfileContact/ProfileContact";
 
 type ProfileInfoIcons = {
     [key: string]: string | undefined

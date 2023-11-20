@@ -51,12 +51,12 @@ class App extends React.Component<AppType> {
 
                                 <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
                                 <Route path={'/messenger'} render={withSuspense(MessengerContainer)}/>
-                                 <Route path={'/users'} render={withSuspense(UsersContainer)}/>
+                                <Route path={'/users'} render={withSuspense(UsersContainer)}/>
                                 <Route path={'/login'} render={withSuspense(Login)}/>
 
-                                <Route path={'/music'} render={() => <Music />}/>
-                                <Route path={'/news'} render={() => <News />}/>
-                                <Route path={'/settings'} render={() => <Settings />}/>
+                                <Route path={'/music'} render={() => <Music/>}/>
+                                <Route path={'/news'} render={() => <News/>}/>
+                                <Route path={'/settings'} render={() => <Settings/>}/>
 
                                 <Route path="/404" render={() => <img src={imageError} alt="error"/>}/>
                                 <Route path="*" render={() => <NotFound404/>}/>

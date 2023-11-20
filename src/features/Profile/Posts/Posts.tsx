@@ -1,7 +1,7 @@
 import React from 'react';
-import Post, {PostType} from './Post/Post';
 import {ProfileResponseType} from "../profileReducer";
 import styles from './Posts.module.css'
+import {Post, PostType} from "./Post/Post";
 
 type PropsType = {
     profile: ProfileResponseType | null
@@ -9,9 +9,10 @@ type PropsType = {
 }
 
 export const Posts = React.memo((props: PropsType) => {
+    const {profile, posts} = props
 
-    let postElement = props.posts.map(el => {
-        return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id} profile={props.profile}/>
+    let postElement = posts.map(el => {
+        return <Post key={el.id} message={el.message} likesCount={el.likesCount} id={el.id} profile={profile}/>
     })
 
 
