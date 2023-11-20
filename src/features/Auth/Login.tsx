@@ -59,7 +59,7 @@ const Login = (props: LoginType) => {
     })
 
     if (props.isLoggedIn) {
-        return <Redirect to={'/social-network/profile'}/>
+        return <Redirect to={'/profile'}/>
     }
 
 

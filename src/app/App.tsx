@@ -47,16 +47,16 @@ class App extends React.Component<AppType> {
                         <div className={'content'}>
 
                             <Switch>
-                                <Route exact path="/" render={() => <Redirect to={'/social-network/profile'}/>}/>
+                                <Route exact path="/" render={() => <Redirect to={'/profile'}/>}/>
 
-                                <Route path={'/social-network/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
-                                <Route path={'/social-network/messenger'} render={withSuspense(MessengerContainer)}/>
-                                <Route path={'/social-network/users'} render={withSuspense(UsersContainer)}/>
-                                <Route path={'/social-network/login'} render={withSuspense(Login)}/>
+                                <Route path={'/profile/:userId?'} render={withSuspense(ProfileContainer)}/>
+                                <Route path={'/messenger'} render={withSuspense(MessengerContainer)}/>
+                                 <Route path={'/users'} render={withSuspense(UsersContainer)}/>
+                                <Route path={'/login'} render={withSuspense(Login)}/>
 
-                                <Route path={'/social-network/music'} render={() => <Music />}/>
-                                <Route path={'/social-network/news'} render={() => <News />}/>
-                                <Route path={'/social-network/settings'} render={() => <Settings />}/>
+                                <Route path={'/music'} render={() => <Music />}/>
+                                <Route path={'/news'} render={() => <News />}/>
+                                <Route path={'/settings'} render={() => <Settings />}/>
 
                                 <Route path="/404" render={() => <img src={imageError} alt="error"/>}/>
                                 <Route path="*" render={() => <NotFound404/>}/>
