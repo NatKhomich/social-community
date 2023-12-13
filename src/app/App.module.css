@@ -3,29 +3,18 @@
     font-family:Inter, sans-serif;
     font-size: 15px;
     height: 100vh;
+    cursor: auto;
 }
 
 .container {
     display: flex;
     margin: 0 auto;
-}
-
-.appWrapper {
     font-family: Arial, serif;
-    cursor: auto;
-    margin-top: 5px;
 }
 
 .content {
     border-radius: 10px;
     width: 100%;
-    cursor: auto;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(229, 231, 235, 1);
 }
-
-#root {
-    cursor: auto;
-}
-
-

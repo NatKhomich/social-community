@@ -24,12 +24,12 @@
     height: 45px;
     margin-bottom: 4px;
     border-radius: 10px;
-    transition: 0.3s;
+    transition: 0.2s;
     cursor: pointer;
 }
 
 .item:hover {
-    background-color: #f0f2f5;
+    background-color: rgba(166, 174, 185, 0.16);
     scale: 1.02;
 }
 
@@ -37,7 +37,6 @@
     display: flex;
     margin-right: 10px;
     margin-left: 10px;
-    /*width: 20px;*/
 }
 
 .link {
@@ -55,8 +54,8 @@
     height: 45px;
     width: 100%;
     align-items: center;
-    background-color: #2a41e812;
-    color: #5f306c;
+    background-color: rgba(115, 29, 220, 0.09);
+    color: #68676c;
     border-radius: 10px;
     transition: 0.3s;
 }
@@ -65,7 +64,6 @@
     .item {
         margin-left: 5px;
         margin-bottom: 0;
-
     }
 
     .span {

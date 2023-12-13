@@ -26,7 +26,9 @@ const Header = (props: HeaderType) => {
                     <Button color="secondary" variant={'outlined'} onClick={() => logout()}>Log Out</Button>
                 </div>
                 : <NavLink className={styles.loginBlock} to={'/login'}>
-                    <Button color="secondary" variant={'outlined'}>Login</Button>
+                    <Button color="secondary" variant={'outlined'}>
+                        Login
+                    </Button>
                 </NavLink>
             }
         </header>
