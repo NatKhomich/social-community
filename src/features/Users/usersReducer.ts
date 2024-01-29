@@ -15,7 +15,8 @@ const usersInintialState: UsersType = {
     followingProgress: [],
     portionSize: 10,
     filter: {
-        term: ''
+        term: '',
+        friend: true
     }
 }
 
@@ -28,7 +29,7 @@ export const usersReducer = (state: UsersType = usersInintialState, action: Acti
         case 'users/SET-USERS':
             return {...state, items: action.users}
         case 'users/SET-FILTER' :
-            return {...state, filter: {term: action.term}}
+            return {...state, filter: {term: action.term, friend: action.friend}}
         case 'users/SET-CURRENT-PAGE':
             return {...state, page: action.page}
         case 'users/SET-USERS-TOTAL-COUNT':
@@ -46,30 +47,30 @@ export const usersReducer = (state: UsersType = usersInintialState, action: Acti
 export const followAC = (userID: number) => ({type: 'users/FOLLOW', userID} as const)
 export const unfollowAC = (userID: number) => ({type: 'users/UNFOLLOW', userID} as const)
 export const setUsersAC = (users: UsersResponseType[]) => ({type: 'users/SET-USERS', users} as const)
-export const setFilterAC = (term: string) => ({type: 'users/SET-FILTER', term} as const)
+export const setFilterAC = (term: string, friend: boolean | null) => ({type: 'users/SET-FILTER', term, friend} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'users/SET-CURRENT-PAGE', page} as const)
 export const setUsersTotalCountAC = (totalCount: number) => ({type: 'users/SET-USERS-TOTAL-COUNT', totalCount} as const)
 export const toggleIsFollowingProgressAC = (userId: number, followingProgress: boolean) => (
     {type: 'users/TOGGLE-IS-FOLLOWING-PROGRESS', userId, followingProgress} as const)
 
 
-export const getUsersTC = (currentPage: number, pageSize: number, term: string) => (dispatch: Dispatch) => {
+export const getUsersTC = (currentPage: number, pageSize: number, term: string, friend: boolean) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
-    usersAPI.getUsers(currentPage, pageSize, term)
+    usersAPI.getUsers(currentPage, pageSize, term, friend)
         .then(res => {
             dispatch(setUsersAC(res.data.items))
             dispatch(setUsersTotalCountAC(res.data.totalCount))
-            dispatch(setFilterAC(term))
+            dispatch(setFilterAC(term, friend))
             dispatch(changeStatusLoadingAC('succeeded'))
         })
         .catch((error: AxiosError<ErrorType>) => {
             handleServerNetworkError(error.message, dispatch)
         })
 }
-export const setCurrentPageTC = (pageNumber: number, pageSize: number, term: string) => (dispatch: Dispatch) => {
+export const setCurrentPageTC = (pageNumber: number, pageSize: number, term: string, friend: boolean) => (dispatch: Dispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     dispatch(setCurrentPageAC(pageNumber))
-    usersAPI.getUsers(pageNumber, pageSize, term)
+    usersAPI.getUsers(pageNumber, pageSize, term, friend)
         .then(res => {
             dispatch(setUsersAC(res.data.items))
             dispatch(changeStatusLoadingAC('succeeded'))
@@ -134,6 +135,7 @@ export type UsersType = {
     portionSize: number,
     filter: {
         term: string
+        friend: null | boolean
     }
 }
 

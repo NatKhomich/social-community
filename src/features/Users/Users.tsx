@@ -15,13 +15,14 @@ type UsersPresentPropsType = {
     users: UsersType
     followingProgress: number[]
     portionSize: number
-    onSearchTermForm: (term: string) => void
+    onSearchTermForm: (term: string, friend: boolean | null) => void
+    onlyFriends: (friend: boolean | null) => void
 }
 
 export const Users = (props: UsersPresentPropsType) => {
     const {
         onClickUnfollow, onClickFollow, followingProgress, users, totalCountUser,
-        setCurrentPage, pageSize, portionSize, currentPage, onSearchTermForm
+        setCurrentPage, pageSize, portionSize, currentPage, onSearchTermForm, onlyFriends
     } = props
 
     return (
@@ -29,7 +30,7 @@ export const Users = (props: UsersPresentPropsType) => {
             <div className={styles.root}>
                 <div className={styles.usersHeader}>
                     <h2 className={styles.title}>Users</h2>
-                    <UserSearchForm onSearchTermForm={onSearchTermForm} />
+                    <UserSearchForm onSearchTermForm={onSearchTermForm} onlyFriends={onlyFriends} />
                 </div>
                 <div className={styles.container}>
                     <div className={styles.users}>

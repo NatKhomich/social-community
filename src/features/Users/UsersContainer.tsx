@@ -16,7 +16,7 @@ import {Users} from "./Users";
 class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize, '')
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, '', null)
     }
 
     setCurrentPage = (pageNumber: number) => {
@@ -27,8 +27,12 @@ class UsersContainer extends React.Component<UsersContainerType> {
 
     unfollow = (userId: number) => this.props.unfollow(userId)
 
-    onSearchTermForm = (term: string) => {
-        this.props.getUsers(1, this.props.pageSize, term)
+    onSearchTermForm = (term: string, friend: boolean | null) => {
+        this.props.getUsers(1, this.props.pageSize, term, friend)
+    }
+
+    onlyFriends = (friend: boolean | null) => {
+        this.props.getUsers(1, this.props.pageSize, '', friend)
     }
 
     render() {
@@ -42,6 +46,7 @@ class UsersContainer extends React.Component<UsersContainerType> {
                       followingProgress={this.props.followingProgress}
                       portionSize={this.props.portionSize}
                       onSearchTermForm={this.onSearchTermForm}
+                      onlyFriends={this.onlyFriends}
         />
     }
 }
@@ -82,7 +87,7 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    getUsers: (page: number, pageSize: number, term: string) => void
+    getUsers: (page: number, pageSize: number, term: string, friend: boolean | null) => void
     setCurrentPage: (pageNumber: number, pageSize: number, term: string) => void
     setFilter: (term: string) => void
 }

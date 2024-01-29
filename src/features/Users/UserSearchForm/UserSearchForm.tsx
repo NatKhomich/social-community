@@ -5,17 +5,19 @@ import {useFormik} from "formik";
 import s from './UserSearchForm.module.css'
 
 type Props = {
-    onSearchTermForm: (term: string) => void
+    onSearchTermForm: (term: string, friend: boolean | null) => void
+    onlyFriends: (friend: boolean | null) => void
 }
 
-export const UserSearchForm = ({onSearchTermForm}: Props) => {
+export const UserSearchForm = ({onSearchTermForm, onlyFriends}: Props) => {
 
     const formik = useFormik({
         initialValues: {
             term: '',
+            friend: false as boolean | null
         },
         onSubmit: values => {
-            onSearchTermForm(values.term)
+            onSearchTermForm(values.term, values.friend)
         },
     })
 
@@ -29,11 +31,29 @@ export const UserSearchForm = ({onSearchTermForm}: Props) => {
                            {...formik.getFieldProps('term')}
                 />
 
-                <Button disabled={formik.values.term === ''} type={'submit'} variant={'outlined'} color={'secondary'} sx={{margin: '8px 0 0 5px'}}>
+                <Button disabled={formik.values.term === ''}
+                        type={'submit'} variant={'outlined'}
+                        color={'secondary'}
+                        sx={{margin: '8px 0 0 5px'}}>
                     Search
                 </Button>
-            </div>
 
+                <Button type={'submit'} variant={'outlined'}
+                        color={'secondary'}
+                        sx={{margin: '8px 0 0 5px'}}
+                        onClick={() => onlyFriends(null)}
+                >
+                   All
+                </Button>
+
+                <Button type={'submit'} variant={'outlined'}
+                        color={'secondary'}
+                        sx={{margin: '8px 0 0 5px'}}
+                        onClick={() => onlyFriends(true)}
+                >
+                    Friends
+                </Button>
+            </div>
         </form>
     );
 };
