@@ -3,6 +3,7 @@ import styles from './Users.module.css';
 import {UsersType} from './usersReducer';
 import {Pagination} from "./Pagination/Pagination";
 import {User} from "./User/User";
+import {UserSearchForm} from "./UserSearchForm/UserSearchForm";
 
 type UsersPresentPropsType = {
     onClickUnfollow: (userID: number) => void
@@ -14,12 +15,13 @@ type UsersPresentPropsType = {
     users: UsersType
     followingProgress: number[]
     portionSize: number
+    onSearchTermForm: (term: string) => void
 }
 
 export const Users = (props: UsersPresentPropsType) => {
     const {
         onClickUnfollow, onClickFollow, followingProgress, users, totalCountUser,
-        setCurrentPage, pageSize, portionSize, currentPage
+        setCurrentPage, pageSize, portionSize, currentPage, onSearchTermForm
     } = props
 
     return (
@@ -27,19 +29,18 @@ export const Users = (props: UsersPresentPropsType) => {
             <div className={styles.root}>
                 <div className={styles.usersHeader}>
                     <h2 className={styles.title}>Users</h2>
+                    <UserSearchForm onSearchTermForm={onSearchTermForm} />
                 </div>
                 <div className={styles.container}>
                     <div className={styles.users}>
-                        {
-                            users.items.map(u =>
+                        {users.items.map(u =>
                                 <User key={u.id}
                                       user={u}
                                       followingProgress={followingProgress}
                                       onClickFollow={onClickFollow}
                                       onClickUnfollow={onClickUnfollow}
                                 />
-                            )
-                        }
+                            )}
                     </div>
                     <Pagination currentPage={currentPage}
                                 pageSize={pageSize}

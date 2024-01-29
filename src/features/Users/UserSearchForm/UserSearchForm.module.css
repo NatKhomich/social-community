@@ -1,0 +1,7 @@
+.buttonForm {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    max-width: 350px;
+    margin-bottom: 10px;
+}

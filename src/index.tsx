@@ -7,11 +7,11 @@ import {BrowserRouter, HashRouter} from 'react-router-dom';
 import {Provider} from 'react-redux';
 
 ReactDOM.render(
-        <HashRouter>
+        <BrowserRouter>
             <Provider store={store}>
                 <AppContainer />
             </Provider>
-        </HashRouter>,
+        </BrowserRouter>,
         document.getElementById('root')
     );
 

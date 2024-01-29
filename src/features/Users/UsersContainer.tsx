@@ -1,9 +1,10 @@
 import {connect} from 'react-redux';
 import {AppRootStateType} from '../../app/store';
-import {followTC, getUsersTC, setCurrentPageTC, unfollowTC, UsersType} from './usersReducer';
+import {followTC, getUsersTC, setCurrentPageTC, setFilterAC, unfollowTC, UsersType} from './usersReducer';
 import React from 'react';
 import {compose} from 'redux';
 import {
+    selectFilterTerm,
     selectPortionSize,
     selectUsers,
     selectUsersFollowingProgress, selectUsersPage,
@@ -15,30 +16,33 @@ import {Users} from "./Users";
 class UsersContainer extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, '')
     }
 
     setCurrentPage = (pageNumber: number) => {
-       this.props.setCurrentPage(pageNumber, this.props.pageSize)
+        this.props.setCurrentPage(pageNumber, this.props.pageSize, this.props.filterTerm)
     }
 
     follow = (userId: number) => this.props.follow(userId)
 
     unfollow = (userId: number) => this.props.unfollow(userId)
 
+    onSearchTermForm = (term: string) => {
+        this.props.getUsers(1, this.props.pageSize, term)
+    }
+
     render() {
-        return <>
-            <Users onClickUnfollow={this.unfollow}
-                   onClickFollow={this.follow}
-                   setCurrentPage={this.setCurrentPage}
-                   totalCountUser={this.props.totalCountUser}
-                   pageSize={this.props.pageSize}
-                   currentPage={this.props.currentPage}
-                   users={this.props.users}
-                   followingProgress={this.props.followingProgress}
-                   portionSize={this.props.portionSize}
-            />
-        </>
+        return <Users onClickUnfollow={this.unfollow}
+                      onClickFollow={this.follow}
+                      setCurrentPage={this.setCurrentPage}
+                      totalCountUser={this.props.totalCountUser}
+                      pageSize={this.props.pageSize}
+                      currentPage={this.props.currentPage}
+                      users={this.props.users}
+                      followingProgress={this.props.followingProgress}
+                      portionSize={this.props.portionSize}
+                      onSearchTermForm={this.onSearchTermForm}
+        />
     }
 }
 
@@ -49,7 +53,8 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         totalCountUser: selectUsersTotalCount(state),
         currentPage: selectUsersPage(state),
         followingProgress: selectUsersFollowingProgress(state),
-        portionSize: selectPortionSize(state)
+        portionSize: selectPortionSize(state),
+        filterTerm: selectFilterTerm(state)
     }
 }
 
@@ -58,7 +63,8 @@ export default compose<React.ComponentType>(connect(mapStateToProps,
         follow: followTC,
         unfollow: unfollowTC,
         getUsers: getUsersTC,
-        setCurrentPage: setCurrentPageTC
+        setCurrentPage: setCurrentPageTC,
+        setFilter: setFilterAC
     }))(UsersContainer)
 
 //types
@@ -71,12 +77,14 @@ type MapStateToPropsType = {
     currentPage: number
     followingProgress: number[]
     portionSize: number
+    filterTerm: string
 }
 type MapDispatchToPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    getUsers: (page: number, pageSize: number) => void
-    setCurrentPage: (pageNumber: number, pageSize: number) => void
+    getUsers: (page: number, pageSize: number, term: string) => void
+    setCurrentPage: (pageNumber: number, pageSize: number, term: string) => void
+    setFilter: (term: string) => void
 }
 //вместо ф-ии mapDispatchToProps в connect вторым параметром можно передать объект
 //{onClickFollow: followAC, и тд} и тогда connect оборачивает AC в функцию-обертку

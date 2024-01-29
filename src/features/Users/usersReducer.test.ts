@@ -11,7 +11,10 @@ beforeEach(() => {
             totalCountUser: 0,
             page: 1,
             followingProgress: [],
-            portionSize: 10
+            portionSize: 10,
+            filter: {
+                term: ''
+            }
         }
     }
 )
