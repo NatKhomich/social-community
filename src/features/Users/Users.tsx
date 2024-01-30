@@ -26,7 +26,7 @@ export const Users = (props: UsersPresentPropsType) => {
     } = props
 
     return (
-        <div className={styles.wrapper}>
+        <section className={styles.wrapper}>
             <div className={styles.root}>
                 <div className={styles.usersHeader}>
                     <h2 className={styles.title}>Users</h2>
@@ -51,6 +51,6 @@ export const Users = (props: UsersPresentPropsType) => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };

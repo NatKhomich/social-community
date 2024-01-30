@@ -3,7 +3,7 @@
     flex-direction: column;
     gap: 12px;
     max-width: 100%;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 .items {
@@ -22,7 +22,7 @@
 .item {
     display: flex;
     align-items: center;
-   padding: 0;
+    padding: 0;
     margin: 0;
 }
 

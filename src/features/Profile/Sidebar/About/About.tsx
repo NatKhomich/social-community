@@ -29,7 +29,7 @@ const About = (props: PropsType) => {
 
     return (
         <div className={styles.root}>
-            <h4 className={styles.sidebar__title}> About </h4>
+            <h4> About </h4>
 
             {
                 editMode

@@ -19,7 +19,7 @@ export const Messenger = (props: MessengerContainerType) => {
     }
 
     return (
-        <div>
+        <section>
             <div className={styles.root}>
                 <div className={styles.dialogItemElement}> {dialogItemElement} </div>
 
@@ -28,6 +28,6 @@ export const Messenger = (props: MessengerContainerType) => {
             <div className={styles.messageField}>
                 <TextForm callback={sendMassageHandler} name={'Send'}/>
             </div>
-        </div>
+        </section>
     );
 };

@@ -18,6 +18,8 @@ import {selectAuthLoginDataId} from '../Auth/authSelectors';
 import {selectProfile, selectProfilePosts, selectProfileStatus} from './profileSelectors';
 import {UpdateProfileType} from "../../api/profileApi";
 import {PostType} from "./Posts/Post/Post";
+import {selectUsersItems} from "../Users/usersSelectors";
+import {getUsersTC, UsersResponseType} from "../Users/usersReducer";
 
 
 class ProfileContainer extends React.PureComponent<ProfileContainerType> {
@@ -33,6 +35,7 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
 
     componentDidMount() {
         this.refreshProfile()
+        this.props.getUsers(1, 10, '', true)
     }
 
     componentDidUpdate(prevProps: Readonly<ProfileContainerType>, prevState: Readonly<{}>, snapshot?: any) {
@@ -50,6 +53,7 @@ class ProfileContainer extends React.PureComponent<ProfileContainerType> {
                         savePhoto={this.props.savePhoto}
                         addPost={this.props.addPost}
                         posts={this.props.posts}
+                        userItems={this.props.userItems}
         />
     }
 }
@@ -60,6 +64,7 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => {
         status: selectProfileStatus(state),
         userId: selectAuthLoginDataId(state),
         posts: selectProfilePosts(state),
+        userItems: selectUsersItems(state)
     }
 }
 
@@ -72,6 +77,7 @@ export default compose<React.ComponentType>(
             updateProfile: updateProfileTC,
             savePhoto: savePhotoTC,
             addPost: addPostAC,
+            getUsers: getUsersTC
         }),
     withRouter,
     withAuthRedirect,
@@ -87,6 +93,7 @@ type MapStateToPropsType = {
     status: string
     userId: string
     posts: PostType[]
+    userItems: UsersResponseType[]
 }
 type MapDispatchToPropsType = {
     setUserProfile: (userId: string) => void
@@ -95,4 +102,5 @@ type MapDispatchToPropsType = {
     updateProfile: (profile: UpdateProfileType) => Promise<any>
     savePhoto: (file: File) => void
     addPost: (newMyPostText: string) => void
+    getUsers: (page: number, pageSize: number, term: string, friend: boolean | null) => void
 }

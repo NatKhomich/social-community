@@ -50,7 +50,6 @@ export const ProfileData = (props: PropsType) => {
     return (
         <div className={styles.root}>
             <ul className={styles.items}>
-
                 <li className={styles.item}>
                     <div className={styles.iconBlock}>
                         <img className={styles.iconImage} src={profileInfoIcons.aboutMe} alt="aboutMe-icon"/>

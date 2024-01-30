@@ -1,6 +1,7 @@
 import {AppRootStateType} from '../../app/store';
 
 export const selectUsers = (state: AppRootStateType) => state.users
+export const selectUsersItems = (state: AppRootStateType) => state.users.items
 export const selectUsersPage = (state: AppRootStateType) => state.users.page
 export const selectUsersPageSize = (state: AppRootStateType) => state.users.pageSize
 

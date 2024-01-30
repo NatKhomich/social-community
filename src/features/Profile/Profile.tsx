@@ -8,6 +8,7 @@ import {PostHeader} from "./Posts/Post/PostHeader/PostHeader";
 import {DataTextFormType, TextForm} from "../../common/components/TextForm/TextForm";
 import {Posts} from "./Posts/Posts";
 import {PostType} from "./Posts/Post/Post";
+import {UsersResponseType} from "../Users/usersReducer";
 
 type ProfilePropsType = {
     profile: ProfileResponseType | null
@@ -18,10 +19,11 @@ type ProfilePropsType = {
     savePhoto: (file: File) => void
     addPost: (newMyPostText: string) => void
     posts: PostType[]
+    userItems: UsersResponseType[]
 }
 
 const Profile = React.memo((props: ProfilePropsType) => {
-    const {profile, updateProfile, updateStatus, status, isOwner, savePhoto} = props
+    const {profile, updateProfile, updateStatus, status, isOwner, savePhoto, userItems} = props
 
     const addPostHandler = (text: DataTextFormType) => {
         if (text.text !== '')
@@ -29,7 +31,7 @@ const Profile = React.memo((props: ProfilePropsType) => {
     }
 
     return (
-        <div className={styles.root}>
+        <section className={styles.root}>
             <div className={styles.content}>
 
                 <ProfileInfo profile={profile}
@@ -52,11 +54,12 @@ const Profile = React.memo((props: ProfilePropsType) => {
                         <Sidebar profile={profile}
                                  updateProfile={updateProfile}
                                  isOwner={isOwner}
+                                 userItems={userItems}
                         />
                 </div>
 
             </div>
-        </div>
+        </section>
     );
 });
 

@@ -3,6 +3,6 @@ import {UnderConstructionPage} from "../../common/components/UnderConstructionPa
 
 export const Music = () => {
     return (
-        <div><UnderConstructionPage/></div>
+        <section><UnderConstructionPage/></section>
     )
 }

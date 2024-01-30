@@ -2,6 +2,6 @@ import {UnderConstructionPage} from "../../common/components/UnderConstructionPa
 
 export const News = () => {
     return (
-        <div><UnderConstructionPage/></div>
+        <section><UnderConstructionPage/></section>
     )
 }
