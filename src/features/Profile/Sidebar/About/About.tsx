@@ -29,7 +29,7 @@ const About = (props: PropsType) => {
 
     return (
         <div className={styles.root}>
-            <h4> About </h4>
+            <h4 className={styles.title}> About </h4>
 
             {
                 editMode

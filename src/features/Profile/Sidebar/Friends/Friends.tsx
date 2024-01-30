@@ -12,9 +12,7 @@ export const Friends = ({userItems}: Props) => {
         <div className={s.root}>
             <h4 className={s.title}>Friends</h4>
             <div className={s.friends}>
-                {
-                    userItems.map(el =>  el.followed && <Friend key={el.id} user={el}/>)
-                }
+                {userItems.map(el =>  el.followed && <Friend key={el.id} user={el}/>)}
             </div>
         </div>
     );
