@@ -1,7 +1,6 @@
 import React from 'react';
 import {Redirect, Route, Switch} from "react-router-dom";
 import {withSuspense} from "../../common/hoc/withSuspense";
-import {Music} from "../../features/Music/Music";
 import {News} from "../../features/News/News";
 import {Settings} from "../../features/Settings/Settings";
 import imageError from "../../common/image/404.jpg";
@@ -21,8 +20,6 @@ export const Routing = () => {
             <Route path={'/messenger'} render={withSuspense(MessengerContainer)}/>
             <Route path={'/users'} render={withSuspense(UsersContainer)}/>
             <Route path={'/login'} render={withSuspense(Login)}/>
-
-            <Route path={'/music'} render={() => <Music/>}/>
             <Route path={'/news'} render={() => <News/>}/>
             <Route path={'/settings'} render={() => <Settings/>}/>
 

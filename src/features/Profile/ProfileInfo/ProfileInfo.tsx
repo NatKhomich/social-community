@@ -24,33 +24,33 @@ const ProfileInfo = React.memo((props: ProfilePresentPropsType) => {
     return (
         <div className={styles.root}>
 
-                <div >
-                    <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
-                </div>
-                <div className={styles.profileContent}>
-                    <div className={styles.profileAvatar}>
-                        <img className={styles.userAvatar} src={profile?.photos.large || userAvatar} alt="profile-avatar-8"/>
-                        {isOwner &&
-                            <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>
-                                <input
-                                    id="mainPhotoInput"
-                                    type="file"
-                                    onChange={onMainPhotoSelected}
-                                    className={styles.fileInput}
-                                />
-                                <img className={styles.fileInputIcon} src={editIcon} alt='edit-icon'/>
-                            </label>
-                        }
+            <img className={styles.profilePhoto} src={profilePhoto} alt="profile-cover"/>
 
-                        {isOwner &&  <div className={styles.userStatus}></div>}
-                    </div>
-                    <div className={styles.profileInfo}>
-                        <h1 className={styles.fullName}>{profile?.fullName}</h1>
-                        <p className={styles.aboutMe}>{profile?.aboutMe}</p>
-                        <ProfileStatus status={status} updateStatus={updateStatus} isOwner={props.isOwner}/>
-                    </div>
+            <div className={styles.profileContent}>
+                <div className={styles.profileAvatar}>
+                    <img className={styles.userAvatar} src={profile?.photos.large || userAvatar}
+                         alt="profile-avatar-8"/>
+                    {isOwner &&
+                        <label htmlFor="mainPhotoInput" className={styles.fileInputLabel}>
+                            <input
+                                id="mainPhotoInput"
+                                type="file"
+                                onChange={onMainPhotoSelected}
+                                className={styles.fileInput}
+                            />
+                            <img className={styles.fileInputIcon} src={editIcon} alt='edit-icon'/>
+                        </label>
+                    }
+
+                    {isOwner && <div className={styles.userStatus}></div>}
+                </div>
+                <div className={styles.profileInfo}>
+                    <h1 className={styles.fullName}>{profile?.fullName}</h1>
+                    <p className={styles.aboutMe}>{profile?.aboutMe}</p>
+                    <ProfileStatus status={status} updateStatus={updateStatus} isOwner={props.isOwner}/>
                 </div>
             </div>
+        </div>
     );
 });
 

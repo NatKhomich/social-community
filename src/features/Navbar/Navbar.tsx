@@ -5,7 +5,6 @@ import iconProfile from '../../common/image/profile/buttons/icon-profile.svg'
 import iconUsers from '../../common/image/profile/buttons/icon-users.svg'
 import iconMessenger from '../../common/image/profile/buttons/icon-messages.svg'
 import iconNews from '../../common/image/profile/buttons/icon-news.svg'
-import iconMusic from '../../common/image/profile/buttons/icon-music.svg'
 import iconSettings from '../../common/image/profile/buttons/icon-settings.svg'
 
 const Navbar = () => {
@@ -48,15 +47,6 @@ const Navbar = () => {
                                 <img src={iconNews} alt="icon-profile"/>
                             </div>
                             <span className={styles.span}>News</span>
-                        </NavLink>
-                    </li>
-
-                    <li className={styles.item}>
-                        <NavLink to="/music" className={styles.link} activeClassName={styles.linkActive}>
-                            <div className={styles.image}>
-                                <img src={iconMusic} alt="icon-profile"/>
-                            </div>
-                            <span className={styles.span}>Music</span>
                         </NavLink>
                     </li>
 
