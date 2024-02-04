@@ -46,8 +46,6 @@ const Login = (props: LoginType) => {
         },
         onSubmit: values => {
             props.login(values.email, values.password, values.rememberMe, values.captcha)
-            console.log(values)
-            // formik.resetForm()
         },
     })
 
@@ -82,8 +80,6 @@ const Login = (props: LoginType) => {
                                           onChange={formik.handleChange}
                                           value={formik.values.rememberMe}
                         />
-
-
                         {props.captchaUrl && <img className={style.captchaImg} src={props.captchaUrl} alt={'captcha'}/>}
                         {props.captchaUrl && <div>
                             <TextField label="captcha"

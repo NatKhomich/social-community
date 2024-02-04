@@ -45,7 +45,6 @@ export const setIsLoggedInAC = (userId: string, email: string | null, login: str
 export const getCaptchaUrlAC = (captchaUrl: string) => ({
     type: 'auth/GET-CAPTCHA-URL', captchaUrl} as const)
 
-//зарегистрироваться в форме (отправить свои данные на сервер - логин пароль)
 export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null) => (dispatch: AppThunkDispatch) => {
     dispatch(changeStatusLoadingAC('loading'))
     authAPI.login(email, password, rememberMe, captcha)

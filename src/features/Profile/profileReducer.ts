@@ -11,7 +11,6 @@ import {AppRootStateType, AppThunkType} from "../../app/store";
 const profileInintialState = {
     posts: [
         {id: v1(), message: 'Hi, why nobody love me!', likesCount: 15},
-        {id: v1(), message: 'It\'s our new program! Hey!', likesCount: 2},
     ] as PostType[],
     profile: {
         aboutMe: '',
@@ -35,28 +34,6 @@ const profileInintialState = {
         }
     } as ProfileResponseType | null,
     status: '' as string,
-    // sidebar: {
-    //     about: [
-    //         {
-    //             id: 1,
-    //             icon: '',
-    //             info: 'Live In',
-    //             description: ''
-    //         },
-    //         {
-    //             id: 2,
-    //             icon: '',
-    //             info: 'From',
-    //             description: 'Aden, Yemen'
-    //         },
-    //         {
-    //             id: 3,
-    //             icon: '',
-    //             info: 'From',
-    //             description: 'Relationship'
-    //         }
-    //     ],
-    // } as SidebarType
 }
 
 export type ProfileInitialStateType = typeof profileInintialState
