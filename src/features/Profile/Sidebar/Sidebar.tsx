@@ -22,8 +22,8 @@ export const Sidebar = (props: Props) => {
                    updateProfile={updateProfile}
                    isOwner={isOwner}
             />
+            {isOwner && <Friends userItems={userItems}/> }
 
-            <Friends userItems={userItems}/>
         </div>
     );
 };

@@ -17,7 +17,7 @@ export const Friend = ({user}: Props) => {
                      src={user.photos.small ? user.photos.small : userAvatar}
                      alt="user-image"/>
             </NavLink>
-           <h3>{user.name}</h3>
+           <h3 className={s.name}>{user.name}</h3>
         </div>
     );
 };
