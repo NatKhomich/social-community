@@ -12,12 +12,15 @@ type Props = {
 export const Friend = ({user}: Props) => {
     return (
         <div className={s.root}>
-            <NavLink to={`/profile/${user.id}`}>
-                <img className={styles.userPhoto}
-                     src={user.photos.small ? user.photos.small : userAvatar}
-                     alt="user-image"/>
-            </NavLink>
-           <h3 className={s.name}>{user.name}</h3>
+            <div className={s.content}>
+                <NavLink className={styles.link} to={`/profile/${user.id}`}>
+                    <img className={styles.userPhoto}
+                         src={user.photos.small ? user.photos.small : userAvatar}
+                         alt="user-image"/>
+                </NavLink>
+                <p className={s.name}>{user.name}</p>
+            </div>
+
         </div>
     );
 };

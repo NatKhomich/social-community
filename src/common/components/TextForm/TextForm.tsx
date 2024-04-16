@@ -1,6 +1,7 @@
 import {useFormik} from 'formik';
 import React from 'react';
 import styles from './TextForm.module.css'
+import {Button} from "../Button/Button";
 
 export const TextForm = (props: TextFormType) => {
 
@@ -20,7 +21,7 @@ export const TextForm = (props: TextFormType) => {
                 />
 
         <div className={styles.buttonBlock}>
-            <button className={styles.button}>{props.name}</button>
+            <Button>{props.name}</Button>
         </div>
     </form>
 }

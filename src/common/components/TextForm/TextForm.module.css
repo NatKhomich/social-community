@@ -30,18 +30,3 @@
     margin-top: 20px;
     padding-top: 20px;
 }
-
-.button {
-    background-color: #5e667c;
-    padding: 0 20px;
-    cursor: pointer;
-    color: #FFFFFF;
-    font-weight: 500;
-    height: 36px;
-    border: none;
-    border-radius: 6px;
-}
-
-.button:hover {
-    opacity: 0.9;
-}
